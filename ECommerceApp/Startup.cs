@@ -32,10 +32,17 @@ namespace ECommerceApp
         {
             //services.AddMvc();
             services.AddRazorPages();
-            //registering the database
+
+            //registering the Identity database
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault"));
+            });
+
+            //registering physical therapy database
+            services.AddDbContext<PhysicalTherapyDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
             //adding ApplicationUser identity
