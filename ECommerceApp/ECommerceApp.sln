@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerceApp", "ECommerceApp.csproj", "{2E8F05FA-56A3-4559-A3A7-40E673C244F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProject1", "..\XUnitTestProject1\XUnitTestProject1.csproj", "{4A3EC191-761F-44F0-8010-F237CB034919}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestEComm", "..\XUnitTestProject1\XUnitTestEComm.csproj", "{4A3EC191-761F-44F0-8010-F237CB034919}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

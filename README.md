@@ -82,27 +82,32 @@ Unit testing is included in the 401ECommSite/FrontendTesting project using the x
 ---
 ## Model Properties and Requirements
 
-### Blog
-
-| Parameter | Type | Required |
-| --- | --- | --- |
-| ID  | int | YES |
-| Test | string | YES |
-
-
-
 ### User
 
 | Parameter | Type | Required |
 | --- | --- | --- |
+| FirstName  | string | YES |
+| LastName | string | YES |
+| BirthDate | DateTime | YES |
+
+
+
+### Inventory
+
+| Parameter | Type | Required |
+| --- | --- | --- |
 | ID  | int | YES |
-| Name/Author | string | YES |
-| Posts | list | YES |
+| ServiceType | enum | YES |
+| Description | string | YES |
+| Price | decimal | YES |
+| Duration | string | YES |
+| Image | string | YES |
 
 ---
 
 ## Change Log
-***[The change log will list any changes made to the code base. This includes any changes from TA/Instructor feedback]***    
+* 1.3 *Model, Service, and CRUD functionality for products added. Data seeded to database; tests added for getters/ setter, and CRUD.
+* 1.2 *Added Razor pages with route to account/register* - 21 April 2020
 * 1.1: *MVC Scaffolding* - 20 April 2020  
 
 ---

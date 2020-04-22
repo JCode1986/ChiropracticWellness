@@ -8,7 +8,7 @@ namespace ECommerceApp.Models.Interface
     interface IInventory
     {
         //Create
-        Task CreateChiropracticService(Inventory chiropracticService);
+        Task<Inventory> CreateChiropracticService(Inventory chiropracticService);
 
         //Read specific chiropractic service
         Task<Inventory> GetChiropracticServiceByID(int chiropracticServiceID);
@@ -17,9 +17,9 @@ namespace ECommerceApp.Models.Interface
         Task<List<Inventory>> GetAllChiropracticService();
 
         //Update
-        Task UpdateChiropracticService(int chiropracticServiceID, Inventory chiropracticService);
+        Task<Inventory> UpdateChiropracticService(int chiropracticServiceID, Inventory chiropracticService);
 
         //Delete
-        Task RemoveChiropracticService(int ID);
+        Task<Inventory> RemoveChiropracticService(int ID);
     }
 }
