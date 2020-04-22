@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Models
 {
+    /// <summary>
+    /// this is the CRUD operations for the database of inventory
+    /// </summary>
     public class PostService : IPostManagement
     {
         public Task<Post> CreatePostAsync(Post post)
