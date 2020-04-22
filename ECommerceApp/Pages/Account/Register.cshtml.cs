@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ECommerceApp.Models;
 using Microsoft.AspNetCore.Identity;
@@ -46,6 +47,23 @@ namespace ECommerceApp.Pages.Account
 
                 if(result.Succeeded)
                 {
+                    // registration is successful, but they are not yet logged in
+                    //This is where to add Claims
+
+                    Claim name = new Claim("FullName", $"{user.FirstName} ${user.LastName}");
+                    //working with dates, need to convert to string for db, and then back to UTC time for C#
+                    //can also use this for a marketing date if desired
+                    Claim birthday = new Claim(ClaimTypes.DateOfBirth, new DateTime(user.Birthdate.Year, user.Birthdate.Month, user.Birthdate.Day).ToString("u"), ClaimValueTypes.DateTime);
+                    Claim email = new Claim(ClaimTypes.Email, user.Email, ClaimValueTypes.Email);
+
+                    //add claims to a list so we can add them all at once to a user
+                    List<Claim> claims = new List<Claim>()
+                    {
+                        name, birthday, email
+                    };
+                    //now add the whole list of claims to a user
+                    await _userManager.AddClaimsAsync(user, claims);
+
                     //grant the user access to the site
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
