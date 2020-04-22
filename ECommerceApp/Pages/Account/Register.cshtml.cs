@@ -50,7 +50,7 @@ namespace ECommerceApp.Pages.Account
                     // registration is successful, but they are not yet logged in
                     //This is where to add Claims
 
-                    Claim name = new Claim("FullName", $"{user.FirstName} ${user.LastName}");
+                    Claim name = new Claim("FullName", $"{user.FirstName} {user.LastName}");
                     //working with dates, need to convert to string for db, and then back to UTC time for C#
                     //can also use this for a marketing date if desired
                     Claim birthday = new Claim(ClaimTypes.DateOfBirth, new DateTime(user.Birthdate.Year, user.Birthdate.Month, user.Birthdate.Day).ToString("u"), ClaimValueTypes.DateTime);
