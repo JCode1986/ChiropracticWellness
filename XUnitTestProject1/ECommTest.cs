@@ -5,7 +5,7 @@ using Xunit;
 
 namespace XUnitTestProject1
 {
-    public class UnitTest1
+    public class ECommTest
     {
         [Fact]
         public void CanAddDescriptionToInventory()
@@ -13,7 +13,6 @@ namespace XUnitTestProject1
             Inventory inventory = new Inventory();
             inventory.Description = "neck treatment";
             Assert.Equal("neck treatment", inventory.Description);
-
         }
     
         [Fact]
@@ -23,7 +22,6 @@ namespace XUnitTestProject1
             inventory.Description = "back treatment";
             inventory.Description = "neck treatment";
             Assert.Equal("neck treatment", inventory.Description);
-
         }
     
     }
