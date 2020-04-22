@@ -17,7 +17,7 @@ namespace ECommerceApp.Models.Interface
         Task<List<Inventory>> GetAllChiropracticService();
 
         //Update
-        Task UpdateChiropracticService(int chiropracticServiceID, Inventory chiropracticService);
+        Task<Inventory> UpdateChiropracticService(int chiropracticServiceID, Inventory chiropracticService);
 
         //Delete
         Task<Inventory> RemoveChiropracticService(int ID);

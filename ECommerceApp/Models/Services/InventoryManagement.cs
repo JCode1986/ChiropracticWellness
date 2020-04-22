@@ -1,5 +1,6 @@
 ﻿using ECommerceApp.Data;
 using ECommerceApp.Models.Interface;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -65,6 +66,10 @@ namespace ECommerceApp.Models.Services
         /// <returns></returns>
         public async Task<Inventory> UpdateChiropracticService(int chiropracticServiceID, Inventory chiropracticService)
         {
+            if (chiropracticServiceID != chiropracticService.ID)
+            {
+                return null;
+            }
             _context.Entry(chiropracticService).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return chiropracticService;

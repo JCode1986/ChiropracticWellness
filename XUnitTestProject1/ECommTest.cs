@@ -69,21 +69,21 @@ namespace XUnitTestProject1
             {
                 InventoryManagement IM = new InventoryManagement(context);
 
-                Inventory _ = new Inventory()
+                Inventory inventory = new Inventory()
                 {
                     ID = 1,
                     ServiceType = ServiceType.neckAdjustment,
                     Price = 50M,
                     Description = "Headlock",
-                    Duration = "25 minutes"
+                    Duration = "60 minutes"
                 };
-
+                await IM.CreateChiropracticService(inventory);
                 var result = await IM.GetAllChiropracticService();
-                Assert.NotNull(result);
+                Assert.Equal("60 minutes", result[0].Duration);
             }
         }
       
-        [Fact(Skip = "Doesn't work at the moment")]
+        [Fact]
         public async Task CanDeleteAnItem()
         {
             DbContextOptions<StoreDbContext> options = new DbContextOptionsBuilder<StoreDbContext>()
@@ -100,8 +100,40 @@ namespace XUnitTestProject1
                     Description = "Headlock",
                     Duration = "25 minutes"
                 };
-                await IM.RemoveChiropracticService(inventory.ID);
-                Assert.Null(inventory.Duration);
+                await IM.CreateChiropracticService(inventory);
+                var result = await IM.RemoveChiropracticService(1);
+                Assert.Equal("Headlock", result.Description);
+            }
+        }
+
+        [Fact(Skip = "Update not working at the moment.")]
+        public async Task CanUpdateAnItem()
+        {
+            DbContextOptions<StoreDbContext> options = new DbContextOptionsBuilder<StoreDbContext>()
+               .UseInMemoryDatabase("CanUpdateAnItem")
+               .Options;
+            using (StoreDbContext context = new StoreDbContext(options))
+            {
+                InventoryManagement IM = new InventoryManagement(context);
+
+                Inventory inventory = new Inventory()
+                {
+                    ID = 1,
+                    Price = 50M,
+                    Description = "Headlock",
+                    Duration = "25 minutes"
+                };
+
+                Inventory Updatedinventory = new Inventory()
+                {
+                    Price = 100M,
+                    Description = "Necklock",
+                    Duration = "66 minutes"
+                };
+
+                await IM.CreateChiropracticService(inventory);
+                var result = await IM.UpdateChiropracticService(1, Updatedinventory);
+                Assert.Equal("Necklock", result.Description);
             }
         }
     }
