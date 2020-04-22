@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerceApp.Migrations.SqlServerMigrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20200422035444_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200422041013_Added-image-property")]
+    partial class Addedimageproperty
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,6 +31,9 @@ namespace ECommerceApp.Migrations.SqlServerMigrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Duration")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")

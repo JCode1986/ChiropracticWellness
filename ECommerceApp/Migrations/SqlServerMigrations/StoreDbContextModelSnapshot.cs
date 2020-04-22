@@ -31,6 +31,9 @@ namespace ECommerceApp.Migrations.SqlServerMigrations
                     b.Property<string>("Duration")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
