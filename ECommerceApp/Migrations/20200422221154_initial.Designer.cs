@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ECommerceApp.Migrations.SqlServerMigrations
+namespace ECommerceApp.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20200422041013_Added-image-property")]
-    partial class Addedimageproperty
+    [Migration("20200422221154_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ECommerceApp.Migrations.SqlServerMigrations
+namespace ECommerceApp.Migrations
 {
-    public partial class Addedimageproperty : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
