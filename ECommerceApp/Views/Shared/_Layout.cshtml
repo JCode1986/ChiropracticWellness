@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using ECommerceApp.Models;
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    @if(SignInManager.IsSignedIn(User))
+    {
+        <span>Welcome to wellness @User.Claims.First(x => x.Type == "FullName").Value!</span>
+        <form asp-page="/Account/Logout">
+            <button type="submit">Logout</button>
+        </form>
+
+    }
+    else
+    {
+        <a asp-page="/Account/Login">Login</a>
+
+        <a asp-page="/Account/Register">Register</a>
+    }
+
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
