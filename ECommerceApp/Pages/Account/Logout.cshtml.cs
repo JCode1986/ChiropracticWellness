@@ -29,7 +29,5 @@ namespace ECommerceApp.Pages.Account
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-
-
     }
 }
