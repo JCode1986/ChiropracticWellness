@@ -45,6 +45,9 @@ namespace ECommerceApp
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            //mapping; dependency injection
+            //services.AddTransient<IPhysicalTherapy, PhysicalTherapyService>();
+
             //adding ApplicationUser identity
             services.AddIdentity<ApplicationUser, IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()
