@@ -8,18 +8,18 @@ namespace ECommerceApp.Models.Interface
     interface IInventory
     {
         //Create
-        Task CreatePhysicalTherapy(PhysicalTherapy physicalTherapy);
+        Task CreateChiropracticService(Inventory chiropracticService);
 
-        //Read specific patient with resources
-        Task<PhysicalTherapy> GetPhysicalTherapyByID(int physicalTherapyID);
+        //Read specific chiropractic service
+        Task<Inventory> GetChiropracticServiceByID(int chiropracticServiceID);
 
         //Read All
-        Task<List<PhysicalTherapy>> GetAllPhysicalTherapy();
+        Task<List<Inventory>> GetAllChiropracticService();
 
         //Update
-        Task UpdatePhysicalTherapy(int physicalTherapyID, PhysicalTherapy physicalTherapy);
+        Task UpdateChiropracticService(int chiropracticServiceID, Inventory chiropracticService);
 
         //Delete
-        Task RemovePhysicalTherapy(int ID);
+        Task RemoveChiropracticService(int ID);
     }
 }

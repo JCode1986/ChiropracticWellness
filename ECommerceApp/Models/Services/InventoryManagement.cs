@@ -20,50 +20,50 @@ namespace ECommerceApp.Models.Services
         }
 
         /// <summary>
-        /// Create a physical therapy service
+        /// Create a chiropractic service
         /// </summary>
-        /// <param name="physicalTherapy">object</param>
+        /// <param name="chiropracticService">object</param>
         /// <returns></returns>
-        public async Task CreatePhysicalTherapy(PhysicalTherapy physicalTherapy)
+        public async Task CreateChiropracticService(Inventory chiropracticService)
         {
-            _context.Add(physicalTherapy);
+            _context.Add(chiropracticService);
             await _context.SaveChangesAsync();
         }
 
         /// <summary>
-        /// Get all physical therapies
+        /// Get all chiropractic services
         /// </summary>
         /// <returns>list of physical therapy objects</returns>
-        public async Task<List<PhysicalTherapy>> GetAllPhysicalTherapy() => await _context.PhysicalTherapies.ToListAsync();
+        public async Task<List<Inventory>> GetAllChiropracticService() => await _context.Inventories.ToListAsync();
 
         /// <summary>
-        /// Get a single physical therapy service by ID
+        /// Get a single chiropractic service by ID
         /// </summary>
-        /// <param name="physicalTherapyID">object</param>
+        /// <param name="chiropracticServiceID">object</param>
         /// <returns>single physical therapy object</returns>
-        public async Task<PhysicalTherapy> GetPhysicalTherapyByID(int physicalTherapyID) => await _context.PhysicalTherapies.FindAsync(physicalTherapyID);
+        public async Task<Inventory> GetChiropracticServiceByID(int chiropracticServiceID) => await _context.Inventories.FindAsync(chiropracticServiceID);
 
         /// <summary>
-        /// Remove a single physical therapy service based on ID
+        /// Remove a single chiropractic service based on ID
         /// </summary>
-        /// <param name="physicalTherapyID">object</param>
+        /// <param name="chiropracticServiceID">object</param>
         /// <returns></returns>
-        public async Task RemovePhysicalTherapy(int physicalTherapyID)
+        public async Task RemoveChiropracticService(int chiropracticServiceID)
         {
-            PhysicalTherapy PT = await _context.PhysicalTherapies.FindAsync(physicalTherapyID);
-            _context.PhysicalTherapies.Remove(PT);
+            Inventory PT = await _context.Inventories.FindAsync(chiropracticServiceID);
+            _context.Inventories.Remove(PT);
             await _context.SaveChangesAsync();
         }
 
         /// <summary>
-        /// Update a single physical therapy
+        /// Update a chiropractic service
         /// </summary>
-        /// <param name="physicalTherapyID">int</param>
-        /// <param name="physicalTherapy">object</param>
+        /// <param name="chiropracticServiceID">int</param>
+        /// <param name="chiropracticService">object</param>
         /// <returns></returns>
-        public async Task UpdatePhysicalTherapy(int physicalTherapyID, PhysicalTherapy physicalTherapy)
+        public async Task UpdateChiropracticService(int chiropracticServiceID, Inventory chiropracticService)
         {
-            _context.Entry(physicalTherapy).State = EntityState.Modified;
+            _context.Entry(chiropracticService).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
     }

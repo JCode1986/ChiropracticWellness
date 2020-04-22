@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Models
 {
-    public class PhysicalTherapy
+    public class Inventory
     {
         public int ID { get; set; }
 

@@ -16,9 +16,9 @@ namespace ECommerceApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PhysicalTherapy>().HasData(
+            modelBuilder.Entity<Inventory>().HasData(
 
-                new PhysicalTherapy
+                new Inventory
                 {
                     ID = 1,
                     ServiceType = ServiceType.initialConsultation,
@@ -26,7 +26,7 @@ namespace ECommerceApp.Data
                     Price = 100.00M,
                     Duration = "1 hour"
                 },
-                new PhysicalTherapy
+                new Inventory
                 {
                     ID = 2,
                     ServiceType = ServiceType.followUpConsultation,
@@ -34,7 +34,7 @@ namespace ECommerceApp.Data
                     Price = 50.00M,
                     Duration = "30 minutes"
                 },
-                new PhysicalTherapy
+                new Inventory
                 {
                     ID = 3,
                     ServiceType = ServiceType.lowerBackAdjustment,
@@ -42,7 +42,7 @@ namespace ECommerceApp.Data
                     Price = 75.00M,
                     Duration = "30 minutes"
                 },
-                new PhysicalTherapy
+                new Inventory
                 {
                     ID = 4,
                     ServiceType = ServiceType.neckAdjustment,
@@ -50,7 +50,7 @@ namespace ECommerceApp.Data
                     Price = 100.00M,
                     Duration = "45 minutes"
                 },
-                new PhysicalTherapy
+                new Inventory
                 {
                     ID = 5,
                     ServiceType = ServiceType.upperBackAdjustment,
@@ -58,7 +58,7 @@ namespace ECommerceApp.Data
                     Price = 75.00M,
                     Duration = "30 minutes"
                 },
-                new PhysicalTherapy
+                new Inventory
                 {
                     ID = 6,
                     ServiceType = ServiceType.packOfLowerBackAdjustments,
@@ -66,7 +66,7 @@ namespace ECommerceApp.Data
                     Price = 100.00M,
                     Duration = "1 hour 30 minutes"
                 },
-                new PhysicalTherapy
+                new Inventory
                 {
                     ID = 7,
                     ServiceType = ServiceType.packOfNeckAdjustments,
@@ -74,7 +74,7 @@ namespace ECommerceApp.Data
                     Price = 125.00M,
                     Duration = "1 hour 30 minutes"
                 },
-                new PhysicalTherapy
+                new Inventory
                 {
                     ID = 8,
                     ServiceType = ServiceType.packOfUpperBackAdjustments,
@@ -82,7 +82,7 @@ namespace ECommerceApp.Data
                     Price = 100.00M,
                     Duration = "1 hour 30 minutes"
                 },
-                new PhysicalTherapy
+                new Inventory
                 {
                     ID = 9,
                     ServiceType = ServiceType.sixtyMinuteMassage,
@@ -90,7 +90,7 @@ namespace ECommerceApp.Data
                     Price = 80.00M,
                     Duration = "60 minutes"
                 },
-                new PhysicalTherapy
+                new Inventory
                 {
                     ID = 10,
                     ServiceType = ServiceType.thirtyMinuteMassage,
@@ -100,6 +100,6 @@ namespace ECommerceApp.Data
                 }
             );
         }
-        public DbSet<PhysicalTherapy> PhysicalTherapies { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
     }
 }
