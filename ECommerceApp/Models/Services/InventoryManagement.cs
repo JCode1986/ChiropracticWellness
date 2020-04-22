@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Models.Services
 {
-    public class PhysicalTherapyService : IPhysicalTherapy
+    public class InventoryManagement : IInventory
     {
         //gain access to table properties
-        private PhysicalTherapyDbContext _context { get; }
+        private StoreDbContext _context { get; }
 
         //constructor
-        public PhysicalTherapyService(PhysicalTherapyDbContext context)
+        public InventoryManagement(StoreDbContext context)
         {
             _context = context;
         }

@@ -21,6 +21,7 @@ Microsoft Visual Studio Community 2017 (Version 15.5.7)
 - Entity Framework
 - MVC
 - Bootstrap
+- Razor Pages
 - Azure
 - Azure DevOps
 

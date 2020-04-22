@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Data
 {
-    public class PhysicalTherapyDbContext : DbContext
+    public class StoreDbContext : DbContext
     {
-        public PhysicalTherapyDbContext(DbContextOptions<PhysicalTherapyDbContext> options) : base(options)
+        public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options)
         {
 
         }

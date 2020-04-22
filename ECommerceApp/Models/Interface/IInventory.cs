@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Models.Interface
 {
-    interface IPhysicalTherapy
+    interface IInventory
     {
         //Create
         Task CreatePhysicalTherapy(PhysicalTherapy physicalTherapy);

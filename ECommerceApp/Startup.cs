@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ECommerceApp.Models.Interface;
+using ECommerceApp.Models.Services;
 
 namespace ECommerceApp
 {
@@ -40,13 +42,13 @@ namespace ECommerceApp
             });
 
             //registering physical therapy database
-            services.AddDbContext<PhysicalTherapyDbContext>(options =>
+            services.AddDbContext<StoreDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
             //mapping; dependency injection
-            //services.AddTransient<IPhysicalTherapy, PhysicalTherapyService>();
+            services.AddTransient<IInventory, InventoryManagement>();
 
             //adding ApplicationUser identity
             services.AddIdentity<ApplicationUser, IdentityRole>()
