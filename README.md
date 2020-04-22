@@ -32,7 +32,7 @@ Microsoft Visual Studio Community 2017 (Version 15.5.7)
 Clone this repository to your local machine.
 
 ```
-$ git clone https://401EComm@dev.azure.com/401EComm/401ECommSite/_git/401ECommSite
+$ git clone https://401ECommerceSueJoe@dev.azure.com/401ECommerceSueJoe/401ECommerceSite/_git/401ECommerceSite
 ```
 Once downloaded, you can either use the dotnet CLI utilities or Visual Studio 2017 (or greater) to build the web application. The solution file is located in the 401ECommSite subdirectory at the root of the repository.
 ```
@@ -48,7 +48,7 @@ Once the database has been created, the application can be run. Options for runn
 cd YourRepo/YourProject
 dotnet run
 ```
-Unit testing is included in the 401ECommSite/FrontendTesting project using the xUnit test framework. Tests have been provided for models, view models, controllers, and utility classes for the application.
+Unit testing is included in the XunitTestECommApp project using the xUnit test framework. Tests have been provided for models, view models, controllers, and utility classes for the application.
 
 ---
 
@@ -106,8 +106,10 @@ Unit testing is included in the 401ECommSite/FrontendTesting project using the x
 ---
 
 ## Change Log
-* 1.3 *Model, Service, and CRUD functionality for products added. Data seeded to database; tests added for getters/ setter, and CRUD.
-* 1.2 *Added Razor pages with route to account/register* - 21 April 2020
+* 1.5: *Both databases (user & store) deployed and connected to Web App* - 22 April 2020
+* 1.4: *Register and login operational; Saves to database* - 22 April 2020 
+* 1.3: *Model, Service, and CRUD functionality for products added. Data seeded to database; tests added for getters/ setter, and CRUD.
+* 1.2: *Added Razor pages with route to account/register* - 21 April 2020
 * 1.1: *MVC Scaffolding* - 20 April 2020  
 
 ---

@@ -38,13 +38,21 @@ namespace ECommerceApp
             //registering the Identity database
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault"));
+                //local
+                //options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault"));
+
+                //deployed
+                options.UseSqlServer(Configuration.GetConnectionString("ProductionIdentityConnection"));
             });
 
-            //registering physical therapy database
+            //registering store database
             services.AddDbContext<StoreDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                //local
+                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+
+                //deployed
+                options.UseSqlServer(Configuration.GetConnectionString("ProductionStoreConnection"));
             });
 
             //mapping; dependency injection
