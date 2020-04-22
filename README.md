@@ -52,6 +52,10 @@ Unit testing is included in the XunitTestECommApp project using the xUnit test f
 
 ---
 
+## Pages
+Deployed App - https://ecommerceappsuejoe.azurewebsites.net/
+* **route/account/register** - Page where a user can register. Information inputted are then saved to a database.
+* **route/account/login** - Page where a user can login if information given exists in the database.
 ## Usage
 ***[Provide some images of your app with brief description as title]***
 
