@@ -83,6 +83,41 @@ namespace ECommAppTest
         }
 
         [Fact]
+        public async Task CanReadSpecificItemFromDB()
+        {
+            DbContextOptions<StoreDbContext> options = new DbContextOptionsBuilder<StoreDbContext>()
+               .UseInMemoryDatabase("CanReadSpecificItemFromDB")
+               .Options;
+
+            using (StoreDbContext context = new StoreDbContext(options))
+            {
+                InventoryManagement IM = new InventoryManagement(context);
+
+                Inventory invOne = new Inventory()
+                {
+                    ID = 1,
+                    ServiceType = "Neck Adjustment",
+                    Price = 50M,
+                    Description = "Headlock",
+                    Duration = "60 minutes"
+                };
+                Inventory invTwo = new Inventory()
+                {
+                    ID = 2,
+                    ServiceType = "Back Adjustment",
+                    Price = 50M,
+                    Description = "Back breaker",
+                    Duration = "60 minutes"
+                };
+
+                await IM.CreateChiropracticService(invOne);
+                await IM.CreateChiropracticService(invTwo);
+                var result = await IM.GetChiropracticServiceByID(invOne.ID);
+                Assert.Equal("Headlock", result.Description);
+            }
+        }
+
+        [Fact]
         public async Task CanDeleteAnItem()
         {
             DbContextOptions<StoreDbContext> options = new DbContextOptionsBuilder<StoreDbContext>()

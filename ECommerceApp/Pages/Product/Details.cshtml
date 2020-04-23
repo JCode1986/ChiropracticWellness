@@ -1,0 +1,21 @@
+﻿@page "{id:int?}"
+@model ECommerceApp.Pages.Product.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="StyleSheet.css" />
+    <title>Service Details</title>
+</head>
+<body>
+    <section>
+        <label class="col-sm-3 col-form-label" asp-for="Details.Inventory.Price">Price</label>
+
+    </section>
+</body>
+</html>
