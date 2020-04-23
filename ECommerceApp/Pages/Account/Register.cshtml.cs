@@ -64,6 +64,14 @@ namespace ECommerceApp.Pages.Account
                     //now add the whole list of claims to a user
                     await _userManager.AddClaimsAsync(user, claims);
 
+                    //Associate them with a specific role
+                    await _userManager.AddToRoleAsync(user, ApplicationRoles.Member);
+
+                    if(user.Email == "sue@greengrasspt.com")
+                    {
+                        await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
+                    }
+
                     //grant the user access to the site
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
