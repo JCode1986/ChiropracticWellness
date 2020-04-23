@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ECommerceApp.Models.Interface;
 using ECommerceApp.Models.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ECommerceApp
 {
@@ -39,20 +40,20 @@ namespace ECommerceApp
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 //local
-                //options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault"));
+                options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault"));
 
                 //deployed
-                options.UseSqlServer(Configuration.GetConnectionString("ProductionIdentityConnection"));
+                //options.UseSqlServer(Configuration.GetConnectionString("ProductionIdentityConnection"));
             });
 
             //registering store database
             services.AddDbContext<StoreDbContext>(options =>
             {
                 //local
-                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
 
                 //deployed
-                options.UseSqlServer(Configuration.GetConnectionString("ProductionStoreConnection"));
+                //options.UseSqlServer(Configuration.GetConnectionString("ProductionStoreConnection"));
             });
 
             //mapping; dependency injection
@@ -62,20 +63,36 @@ namespace ECommerceApp
             services.AddIdentity<ApplicationUser, IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()
                     .AddDefaultTokenProviders();
+
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminOnly", policy => policy.RequireRole(ApplicationRoles.Admin));
+            });
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
+            //app.UseRouting - this MUST ALWAYS be first
             app.UseRouting();
-            app.UseStaticFiles();
+
+            
             //adding use authentication AFTER useRouting            
+            app.UseStaticFiles();
+            
+            //Allows the use of authentication for our app
             app.UseAuthentication();
+            app.UseAuthorization();
+
+            //Seed data into db by calling RoleInitializer class
+            RoleInitializer.SeedData(serviceProvider);
 
             app.UseEndpoints(endpoints =>
             {
