@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ECommerceApp.Migrations.SqlServerMigrations
+namespace ECommerceApp.Migrations
 {
-    public partial class Initial : Migration
+    public partial class changedenumtostring : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

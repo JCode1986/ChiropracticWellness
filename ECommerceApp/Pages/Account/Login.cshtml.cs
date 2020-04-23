@@ -37,7 +37,7 @@ namespace ECommerceApp.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, isPersistent: false, false);
 
                 //if login successful, redirect to Homepage
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
                 }

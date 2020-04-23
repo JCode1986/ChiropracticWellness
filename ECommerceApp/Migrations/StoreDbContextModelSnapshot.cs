@@ -37,8 +37,8 @@ namespace ECommerceApp.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ServiceType")
-                        .HasColumnType("int");
+                    b.Property<string>("ServiceType")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -51,7 +51,7 @@ namespace ECommerceApp.Migrations
                             Description = "Initial Evaluation where physical therapist will spend time with you to learn about your condition, your previous level of function, and how your condition is affecting your life.",
                             Duration = "1 hour",
                             Price = 100.00m,
-                            ServiceType = 0
+                            ServiceType = "Initial Consultation"
                         },
                         new
                         {
@@ -59,7 +59,7 @@ namespace ECommerceApp.Migrations
                             Description = "Follow up evaluation.",
                             Duration = "30 minutes",
                             Price = 50.00m,
-                            ServiceType = 1
+                            ServiceType = "Follow-up Consultation"
                         },
                         new
                         {
@@ -67,7 +67,7 @@ namespace ECommerceApp.Migrations
                             Description = "Lower back stuff here.",
                             Duration = "30 minutes",
                             Price = 75.00m,
-                            ServiceType = 3
+                            ServiceType = "Lower Back Adjustment"
                         },
                         new
                         {
@@ -75,7 +75,7 @@ namespace ECommerceApp.Migrations
                             Description = "Neck stuff here.",
                             Duration = "45 minutes",
                             Price = 100.00m,
-                            ServiceType = 2
+                            ServiceType = "Neck Adjustment"
                         },
                         new
                         {
@@ -83,7 +83,7 @@ namespace ECommerceApp.Migrations
                             Description = "Upper back stuff here.",
                             Duration = "30 minutes",
                             Price = 75.00m,
-                            ServiceType = 4
+                            ServiceType = "Upper Back Adjustment"
                         },
                         new
                         {
@@ -91,7 +91,7 @@ namespace ECommerceApp.Migrations
                             Description = "Package deal lower back stuff here.",
                             Duration = "1 hour 30 minutes",
                             Price = 100.00m,
-                            ServiceType = 8
+                            ServiceType = "Pack of Lower Back Adjustments"
                         },
                         new
                         {
@@ -99,7 +99,7 @@ namespace ECommerceApp.Migrations
                             Description = "Package deal neck stuff here.",
                             Duration = "1 hour 30 minutes",
                             Price = 125.00m,
-                            ServiceType = 7
+                            ServiceType = "Pack of Neck Adjustments"
                         },
                         new
                         {
@@ -107,7 +107,7 @@ namespace ECommerceApp.Migrations
                             Description = "Package deal lower back stuff here.",
                             Duration = "1 hour 30 minutes",
                             Price = 100.00m,
-                            ServiceType = 9
+                            ServiceType = "Pack of Upper Back Adjustments"
                         },
                         new
                         {
@@ -115,7 +115,7 @@ namespace ECommerceApp.Migrations
                             Description = "60 minute massage description here.",
                             Duration = "60 minutes",
                             Price = 80.00m,
-                            ServiceType = 6
+                            ServiceType = "60 Minute Massage"
                         },
                         new
                         {
@@ -123,7 +123,7 @@ namespace ECommerceApp.Migrations
                             Description = "60 minute massage description here.",
                             Duration = "30 minutes",
                             Price = 45.00m,
-                            ServiceType = 5
+                            ServiceType = "30 Minute Massage"
                         });
                 });
 #pragma warning restore 612, 618

@@ -43,9 +43,9 @@ namespace ECommAppTest
                 Inventory inventory = new Inventory()
                 {
                     ID = 1,
-                    ServiceType = ServiceType.neckAdjustment,
+                    ServiceType = "Neck Adjustment",
                     Price = 50M,
-                    Description = "Headlock",
+                    Description = "Neck lock",
                     Duration = "25 minutes"
                 };
 
@@ -71,7 +71,7 @@ namespace ECommAppTest
                 Inventory inventory = new Inventory()
                 {
                     ID = 1,
-                    ServiceType = ServiceType.neckAdjustment,
+                    ServiceType = "Neck Adjustment",
                     Price = 50M,
                     Description = "Headlock",
                     Duration = "60 minutes"
