@@ -12,7 +12,7 @@ namespace ECommerceApp.Models
         public string LastName { get; set; }
         public DateTime Birthdate { get; set; }
 
-        public string PhoneNumber { get; set; }
+        public string Phone { get; set; }
     }
 
     public static class ApplicationRoles

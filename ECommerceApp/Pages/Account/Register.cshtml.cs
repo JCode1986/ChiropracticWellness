@@ -40,7 +40,7 @@ namespace ECommerceApp.Pages.Account
                     FirstName = RegisterData.FirstName,
                     LastName = RegisterData.LastName,
                     Birthdate = RegisterData.Birthday,
-                    PhoneNumber = RegisterData.PhoneNumber
+                    Phone = RegisterData.Phone
                 };
 
             //create account using Identity
@@ -108,7 +108,7 @@ namespace ECommerceApp.Pages.Account
 
             [Required]
             [Display(Name = "Phone Number" )]
-            public string PhoneNumber { get; set; }
+            public string Phone { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage="The {0} must be at least {2} and at max {1} characters long", MinimumLength = 8)]

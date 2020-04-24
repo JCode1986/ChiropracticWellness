@@ -89,7 +89,7 @@ namespace ECommerceApp
             
             //Allows the use of authentication for our app
             app.UseAuthentication();
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             //Seed data into db by calling RoleInitializer class
             RoleInitializer.SeedData(serviceProvider);
