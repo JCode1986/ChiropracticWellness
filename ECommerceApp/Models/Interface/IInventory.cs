@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Models.Interface
 {
-    interface IInventory
+    public interface IInventory
     {
         //Create
         Task<Inventory> CreateChiropracticService(Inventory chiropracticService);
