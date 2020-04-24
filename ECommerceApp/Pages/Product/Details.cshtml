@@ -19,10 +19,40 @@
     <br />
     <br />
     <br />
-    <h2>@Model.inventory.ServiceType</h2>
-    <p>@Model.inventory.Description</p>
-    <p>@Model.inventory.Duration</p>
-    <p>@Model.inventory.Price</p>
 
+    <div class="container" id="product-section">
+        <div class="row">
+            <div class="col-md-6">
+                <img src=@Model.inventory.Image
+                     class="image-responsive" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p>@Model.inventory.ServiceType</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p>@Model.inventory.Description</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p>@Model.inventory.Duration</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p>@Model.inventory.Price</p>
+            </div>
+        </div>
+    </div><!-- end container -->
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js"
+            integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
 </body>
 </html>
