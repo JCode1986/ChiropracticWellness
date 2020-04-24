@@ -140,7 +140,7 @@ namespace ECommAppTest
             }
         }
 
-        [Fact(Skip = "Update not working at the moment.")]
+        [Fact]
         public async Task CanUpdateAnItem()
         {
             DbContextOptions<StoreDbContext> options = new DbContextOptionsBuilder<StoreDbContext>()
@@ -158,16 +158,10 @@ namespace ECommAppTest
                     Duration = "25 minutes"
                 };
 
-                Inventory Updatedinventory = new Inventory()
-                {
-                    Price = 100M,
-                    Description = "Necklock",
-                    Duration = "66 minutes"
-                };
-
                 await IM.CreateChiropracticService(inventory);
-                var result = await IM.UpdateChiropracticService(1, Updatedinventory);
-                Assert.Equal("Necklock", result.Description);
+                inventory.Duration = "60 minutes";
+                var result = await IM.UpdateChiropracticService(1, inventory);
+                Assert.Equal("60 minutes", result.Duration);
             }
         }
     }
