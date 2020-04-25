@@ -20,6 +20,10 @@
     <Compile Include="Migrations\StoreDb\20200424001518_initial.Designer.cs" />
     <Compile Include="Migrations\StoreDb\20200424001605_first.cs" />
     <Compile Include="Migrations\StoreDb\20200424001605_first.Designer.cs" />
+    <Compile Include="Migrations\StoreDb\20200425053539_updatedImages.cs" />
+    <Compile Include="Migrations\StoreDb\20200425053539_updatedImages.Designer.cs" />
+    <Compile Include="Migrations\StoreDb\20200425064517_movedAssets.cs" />
+    <Compile Include="Migrations\StoreDb\20200425064517_movedAssets.Designer.cs" />
     <Compile Include="Migrations\StoreDb\StoreDbContextModelSnapshot.cs" />
   </ItemGroup>
 
