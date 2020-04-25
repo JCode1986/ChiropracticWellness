@@ -7,14 +7,6 @@
 
 
 <body>
-    @if(Model == null)
-    {
-        
-    }
-     @if(Model == null)
-     {
-         
-     }
     <div class="container" id="product-section" style="margin-top:100px;">
         <div class="row">
             <div class="col-md-6">
@@ -51,7 +43,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Purchase @Model.inventory.ServiceType for $@Model.inventory.Price? One of our chiropractors will call the phone number you have provided after the purchase to schedule an appointment.</p>
+                                            <p>Purchase @Model.inventory.ServiceType for $@Model.inventory.Price? One of our chiropractors will call the phone number you have provided to schedule an appointment.</p>
                                         </div>
                                         <div class="modal-footer" style="text-align:center">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
