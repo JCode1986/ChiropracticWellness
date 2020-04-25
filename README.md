@@ -3,7 +3,12 @@
 ---
 ### We are deployed on Azure!
 
-[https://ecommerceappsuejoe.azurewebsites.net/]
+* Deployed site - https://ecommerceappsuejoe.azurewebsites.net/
+
+* Database server names
+  * User database - userdbcontext.database.windows.net
+  * Store database - productdb.database.windows.net
+
 
 ---
 ## Web Application
@@ -56,6 +61,8 @@ Unit testing is included in the XunitTestECommApp project using the xUnit test f
 Deployed App - https://ecommerceappsuejoe.azurewebsites.net/
 * **route/account/register** - Page where a user can register. Information inputted are then saved to a database.
 * **route/account/login** - Page where a user can login if information given exists in the database.
+* **route/store/store** - Page that shows all available services.
+* **route/product/details/id** - Page that shows a specific service with details.
 ## Usage
 ***[Provide some images of your app with brief description as title]***
 
@@ -110,6 +117,8 @@ Deployed App - https://ecommerceappsuejoe.azurewebsites.net/
 ---
 
 ## Change Log
+* 1.7: *Page for all products to show up; still need functionality to click a specific product to redirect to details page.* - 25 April 2020
+* 1.6: *Page for specific product with details added, and able to retrieve data from database* - 24 April 2020
 * 1.5: *Both databases (user & store) deployed and connected to Web App* - 22 April 2020
 * 1.4: *Register and login operational; Saves to database* - 22 April 2020 
 * 1.3: *Model, Service, and CRUD functionality for products added. Data seeded to database; tests added for getters/ setter, and CRUD.
