@@ -39,7 +39,8 @@ namespace ECommerceApp.Pages.Account
                     Email = RegisterData.Email,
                     FirstName = RegisterData.FirstName,
                     LastName = RegisterData.LastName,
-                    Birthdate = RegisterData.Birthday
+                    Birthdate = RegisterData.Birthday,
+                    Phone = RegisterData.Phone
                 };
 
             //create account using Identity
@@ -67,7 +68,7 @@ namespace ECommerceApp.Pages.Account
                     //Associate them with a specific role
                     await _userManager.AddToRoleAsync(user, ApplicationRoles.Member);
 
-                    if(user.Email == "sue@greengrasspt.com")
+                    if(user.Email == "sue@greengrasspt.com" || user.Email == "joseph.hangarter@yahoo.com")
                     {
                         await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
                     }
@@ -104,6 +105,10 @@ namespace ECommerceApp.Pages.Account
             [Required]
             [DataType(DataType.Date)]
             public DateTime Birthday { get; set; }
+
+            [Required]
+            [Display(Name = "Phone Number" )]
+            public string Phone { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage="The {0} must be at least {2} and at max {1} characters long", MinimumLength = 8)]

@@ -1,4 +1,14 @@
-﻿
+﻿body {
+    background-color: #D0EDB5;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+footer {
+    text-align: center;
+}
+
+
 
 .masthead {
     height: 15vh;
@@ -8,11 +18,15 @@
     background-position: center;
     background-repeat: no-repeat;
 }
-body {
-    background-color: #D0EDB5;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+#hero{
+    margin: auto;
+    text-align: center;
+    margin-top: 30px; 
 }
 
-footer{
-    text-align: center;
+
+#bios{
+    float: right;
+
 }

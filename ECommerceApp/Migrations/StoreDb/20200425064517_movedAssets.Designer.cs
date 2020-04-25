@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ECommerceApp.Migrations
+namespace ECommerceApp.Migrations.StoreDb
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20200423181643_changed-enum-to-string")]
-    partial class changedenumtostring
+    [Migration("20200425064517_movedAssets")]
+    partial class movedAssets
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,80 +50,90 @@ namespace ECommerceApp.Migrations
                         new
                         {
                             ID = 1,
-                            Description = "Initial Evaluation where physical therapist will spend time with you to learn about your condition, your previous level of function, and how your condition is affecting your life.",
+                            Description = "Initial Evaluation where the Chiropractor will spend time with you to learn about your condition, your previous level of function, and how your condition is affecting your life. He will then perform an examination and perform a treatment.",
                             Duration = "1 hour",
-                            Price = 100.00m,
+                            Image = "~Styles/Assets/InitialEvaluation.jpg",
+                            Price = 250.00m,
                             ServiceType = "Initial Consultation"
                         },
                         new
                         {
                             ID = 2,
-                            Description = "Follow up evaluation.",
-                            Duration = "30 minutes",
-                            Price = 50.00m,
+                            Description = "A Follow-up Evaluation where the Chiropractor will spend time with you to see how you are doing and how you are meeting your functional goals. He will then perform an mini-examination and perform a treatment. Note: This service is only available after you have had a full initial consultation",
+                            Duration = "45-60 minutes",
+                            Image = "~Styles/Assets/FollowUpConsultation.jpg",
+                            Price = 150.00m,
                             ServiceType = "Follow-up Consultation"
                         },
                         new
                         {
                             ID = 3,
-                            Description = "Lower back stuff here.",
+                            Description = "A follow up visit for targetted adjustment of the lower back.",
                             Duration = "30 minutes",
+                            Image = "~Styles/Assets/LowBack1.jpg",
                             Price = 75.00m,
                             ServiceType = "Lower Back Adjustment"
                         },
                         new
                         {
                             ID = 4,
-                            Description = "Neck stuff here.",
+                            Description = "A follow up visit for targetted adjustment of the neck.",
                             Duration = "45 minutes",
-                            Price = 100.00m,
+                            Image = "~Styles/Assets/NeckAdjustment1.jpg",
+                            Price = 85.00m,
                             ServiceType = "Neck Adjustment"
                         },
                         new
                         {
                             ID = 5,
-                            Description = "Upper back stuff here.",
+                            Description = "A follow up visit for targetted adjustment of the upper back/thoracic region.",
                             Duration = "30 minutes",
+                            Image = "~Styles/Assets/UpperBack1.jpg",
                             Price = 75.00m,
                             ServiceType = "Upper Back Adjustment"
                         },
                         new
                         {
                             ID = 6,
-                            Description = "Package deal lower back stuff here.",
-                            Duration = "1 hour 30 minutes",
-                            Price = 100.00m,
-                            ServiceType = "Pack of Lower Back Adjustments"
+                            Description = "Reguar adjustments are sometimes necessary to maintain pain free postural alignment. This service allows you to purchase 5 low back adjustments at a discounted rate that may be used within the next 6 months.",
+                            Duration = "30 minutes each",
+                            Image = "~Styles/Assets/LowBack2.jpg",
+                            Price = 300.00m,
+                            ServiceType = "5-Pack of Lower Back Adjustments"
                         },
                         new
                         {
                             ID = 7,
-                            Description = "Package deal neck stuff here.",
+                            Description = "Reguar adjustments are sometimes necessary to maintain pain free postural alignment. This service allows you to purchase 5 neck adjustments at a discounted rate that may be used within the next 6 months.",
                             Duration = "1 hour 30 minutes",
-                            Price = 125.00m,
+                            Image = "~Styles/Assets/NeckAdjustment2.jpg",
+                            Price = 325.00m,
                             ServiceType = "Pack of Neck Adjustments"
                         },
                         new
                         {
                             ID = 8,
-                            Description = "Package deal lower back stuff here.",
+                            Description = "Reguar adjustments are sometimes necessary to maintain pain free postural alignment. This service allows you to purchase 5 upper back/thoracic region adjustments at a discounted rate that may be used within the next 6 months.",
                             Duration = "1 hour 30 minutes",
+                            Image = "~Styles/Assets/UpperBack2.jpg",
                             Price = 100.00m,
                             ServiceType = "Pack of Upper Back Adjustments"
                         },
                         new
                         {
                             ID = 9,
-                            Description = "60 minute massage description here.",
+                            Description = "A 60-minute Orthopedic massage allowing for deep tissue therapy of problem areas. The massage may incorporate Shiatzu, Swedish or trigger point techniques.",
                             Duration = "60 minutes",
+                            Image = "~Styles/Assets/Massage1.jpg",
                             Price = 80.00m,
                             ServiceType = "60 Minute Massage"
                         },
                         new
                         {
                             ID = 10,
-                            Description = "60 minute massage description here.",
+                            Description = "A 30-minute Orthopedic massage providing an overall massage. The massage may incorporate Shiatzu or Swedish techniques. This massage is best suited before a Chiropractic adjustment. If you are seeking deep tissue or have a specific problem area, consider a 60-minute massage instead.",
                             Duration = "30 minutes",
+                            Image = "~Styles/Assets/Massage2.jpg",
                             Price = 45.00m,
                             ServiceType = "30 Minute Massage"
                         });

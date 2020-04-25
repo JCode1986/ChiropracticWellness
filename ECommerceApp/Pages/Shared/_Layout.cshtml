@@ -1,11 +1,12 @@
-﻿@using Microsoft.AspNetCore.Identity;
+﻿<!DOCTYPE html>
+
+<html>
+@using Microsoft.AspNetCore.Identity;
 @using ECommerceApp.Models;
 @inject UserManager<ApplicationUser> UserManager
 @inject SignInManager<ApplicationUser> SignInManager
 
-<!DOCTYPE html>
 
-<html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -19,11 +20,17 @@
         <div>
             @if (SignInManager.IsSignedIn(User))
             {
-                <span>Welcome @User.Claims.First(x => x.Type == "FullName").Value!</span>
+                <span>Welcome to wellness @User.Claims.First(x => x.Type == "FullName").Value!</span>
+                @*<form asp-page="/Account/Logout">
+                        <button type="submit">Logout</button>
+                    </form>*@
+
             }
             else
             {
-                <span>Welcome Guest!</span>
+                <a asp-page="/Account/Login">Login</a>
+
+                <a asp-page="/Account/Register">Register</a>
             }
         </div>
 
@@ -48,12 +55,27 @@
                 </li>
                 <li class="navbar-item">
                     <a href="/" class="nav-link" asp-page="/Account/Logout">Logout</a>
-                    <p hidden>@SignInManager.SignOutAsync();</p>
                 </li>
             </ul>
         </div>
 
     </nav>
+    <div>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <span>Welcome to wellness @User.Claims.First(x => x.Type == "FullName").Value!</span>
+            @*<form asp-page="/Account/Logout">
+                    <button type="submit">Logout</button>
+                </form>*@
+
+        }
+        else
+        {
+            <a asp-page="/Account/Login">Login</a>
+
+            <a asp-page="/Account/Register">Register</a>
+        }
+    </div>
     <div>
         @RenderBody()
     </div>
@@ -65,11 +87,7 @@
     <br />
 
     <footer class=".fixed-bottom">Wellness Chiropractic - Bringing Wellness To You! 2020</footer>
-    <script src="https://code.jquery.com/jquery-2.2.2.min.js"
-            integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-            crossorigin="anonymous"></script>
+
+
 </body>
 </html>
