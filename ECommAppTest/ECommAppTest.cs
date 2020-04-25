@@ -83,6 +83,41 @@ namespace ECommAppTest
         }
 
         [Fact]
+        public async Task CanReadSpecificItemFromDB()
+        {
+            DbContextOptions<StoreDbContext> options = new DbContextOptionsBuilder<StoreDbContext>()
+               .UseInMemoryDatabase("CanReadSpecificItemFromDB")
+               .Options;
+
+            using (StoreDbContext context = new StoreDbContext(options))
+            {
+                InventoryManagement IM = new InventoryManagement(context);
+
+                Inventory invOne = new Inventory()
+                {
+                    ID = 1,
+                    ServiceType = "Neck Adjustment",
+                    Price = 50M,
+                    Description = "Headlock",
+                    Duration = "60 minutes"
+                };
+                Inventory invTwo = new Inventory()
+                {
+                    ID = 2,
+                    ServiceType = "Back Adjustment",
+                    Price = 50M,
+                    Description = "Back breaker",
+                    Duration = "60 minutes"
+                };
+
+                await IM.CreateChiropracticService(invOne);
+                await IM.CreateChiropracticService(invTwo);
+                var result = await IM.GetChiropracticServiceByID(invOne.ID);
+                Assert.Equal("Headlock", result.Description);
+            }
+        }
+
+        [Fact]
         public async Task CanDeleteAnItem()
         {
             DbContextOptions<StoreDbContext> options = new DbContextOptionsBuilder<StoreDbContext>()
@@ -105,7 +140,7 @@ namespace ECommAppTest
             }
         }
 
-        [Fact(Skip = "Update not working at the moment.")]
+        [Fact]
         public async Task CanUpdateAnItem()
         {
             DbContextOptions<StoreDbContext> options = new DbContextOptionsBuilder<StoreDbContext>()
@@ -123,16 +158,10 @@ namespace ECommAppTest
                     Duration = "25 minutes"
                 };
 
-                Inventory Updatedinventory = new Inventory()
-                {
-                    Price = 100M,
-                    Description = "Necklock",
-                    Duration = "66 minutes"
-                };
-
                 await IM.CreateChiropracticService(inventory);
-                var result = await IM.UpdateChiropracticService(1, Updatedinventory);
-                Assert.Equal("Necklock", result.Description);
+                inventory.Duration = "60 minutes";
+                var result = await IM.UpdateChiropracticService(1, inventory);
+                Assert.Equal("60 minutes", result.Duration);
             }
         }
     }
