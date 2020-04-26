@@ -30,7 +30,5 @@ namespace ECommerceApp.Pages.Store
         {
             Services = await _inventory.GetAllChiropracticService();
         }
-
-
     }
 }

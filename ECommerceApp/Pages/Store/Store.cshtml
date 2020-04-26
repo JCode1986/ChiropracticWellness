@@ -12,67 +12,23 @@
     <link rel="stylesheet" href="~/Styles/StoreStyleSheet.css">
 </head>
 
-<body>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-
-
-    @foreach (var service in Model.Services)
-    {
-        <img src="@service.Image" />
-        <p>@service.ServiceType </p>
-        <p>@service.Description</p>
-    }
-
-    <h1>Wellness Chiropractic Store</h1>
-
-    <!-- Page Content -->
-    <div class="container">
-
-        <!-- Page Heading -->
-        <h1 class="my-4">
-            Page Heading
-            <small>Secondary Text</small>
-        </h1>
-
-        @*bootstrap from scrimba*@
-        @foreach (var service in Model.Services)
-        {
-            <div class="container" style="margin-top:30px">
-
-                <div class="card">
-                    <img class="card-img-top" alt="Card header image" src="@service.Image">
-                    <div class="card-body">
-                        <h5 class="card-title">@service.ServiceType</h5>
-                        <p class="card-text">@service.Description</p>
-                        <a href="#" class="btn btn-light">Learn More</a>
-
-                    </div>
-                </div>
-
-            </div>
-        }
-
-
-
-    <section class="row justify-content-center">
+<body style="margin-top:130px">
+    <h2 style="text-align:center;">Chiropractic Services Available</h2>
+    <section class="row justify-content-center" style="margin-top:50px">
         @*Bootstrap from google*@
         @foreach (var service in Model.Services)
         {
-            <article class="col-lg-4 p-3">
+            <article class="col-lg-4 p-3" style="align-content:center;">
                 <div class="backgroundLogo">
-                    <div class="row" id="serviceCard">
-                        <div class="col-lg-4 col-sm-6 mb-4" style="max-width: 100%;">
+                    <div class="row" id="serviceCard" style="text-align:center;">
+                        <div class="col-lg-4 col-sm-6 mb-4" style="max-width: 85%; margin-left: auto; margin-right: auto;">
                             <div class="card h-100" >
-                                <a href="/product/details/@service.ID"><img class="card-img-top" src="@service.Image" alt=""></a>
+                                <a href="/product/details/@service.ID"><img class="card-img-top" src=@service.Image alt=""></a>
                                 <div class="card-body">
                                     <h4 class="card-title">
                                         <a href="/product/details/@service.ID">@service.ServiceType</a>
                                     </h4>
-                                    <p class="card-text">@service.Description</p>
+                                    <a href="/product/details/@service.ID" type="button" class="btn btn-primary">Show Details</a>
                                 </div>
                             </div>
                         </div>
@@ -80,97 +36,6 @@
                 </div>
             </article>
         }
-
     </section>
-
-            @*<div class="col-lg-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Project Two</a>
-                        </h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Project Three</a>
-                        </h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Project Four</a>
-                        </h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Project Five</a>
-                        </h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Project Six</a>
-                        </h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-                    </div>
-                </div>
-            </div>*@
-            @*</div>*@
-
-
-            <!-- /.row -->
-            <!-- Pagination -->
-
-
-            <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-
-    </div>
-
-    <!-- /.container -->
 </body>
 </html>

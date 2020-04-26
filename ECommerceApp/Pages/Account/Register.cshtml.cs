@@ -68,7 +68,7 @@ namespace ECommerceApp.Pages.Account
                     //Associate them with a specific role
                     await _userManager.AddToRoleAsync(user, ApplicationRoles.Member);
 
-                    //Give admin accesss to roles to specific people
+                    //Give admin access to specific people
                     if(user.Email == "sue@greengrasspt.com" || user.Email == "joseph.hangarter@yahoo.com")
                     {
                         await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
