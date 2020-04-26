@@ -24,6 +24,10 @@
     <Compile Include="Migrations\StoreDb\20200425053539_updatedImages.Designer.cs" />
     <Compile Include="Migrations\StoreDb\20200425064517_movedAssets.cs" />
     <Compile Include="Migrations\StoreDb\20200425064517_movedAssets.Designer.cs" />
+    <Compile Include="Migrations\StoreDb\20200426203326_tildaSlashAssets.cs" />
+    <Compile Include="Migrations\StoreDb\20200426203326_tildaSlashAssets.Designer.cs" />
+    <Compile Include="Migrations\StoreDb\20200426205152_noTildeAssets.cs" />
+    <Compile Include="Migrations\StoreDb\20200426205152_noTildeAssets.Designer.cs" />
     <Compile Include="Migrations\StoreDb\StoreDbContextModelSnapshot.cs" />
   </ItemGroup>
 
