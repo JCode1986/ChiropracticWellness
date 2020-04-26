@@ -49,7 +49,7 @@
                         <h5 class="card-title">@service.ServiceType</h5>
                         <p class="card-text">@service.Description</p>
                         <a href="#" class="btn btn-light">Learn More</a>
-                        
+
                     </div>
                 </div>
 
@@ -58,109 +58,116 @@
 
 
 
+    <section class="row justify-content-center">
         @*Bootstrap from google*@
         @foreach (var service in Model.Services)
         {
-            <div class="row" id="serviceCard">
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <div class="card h-100">
-                        <a href="/product/details/@service.ID"><img class="card-img-top" src="@service.Image" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="/product/details/@service.ID">@service.ServiceType</a>
-                            </h4>
-                            <p class="card-text">@service.Description</p>
+            <article class="col-lg-4 p-3">
+                <div class="backgroundLogo">
+                    <div class="row" id="serviceCard">
+                        <div class="col-lg-4 col-sm-6 mb-4" style="max-width: 100%;">
+                            <div class="card h-100" >
+                                <a href="/product/details/@service.ID"><img class="card-img-top" src="@service.Image" alt=""></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="/product/details/@service.ID">@service.ServiceType</a>
+                                    </h4>
+                                    <p class="card-text">@service.Description</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </article>
         }
 
-        @*<div class="col-lg-4 col-sm-6 mb-4">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="#">Project Two</a>
-                    </h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+    </section>
+
+            @*<div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">Project Two</a>
+                        </h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="#">Project Three</a>
-                    </h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">Project Three</a>
+                        </h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="#">Project Four</a>
-                    </h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">Project Four</a>
+                        </h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="#">Project Five</a>
-                    </h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">Project Five</a>
+                        </h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="#">Project Six</a>
-                    </h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">Project Six</a>
+                        </h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
+                    </div>
                 </div>
-            </div>
-        </div>*@
-        @*</div>*@
+            </div>*@
+            @*</div>*@
 
 
-        <!-- /.row -->
-        <!-- Pagination -->
+            <!-- /.row -->
+            <!-- Pagination -->
 
 
-        <ul class="pagination justify-content-center">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">3</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">3</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
 
     </div>
 

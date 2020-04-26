@@ -28,5 +28,10 @@ footer {
 
 #bios{
     float: right;
+}
 
+#serviceCard {
+    max-width: 100%;
+    text-align: center;
+    color: red;
 }
