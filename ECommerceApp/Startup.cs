@@ -58,6 +58,7 @@ namespace ECommerceApp
 
             //mapping; dependency injection
             services.AddTransient<IInventory, InventoryManagement>();
+            services.AddTransient<ICartItems, CartItemsManager>();
 
             //adding ApplicationUser identity
             services.AddIdentity<ApplicationUser, IdentityRole>()

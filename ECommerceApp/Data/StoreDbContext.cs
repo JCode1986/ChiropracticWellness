@@ -110,6 +110,9 @@ namespace ECommerceApp.Data
                 }
             );
         }
+
+        //refer to each table created
         public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<CartItems> CartItems { get; set; }
     }
 }

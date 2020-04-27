@@ -14,6 +14,6 @@ namespace ECommerceApp.Models
         public string Duration { get; set; }
         public string Image { get; set; }
 
-        
+
     }
 }
