@@ -117,6 +117,7 @@ Deployed App - https://ecommerceappsuejoe.azurewebsites.net/
 ---
 
 ## Change Log
+* 1.8: *Leads the user to details page after clicking a specific product* - 25 April 2020
 * 1.7: *Page for all products to show up; still need functionality to click a specific product to redirect to details page.* - 25 April 2020
 * 1.6: *Page for specific product with details added, and able to retrieve data from database* - 24 April 2020
 * 1.5: *Both databases (user & store) deployed and connected to Web App* - 22 April 2020
