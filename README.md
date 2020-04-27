@@ -59,6 +59,7 @@ Unit testing is included in the XunitTestECommApp project using the xUnit test f
 
 ## Pages
 Deployed App - https://ecommerceappsuejoe.azurewebsites.net/
+* **route/index** - Home page where the user can learn about the business and mobile services being offered. Also bios of the staff are available.
 * **route/account/register** - Page where a user can register. Information inputted are then saved to a database.
 * **route/account/login** - Page where a user can login if information given exists in the database.
 * **route/store/store** - Page that shows all available services.
@@ -100,6 +101,7 @@ Deployed App - https://ecommerceappsuejoe.azurewebsites.net/
 | FirstName  | string | YES |
 | LastName | string | YES |
 | BirthDate | DateTime | YES |
+| PhoneNumber | string | YES |
 
 
 
@@ -115,6 +117,14 @@ Deployed App - https://ecommerceappsuejoe.azurewebsites.net/
 | Image | string | YES |
 
 ---
+
+### Claims Being Captured
+| Parameter | Type | Required |
+| --- | --- | --- |
+| FirstName  | string | YES |
+| LastName | string | YES |
+| BirthDate | DateTime | YES |
+| Email | string | YES |
 
 ## Change Log
 * 1.8: *Leads the user to details page after clicking a specific product* - 25 April 2020
