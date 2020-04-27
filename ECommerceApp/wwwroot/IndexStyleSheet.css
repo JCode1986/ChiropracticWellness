@@ -29,12 +29,13 @@ footer {
 #mainContent{
     display: block;
     float: left;
-
+    margin-left: 100px; 
 }
 
 #bios{
     display: block;
     float: right;
+    margin-right: 60px;
 }
 
 #serviceCard {

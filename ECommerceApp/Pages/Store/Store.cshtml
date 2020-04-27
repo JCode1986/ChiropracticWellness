@@ -5,7 +5,7 @@
     Layout = "_Layout";
 }
 <!Doctype html>
-<title>Login page</title>
+<title>Services page</title>
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -13,7 +13,7 @@
 </head>
 
 <body style="margin-top:130px">
-    <h2 style="text-align:center;">Chiropractic Services Available</h2>
+    <h2 style="text-align:center;">Chiropractic & Massage Therapy Services Available</h2>
     <section class="row justify-content-center" style="margin-top:50px">
         @*Bootstrap from google*@
         @foreach (var service in Model.Services)
@@ -23,7 +23,7 @@
                     <div class="row" id="serviceCard" style="text-align:center;">
                         <div class="col-lg-4 col-sm-6 mb-4" style="max-width: 85%; margin-left: auto; margin-right: auto;">
                             <div class="card h-100" >
-                                <a href="/product/details/@service.ID"><img class="card-img-top" src=@service.Image alt=""></a>
+                                <a href="/product/details/@service.ID"><img class="card-img-top" src=@service.Image alt="" width="200" height="300" ></a>
                                 <div class="card-body">
                                     <h4 class="card-title">
                                         <a href="/product/details/@service.ID">@service.ServiceType</a>
