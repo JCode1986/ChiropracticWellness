@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerceApp.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20200427010225_initial")]
+    [Migration("20200427031820_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,7 +78,7 @@ namespace ECommerceApp.Migrations
                         {
                             ID = 4,
                             Description = "A follow up visit for targetted adjustment of the neck.",
-                            Duration = "45 minutes",
+                            Duration = "30 minutes",
                             Image = "/Styles/Assets/NeckAdjustment1.jpg",
                             Price = 85.00m,
                             ServiceType = "Neck Adjustment"
@@ -105,19 +105,19 @@ namespace ECommerceApp.Migrations
                         {
                             ID = 7,
                             Description = "Reguar adjustments are sometimes necessary to maintain pain free postural alignment. This service allows you to purchase 5 neck adjustments at a discounted rate that may be used within the next 6 months.",
-                            Duration = "1 hour 30 minutes",
+                            Duration = "30 minutes each",
                             Image = "/Styles/Assets/NeckAdjustment2.jpg",
                             Price = 325.00m,
-                            ServiceType = "Pack of Neck Adjustments"
+                            ServiceType = "5-Pack of Neck Adjustments"
                         },
                         new
                         {
                             ID = 8,
                             Description = "Reguar adjustments are sometimes necessary to maintain pain free postural alignment. This service allows you to purchase 5 upper back/thoracic region adjustments at a discounted rate that may be used within the next 6 months.",
-                            Duration = "1 hour 30 minutes",
+                            Duration = "30 minutes each",
                             Image = "/Styles/Assets/UpperBack2.jpg",
-                            Price = 100.00m,
-                            ServiceType = "Pack of Upper Back Adjustments"
+                            Price = 300.00m,
+                            ServiceType = "5-Pack of Upper Back Adjustments"
                         },
                         new
                         {
