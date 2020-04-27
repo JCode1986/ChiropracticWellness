@@ -1,9 +1,35 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>e06363b7-437d-484c-bda2-09f6fd88f48b</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\**" />
+    <Content Remove="Migrations\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Migrations\20200424001426_initial.cs" />
+    <Compile Include="Migrations\20200424001426_initial.Designer.cs" />
+    <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
+    <Compile Include="Migrations\StoreDb\20200424001518_initial.cs" />
+    <Compile Include="Migrations\StoreDb\20200424001518_initial.Designer.cs" />
+    <Compile Include="Migrations\StoreDb\20200424001605_first.cs" />
+    <Compile Include="Migrations\StoreDb\20200424001605_first.Designer.cs" />
+    <Compile Include="Migrations\StoreDb\20200425053539_updatedImages.cs" />
+    <Compile Include="Migrations\StoreDb\20200425053539_updatedImages.Designer.cs" />
+    <Compile Include="Migrations\StoreDb\20200425064517_movedAssets.cs" />
+    <Compile Include="Migrations\StoreDb\20200425064517_movedAssets.Designer.cs" />
+    <Compile Include="Migrations\StoreDb\20200426203326_tildaSlashAssets.cs" />
+    <Compile Include="Migrations\StoreDb\20200426203326_tildaSlashAssets.Designer.cs" />
+    <Compile Include="Migrations\StoreDb\20200426205152_noTildeAssets.cs" />
+    <Compile Include="Migrations\StoreDb\20200426205152_noTildeAssets.Designer.cs" />
+    <Compile Include="Migrations\StoreDb\StoreDbContextModelSnapshot.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.4.1" />
