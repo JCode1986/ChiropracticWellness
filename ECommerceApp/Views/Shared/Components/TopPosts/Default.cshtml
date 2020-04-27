@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ECommerceApp.Models.Post>
+
+<h1>Top Posts</h1>
+
+
+@foreach(var post in Model)
+{
+    //@statements here: post.name, etc. 
+}
+
+
+then in Index.html (make sure you specificy your component class)
+@await Component.InvokeAsync("TopPosts, 3") 
