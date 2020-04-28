@@ -11,12 +11,16 @@ namespace ECommerceApp.Models
 
         public int CartID { get; set; }
 
-        public int ServiceID { get; set; }
+        //public int InventoryID { get; set; }
 
         public int Quantity { get; set; }
 
         //navigation properties
-        public List<Inventory> Services { get; set; }
+        //public Cart Cart { get; set; }
+
+
+        //create a "shadow property" which looks like a foreign key in the db
+        public Inventory Services { get; set; }
 
 
 }

@@ -11,9 +11,8 @@ namespace ECommerceApp.Models
 
         public string UserID { get; set; }
 
-        public string Email { get; set; }
-
+       
         //navigation property
-        public CartItems CartID { get; set; }
+        public List<CartItems> CartID { get; set; }
     }
 }
