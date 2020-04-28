@@ -14,7 +14,7 @@ namespace ECommAppTest
         [Fact]
         public void CanAddDescriptionToInventory()
         {
-            Inventory inventory = new Inventory();
+            Service inventory = new Service();
             inventory.Description = "neck treatment";
             Assert.Equal("neck treatment", inventory.Description);
         }
@@ -22,7 +22,7 @@ namespace ECommAppTest
         [Fact]
         public void CanSetDescriptionToInventory()
         {
-            Inventory inventory = new Inventory();
+            Service inventory = new Service();
             inventory.Description = "back treatment";
             inventory.Description = "neck treatment";
             Assert.Equal("neck treatment", inventory.Description);
@@ -40,7 +40,7 @@ namespace ECommAppTest
             {
                 InventoryManagement IM = new InventoryManagement(context);
 
-                Inventory inventory = new Inventory()
+                Service inventory = new Service()
                 {
                     ID = 1,
                     ServiceType = "Neck Adjustment",
@@ -68,7 +68,7 @@ namespace ECommAppTest
             {
                 InventoryManagement IM = new InventoryManagement(context);
 
-                Inventory inventory = new Inventory()
+                Service inventory = new Service()
                 {
                     ID = 1,
                     ServiceType = "Neck Adjustment",
@@ -93,7 +93,7 @@ namespace ECommAppTest
             {
                 InventoryManagement IM = new InventoryManagement(context);
 
-                Inventory invOne = new Inventory()
+                Service invOne = new Service()
                 {
                     ID = 1,
                     ServiceType = "Neck Adjustment",
@@ -101,7 +101,7 @@ namespace ECommAppTest
                     Description = "Headlock",
                     Duration = "60 minutes"
                 };
-                Inventory invTwo = new Inventory()
+                Service invTwo = new Service()
                 {
                     ID = 2,
                     ServiceType = "Back Adjustment",
@@ -127,7 +127,7 @@ namespace ECommAppTest
             {
                 InventoryManagement IM = new InventoryManagement(context);
 
-                Inventory inventory = new Inventory()
+                Service inventory = new Service()
                 {
                     ID = 1,
                     Price = 50M,
@@ -150,7 +150,7 @@ namespace ECommAppTest
             {
                 InventoryManagement IM = new InventoryManagement(context);
 
-                Inventory inventory = new Inventory()
+                Service inventory = new Service()
                 {
                     ID = 1,
                     Price = 50M,

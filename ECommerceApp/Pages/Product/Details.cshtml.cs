@@ -24,7 +24,7 @@ namespace ECommerceApp.Pages.Product
             _context = context;
         }
 
-        public Inventory inventory { get; set; }
+        public Service inventory { get; set; }
 
         /// <summary>
         /// Return details of a specific service from Inventory

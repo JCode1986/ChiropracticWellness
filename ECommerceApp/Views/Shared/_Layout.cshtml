@@ -13,27 +13,34 @@
         <title>@ViewBag.Title</title>
     </head>
     <body>
+
         <nav class="navbar navbar-light bg-light navbar-expand-lg fixed-top">
             <a href="/" class="navbar-brand">Wellness Chiropractic (206) 555-9190</a>
 
-            <div>
-                @if (SignInManager.IsSignedIn(User))
-                {
-                    <span>Welcome @User.Claims.First(x => x.Type == "FullName").Value!</span>
-                }
-                else
-                {
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <span>Welcome @User.Claims.First(x => x.Type == "FullName").Value!</span>
+                <form asp-page="/Account/Logout">
+                    <button type="submit">LOGOUT</button>
+                </form>
+            }
+            else
+            {
+                <div>
                     <span>Welcome Guest!</span>
-                }
-            </div>
+
+                </div>
+            }
 
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
+
                     <li class="navbar-item">
                         <a href="/" class="nav-link">Home</a>
+
                     </li>
                     <li class="navbar-item">
                         <a href="/Account/Login" class="nav-link">Login</a>
@@ -43,15 +50,12 @@
 
                     </li>
                     <li class="navbar-item">
-                        <a href="/Store/Store" class="nav-link">Services</a>
+                        <a href="/Store/Shop" class="nav-link">Services</a>
 
-                    </li>
-                    <li class="navbar-item">
-                        <a href="/" class="nav-link" asp-page="/Account/Logout">Logout</a>
-                        <p hidden>@SignInManager.SignOutAsync();</p>
                     </li>
                 </ul>
             </div>
+
 
         </nav>
         <div>
@@ -67,7 +71,7 @@
                 integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="
                 crossorigin="anonymous"></script>
         @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-                integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-                crossorigin="anonymous"></script>*@
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>*@
     </body>
 </html>

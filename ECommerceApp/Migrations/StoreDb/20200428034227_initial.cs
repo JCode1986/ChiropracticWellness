@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ECommerceApp.Migrations
+namespace ECommerceApp.Migrations.StoreDb
 {
     public partial class initial : Migration
     {
@@ -23,6 +23,27 @@ namespace ECommerceApp.Migrations
                     table.PrimaryKey("PK_Inventories", x => x.ID);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "CartItems",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CartID = table.Column<int>(nullable: false),
+                    InventoryID = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartItems", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_CartItems_Inventories_InventoryID",
+                        column: x => x.InventoryID,
+                        principalTable: "Inventories",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Inventories",
                 columns: new[] { "ID", "Description", "Duration", "Image", "Price", "ServiceType" },
@@ -39,10 +60,18 @@ namespace ECommerceApp.Migrations
                     { 9, "A 60-minute Orthopedic massage allowing for deep tissue therapy of problem areas. The massage may incorporate Shiatzu, Swedish or trigger point techniques.", "60 minutes", "/Styles/Assets/Massage1.jpg", 80.00m, "60 Minute Massage" },
                     { 10, "A 30-minute Orthopedic massage providing an overall massage. The massage may incorporate Shiatzu or Swedish techniques. This massage is best suited before a Chiropractic adjustment. If you are seeking deep tissue or have a specific problem area, consider a 60-minute massage instead.", "30 minutes", "/Styles/Assets/Massage2.jpg", 45.00m, "30 Minute Massage" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartItems_InventoryID",
+                table: "CartItems",
+                column: "InventoryID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "CartItems");
+
             migrationBuilder.DropTable(
                 name: "Inventories");
         }
