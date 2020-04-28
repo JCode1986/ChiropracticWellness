@@ -1,0 +1,26 @@
+﻿body {
+    background-color: #D0EDB5;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /*$grid-columns: 12 !default;
+    $grid-gutter-width: 30px !default;*/
+}
+
+#serviceCard {
+    display: grid;
+    grid-template-columns: 1fr, 1fr, 1fr;
+    /*grid-template-columns: repeat(auto-fit, 1fr 1fr 1fr);*/
+    grid-gap: 1rem;
+
+}
+
+.card-h100 {
+    display: grid;
+    grid-template-columns: 1fr, 1fr, 1fr;
+    /*grid-template-columns: repeat(auto-fit, 1fr 1fr 1fr);*/
+    grid-gap: 1rem;
+}
+
+footer {
+    text-align: center;
+}
+

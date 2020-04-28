@@ -1,0 +1,77 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using ECommerceApp.Models;
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="~/Styles/StyleSheet.css">
+        <title>@ViewBag.Title</title>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-light bg-light navbar-expand-lg fixed-top">
+            <a href="/" class="navbar-brand">Wellness Chiropractic (206) 555-9190</a>
+
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <span>Welcome @User.Claims.First(x => x.Type == "FullName").Value!</span>
+                <form asp-page="/Account/Logout">
+                    <button type="submit">LOGOUT</button>
+                </form>
+            }
+            else
+            {
+                <div>
+                    <span>Welcome Guest!</span>
+
+                </div>
+            }
+
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="navbar-item">
+                        <a href="/" class="nav-link">Home</a>
+
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/Account/Login" class="nav-link">Login</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/Account/Register" class="nav-link">Register</a>
+
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/Store/Shop" class="nav-link">Services</a>
+
+                    </li>
+                </ul>
+            </div>
+
+
+        </nav>
+        <div>
+            @RenderBody()
+        </div>
+
+        <div style="bottom:0; position:fixed; width:100%; background-color:blanchedalmond;">
+            <footer style="padding-top: 20px;">
+                <p>Wellness Chiropractic - Bringing Wellness To You! &copy; @DateTime.Now.Year</p>
+            </footer>
+        </div>
+        <script src="https://code.jquery.com/jquery-2.2.2.min.js"
+                integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="
+                crossorigin="anonymous"></script>
+        @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>*@
+    </body>
+</html>

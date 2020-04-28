@@ -1,0 +1,21 @@
+﻿body {
+    background-color: #D0EDB5;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+footer {
+    clear: both;
+    text-align: center;
+}
+
+
+
+.masthead {
+    height: 15vh;
+    min-height: 300px;
+    background-image: url("https://static3.depositphotos.com/1006416/239/i/450/depositphotos_2399213-stock-photo-stacked-rocks.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
