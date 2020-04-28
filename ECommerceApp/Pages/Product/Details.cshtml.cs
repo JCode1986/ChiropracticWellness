@@ -17,14 +17,16 @@ namespace ECommerceApp.Pages.Product
     {
         //bring in db context for properties and Inventory management for method
         private IInventory _context;
+        private ICartItems _cart;
 
         //contructor
-        public DetailsModel(IInventory context)
+        public DetailsModel(IInventory context, ICartItems cart)
         {
             _context = context;
+            _cart = cart;
         }
 
-        public Inventory inventory { get; set; }
+        public Service inventory { get; set; }
 
         /// <summary>
         /// Return details of a specific service from Inventory
@@ -32,5 +34,13 @@ namespace ECommerceApp.Pages.Product
         /// <param name="productID">int</param>
         /// <returns>Inventory object</returns>
         public async Task OnGet(int id) => inventory = await _context.GetChiropracticServiceByID(id);
+
+/*        public async Task OnPost(int serviceId, int quantity)
+        {
+*//*            var user = User.Identity.Name;
+            int cartId = await _cart.GetCartIdForUser(user);
+
+            if*//*
+        }*/
     }
 }

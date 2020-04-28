@@ -16,9 +16,9 @@ namespace ECommerceApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Inventory>().HasData(
+            modelBuilder.Entity<Service>().HasData(
 
-                new Inventory
+                new Service
                 {
                     ID = 1,
                     ServiceType = "Initial Consultation",
@@ -27,7 +27,7 @@ namespace ECommerceApp.Data
                     Duration = "1 hour",
                     Image = "/Styles/Assets/InitialEvaluation.jpg"
                 },
-                new Inventory
+                new Service
                 {
                     ID = 2,
                     ServiceType = "Follow-up Consultation",
@@ -36,7 +36,7 @@ namespace ECommerceApp.Data
                     Duration = "45-60 minutes",
                     Image = "/Styles/Assets/FollowUpConsultation.jpg"
                 },
-                new Inventory
+                new Service
                 {
                     ID = 3,
                     ServiceType = "Lower Back Adjustment",
@@ -45,7 +45,7 @@ namespace ECommerceApp.Data
                     Duration = "30 minutes",
                     Image = "/Styles/Assets/LowBack1.jpg"
                 },
-                new Inventory
+                new Service
                 {
                     ID = 4,
                     ServiceType = "Neck Adjustment",
@@ -54,7 +54,7 @@ namespace ECommerceApp.Data
                     Duration = "30 minutes",
                     Image = "/Styles/Assets/NeckAdjustment1.jpg"
                 },
-                new Inventory
+                new Service
                 {
                     ID = 5,
                     ServiceType = "Upper Back Adjustment",
@@ -63,7 +63,7 @@ namespace ECommerceApp.Data
                     Duration = "30 minutes",
                     Image = "/Styles/Assets/UpperBack1.jpg"
                 },
-                new Inventory
+                new Service
                 {
                     ID = 6,
                     ServiceType = "5-Pack of Lower Back Adjustments",
@@ -72,7 +72,7 @@ namespace ECommerceApp.Data
                     Duration = "30 minutes each",
                     Image = "/Styles/Assets/LowBack2.jpg"
                 },
-                new Inventory
+                new Service
                 {
                     ID = 7,
                     ServiceType = "5-Pack of Neck Adjustments",
@@ -81,7 +81,7 @@ namespace ECommerceApp.Data
                     Duration = "30 minutes each",
                     Image = "/Styles/Assets/NeckAdjustment2.jpg"
                 },
-                new Inventory
+                new Service
                 {
                     ID = 8,
                     ServiceType = "5-Pack of Upper Back Adjustments",
@@ -90,7 +90,7 @@ namespace ECommerceApp.Data
                     Duration = "30 minutes each",
                     Image = "/Styles/Assets/UpperBack2.jpg"
                 },
-                new Inventory
+                new Service
                 {
                     ID = 9,
                     ServiceType = "60 Minute Massage",
@@ -99,7 +99,7 @@ namespace ECommerceApp.Data
                     Duration = "60 minutes",
                     Image = "/Styles/Assets/Massage1.jpg"
                 },
-                new Inventory
+                new Service
                 {
                     ID = 10,
                     ServiceType = "30 Minute Massage",
@@ -110,6 +110,10 @@ namespace ECommerceApp.Data
                 }
             );
         }
-        public DbSet<Inventory> Inventories { get; set; }
+
+        //refer to each table created
+        public DbSet<Service> Inventories { get; set; }
+        public DbSet<CartItems> CartItems { get; set; }
+        public DbSet<Cart> Cart { get; set; }
     }
 }

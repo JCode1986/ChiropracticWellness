@@ -32,8 +32,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
+
                     <li class="navbar-item">
                         <a href="/" class="nav-link">Home</a>
+
                     </li>
                     <li class="navbar-item">
                         <a href="/Account/Login" class="nav-link">Login</a>
@@ -47,12 +49,13 @@
 
                     </li>
                     <li class="navbar-item">
-                        <a href="/" class="nav-link" asp-page="/Account/Logout">Logout</a>
-                        <p hidden>@SignInManager.SignOutAsync();</p>
+                        <a href="/Account/Logout" class="nav-link">
+                            <p hidden>@SignInManager.SignOutAsync()</p>
+                            Logout
+                        </a>
                     </li>
                 </ul>
             </div>
-
         </nav>
         <div>
             @RenderBody()

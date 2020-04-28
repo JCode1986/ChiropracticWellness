@@ -8,18 +8,18 @@ namespace ECommerceApp.Models.Interface
     public interface IInventory
     {
         //Create
-        Task<Inventory> CreateChiropracticService(Inventory chiropracticService);
+        Task<Service> CreateChiropracticService(Service chiropracticService);
 
         //Read specific chiropractic service
-        Task<Inventory> GetChiropracticServiceByID(int chiropracticServiceID);
+        Task<Service> GetChiropracticServiceByID(int chiropracticServiceID);
 
         //Read All
-        Task<List<Inventory>> GetAllChiropracticService();
+        Task<List<Service>> GetAllChiropracticService();
 
         //Update
-        Task<Inventory> UpdateChiropracticService(int chiropracticServiceID, Inventory chiropracticService);
+        Task<Service> UpdateChiropracticService(int chiropracticServiceID, Service chiropracticService);
 
         //Delete
-        Task<Inventory> RemoveChiropracticService(int ID);
+        Task<Service> RemoveChiropracticService(int ID);
     }
 }
