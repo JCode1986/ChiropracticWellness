@@ -1,0 +1,14 @@
+﻿@page
+@model ECommerceApp.Pages.Store.CartModel
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h1>Cart</h1>
+
+@foreach(var item in Model.CartItems)
+{
+    <h3>@item.Service.ServiceType</h3>
+    <p>Price: @item.Quantity * @item.Service.Price = @(item.Quantity * item.Service.Price) </p>
+    <hr />
+}
