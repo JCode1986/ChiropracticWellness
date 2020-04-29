@@ -88,8 +88,6 @@ namespace ECommerceApp.Pages.Account
                     return RedirectToAction("Index", "Home");
 
                     //grant the user access to the site
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
 
                 }
                 foreach (var error in result.Errors)
