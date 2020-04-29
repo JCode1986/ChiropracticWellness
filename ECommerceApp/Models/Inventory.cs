@@ -13,7 +13,5 @@ namespace ECommerceApp.Models
         public decimal Price { get; set; }
         public string Duration { get; set; }
         public string Image { get; set; }
-
-
     }
 }

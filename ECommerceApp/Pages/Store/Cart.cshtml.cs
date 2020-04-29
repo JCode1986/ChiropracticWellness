@@ -26,9 +26,7 @@ namespace ECommerceApp.Pages.Store
         public async Task OnGet()
         {
             var user = User.Identity.Name;
-            CartItems = await _cart.GetAllCartItems(user);
-
-            
+            CartItems = await _cart.GetAllCartItems(user);          
         }
     }
 }
