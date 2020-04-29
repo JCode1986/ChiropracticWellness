@@ -35,35 +35,39 @@ namespace ECommerceApp.Pages.Product
         /// <returns>Inventory object</returns>
         public async Task OnGet(int id) => inventory = await _context.GetChiropracticServiceByID(id);
 
-        public async Task OnPost(int productId, int qty)
+        public async Task<IActionResult> OnPost(int productId, int qty)
         {
             //need the cart id...getting the user
-/*            var user = User.Identity.Name;
-            int cartId = await _cart.GetCardIdForUser(user);
+            var user = User.Identity.Name;
+            int cartId = await _cart.GetCartIdForUser(user);
 
-            if(cartId > 0)
+            if (cartId > 0)
             {
                 //
                 //add the item
                 CartItems ci = new CartItems();
                 ci.CartID = cartId;
                 ci.Quantity = qty;
-                ci.Service = _context.GetChiropracticServiceByID(serviceId);
+                ci.Services = await _context.GetChiropracticServiceByID(productId);
 
                 //PER AMANDA: if item already exists in cart, just increase its quantity by 1
                 //WRITE CODE FOR THAT HERE
-
+                if(ci.Services != null)
+                {
+                    ci.Quantity = qty + 1;
+                }
 
                 //Now add item to cart
                 await _cart.AddItemToCart(ci);
+                inventory = ci.Services;
+                return Page();
+
             }
-            else 
+            else
             {
                 return RedirectToPage("Register");
             }
 
-            //look up [temp data] and see if that helps notify the user of a successful addition.
-            return Page();*/
         }
     }
 }

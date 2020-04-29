@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using ECommerceApp.Models;
+using ECommerceApp.Models.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,14 +16,16 @@ namespace ECommerceApp.Pages.Account
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
+        private ICartItems _cart;
 
         [BindProperty]
         public RegisterInput RegisterData { get; set; }
 
-        public RegisterModel (UserManager<ApplicationUser> usermanager, SignInManager<ApplicationUser> signIn)
+        public RegisterModel (UserManager<ApplicationUser> usermanager, SignInManager<ApplicationUser> signIn, ICartItems cart)
         {
             _userManager = usermanager;
             _signInManager = signIn;
+            _cart = cart;
 
         }
         public void OnGet()
@@ -79,7 +82,7 @@ namespace ECommerceApp.Pages.Account
                     //cart property of ID = userID
                     //await cart.createcartasync()
 
-                    //await _cart.CreateCart(user.Id);
+                    await _cart.CreateCart(user.Id);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");

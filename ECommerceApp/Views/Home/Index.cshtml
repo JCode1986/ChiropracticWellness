@@ -53,13 +53,27 @@
                     <p>We look forward to serving your needs and keeping your spine healthy!</p>
                     <div class="row">
                         <div class="col-sm-9 offset-sm-3">
-                            <a href="/Store/Store"><button class="btn btn-light">Our Services</button></a>
+                            <a href="/Store/Shop"><button class="btn btn-light">Our Services</button></a>
                         </div>
                     </div>
                 </div>
             </section>
 
         </div>
+        <div>
+            <form asp-action="SendEmail" method="post">
+                <button type="submit">Send me an email please!</button>
+            </form>
+        </div>
+
+        <div>
+            <section>
+                @*component being brought in to show items*@
+                @*@await Component.InvokeAsync("MiniBasket", "cartItems");*@ 
+            </section>
+        </div>
+
+
         <aside id="bios" style="margin-bottom: 80px">
             <div class="side" style="margin-top:30px">
                 <div class="container" style="margin-top:30px">
