@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using ECommerceApp.Models.Interface;
 using ECommerceApp.Models.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace ECommerceApp
 {
@@ -59,6 +60,7 @@ namespace ECommerceApp
             //mapping; dependency injection
             services.AddTransient<IInventory, InventoryManagement>();
             services.AddTransient<ICartItems, CartItemsManager>();
+            services.AddTransient<IEmailSender, EmailSender>();
 
             //adding ApplicationUser identity
             services.AddIdentity<ApplicationUser, IdentityRole>()
