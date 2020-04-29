@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerceApp.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20200427215917_addedTables")]
-    partial class addedTables
+    [Migration("20200428234650_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,21 @@ namespace ECommerceApp.Migrations
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ECommerceApp.Models.Cart", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Cart");
+                });
 
             modelBuilder.Entity("ECommerceApp.Models.CartItems", b =>
                 {
@@ -34,10 +49,14 @@ namespace ECommerceApp.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("ServiceID")
+                    b.Property<int?>("ServicesID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CartID");
+
+                    b.HasIndex("ServicesID");
 
                     b.ToTable("CartItems");
                 });
@@ -48,9 +67,6 @@ namespace ECommerceApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CartItemsID")
-                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -68,8 +84,6 @@ namespace ECommerceApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("CartItemsID");
 
                     b.ToTable("Inventories");
 
@@ -166,11 +180,17 @@ namespace ECommerceApp.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ECommerceApp.Models.Inventory", b =>
+            modelBuilder.Entity("ECommerceApp.Models.CartItems", b =>
                 {
-                    b.HasOne("ECommerceApp.Models.CartItems", null)
-                        .WithMany("Services")
-                        .HasForeignKey("CartItemsID");
+                    b.HasOne("ECommerceApp.Models.Cart", null)
+                        .WithMany("CartID")
+                        .HasForeignKey("CartID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ECommerceApp.Models.Inventory", "Services")
+                        .WithMany()
+                        .HasForeignKey("ServicesID");
                 });
 #pragma warning restore 612, 618
         }

@@ -74,6 +74,16 @@ namespace ECommerceApp.Pages.Account
                         await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
                     }
 
+                    //create the cart for the user
+                    //instantiate the new cart
+                    //cart property of ID = userID
+                    //await cart.createcartasync()
+
+                    //await _cart.CreateCart(user.Id);
+
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Index", "Home");
+
                     //grant the user access to the site
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");

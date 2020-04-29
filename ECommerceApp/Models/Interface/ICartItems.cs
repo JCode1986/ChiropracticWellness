@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Models.Interface
 {
-    interface ICartItems
+    public interface ICartItems
     {
         //task to add item to the cart
-        Task AddItemToCart(CartItems cartItem);
+        Task<CartItems> AddItemToCart(CartItems cartItem);
 
         //task to get items from cart
-        Task<List<CartItems>> GetAllCartItems();
+        Task<List<CartItems>> GetAllCartItems(string username);
 
         //task to get item by ID
         Task<CartItems> GetItemByID(int ID);
@@ -21,6 +21,12 @@ namespace ECommerceApp.Models.Interface
         
         //task to delete item from the cart
         Task<CartItems> DeleteCartItem(int cartItemID);
+        
+        //task to create a cart
+        Task<string> CreateCart(string userId);
 
+        //task to get cart ID for a given user, based on the username
+        Task<int> GetCartIdForUser(string username);
+        
     }
 }

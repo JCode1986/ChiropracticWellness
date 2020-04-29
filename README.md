@@ -3,7 +3,7 @@
 ---
 ### We are deployed on Azure!
 
-* Deployed site - https://ecommerceappsuejoe.azurewebsites.net/
+* Deployed site - https://ecommerceappjoesue.azurewebsites.net/
 
 * Database server names
   * User database - userdbcontext.database.windows.net

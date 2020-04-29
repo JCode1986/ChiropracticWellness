@@ -7,6 +7,19 @@ namespace ECommerceApp.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Cart",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cart", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Inventories",
                 columns: table => new
                 {
@@ -21,6 +34,33 @@ namespace ECommerceApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Inventories", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CartItems",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CartID = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    ServicesID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartItems", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_CartItems_Cart_CartID",
+                        column: x => x.CartID,
+                        principalTable: "Cart",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CartItems_Inventories_ServicesID",
+                        column: x => x.ServicesID,
+                        principalTable: "Inventories",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -39,10 +79,26 @@ namespace ECommerceApp.Migrations
                     { 9, "A 60-minute Orthopedic massage allowing for deep tissue therapy of problem areas. The massage may incorporate Shiatzu, Swedish or trigger point techniques.", "60 minutes", "/Styles/Assets/Massage1.jpg", 80.00m, "60 Minute Massage" },
                     { 10, "A 30-minute Orthopedic massage providing an overall massage. The massage may incorporate Shiatzu or Swedish techniques. This massage is best suited before a Chiropractic adjustment. If you are seeking deep tissue or have a specific problem area, consider a 60-minute massage instead.", "30 minutes", "/Styles/Assets/Massage2.jpg", 45.00m, "30 Minute Massage" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartItems_CartID",
+                table: "CartItems",
+                column: "CartID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartItems_ServicesID",
+                table: "CartItems",
+                column: "ServicesID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "CartItems");
+
+            migrationBuilder.DropTable(
+                name: "Cart");
+
             migrationBuilder.DropTable(
                 name: "Inventories");
         }

@@ -7,6 +7,6 @@ namespace ECommerceApp.Models.ViewModels
 {
     public class DetailsViewModel
     {
-        public Inventory Inventory { get; set; }
+        public Service Inventory { get; set; }
     }
 }
