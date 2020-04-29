@@ -16,7 +16,8 @@ namespace ECommerceApp.Pages.Product
     public class DetailsModel : PageModel
     {
         //bring in db context for properties and Inventory management for method
-        private DetailsModel(IInventory _context, ICartItems _cart);
+        private IInventory _context;
+        private ICartItems _cart;
 
         //contructor
         public DetailsModel(IInventory context, ICartItems cart)
@@ -25,7 +26,7 @@ namespace ECommerceApp.Pages.Product
             _cart = cart;
         }
 
-        public Service inventory { get; set; }
+        public Inventory inventory { get; set; }
 
         /// <summary>
         /// Return details of a specific service from Inventory
@@ -37,7 +38,7 @@ namespace ECommerceApp.Pages.Product
         public async Task OnPost(int productId, int qty)
         {
             //need the cart id...getting the user
-            var user = User.Identity.Name;
+/*            var user = User.Identity.Name;
             int cartId = await _cart.GetCardIdForUser(user);
 
             if(cartId > 0)
@@ -62,7 +63,7 @@ namespace ECommerceApp.Pages.Product
             }
 
             //look up [temp data] and see if that helps notify the user of a successful addition.
-            return Page();
+            return Page();*/
         }
     }
 }

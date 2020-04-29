@@ -8,7 +8,7 @@ namespace ECommerceApp.Models.Interface
     public interface ICartItems
     {
         //task to add item to the cart
-        Task AddItemToCart(CartItems cartItem);
+        Task<CartItems> AddItemToCart(CartItems cartItem);
 
         //task to get items from cart
         Task<List<CartItems>> GetAllCartItems(string username);
@@ -23,10 +23,10 @@ namespace ECommerceApp.Models.Interface
         Task<CartItems> DeleteCartItem(int cartItemID);
         
         //task to create a cart
-        Task CreateCart(string userId);
+        Task<string> CreateCart(string userId);
 
         //task to get cart ID for a given user, based on the username
-        Task GetCartIdForUser(string username);
+        Task<int> GetCartIdForUser(string username);
         
     }
 }

@@ -78,7 +78,8 @@ namespace ECommerceApp.Pages.Account
                     //instantiate the new cart
                     //cart property of ID = userID
                     //await cart.createcartasync()
-                    await _cart.CreateCart(user.Id);
+
+                    //await _cart.CreateCart(user.Id);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");

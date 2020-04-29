@@ -40,7 +40,7 @@ namespace ECommerceApp
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 //local
-                //options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault"));
+               //options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault"));
 
                 //deployed
                 options.UseSqlServer(Configuration.GetConnectionString("ProductionIdentityConnection"));

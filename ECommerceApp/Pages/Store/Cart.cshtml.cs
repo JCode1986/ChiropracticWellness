@@ -28,7 +28,7 @@ namespace ECommerceApp.Pages.Store
             var user = User.Identity.Name;
             var items = await _cart.GetAllCartItems(user);
 
-
+            return null;
 
         }
     }

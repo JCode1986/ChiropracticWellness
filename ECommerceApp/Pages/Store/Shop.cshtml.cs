@@ -24,7 +24,7 @@ namespace ECommerceApp.Pages.Store
             _inventory = inventory;
         }
 
-        public List<Service> Services { get; set; }
+        public List<Inventory> Services { get; set; }
 
         public async Task OnGet()
         {
