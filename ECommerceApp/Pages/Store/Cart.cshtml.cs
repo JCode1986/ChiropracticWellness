@@ -23,13 +23,12 @@ namespace ECommerceApp.Pages.Store
         }
         //have each cart item so we need to foreach over the cart itself
         //cart => cartitems => iterate over cart items and display one by one
-        public async Task<IActionResult> OnGet()
+        public async Task OnGet()
         {
             var user = User.Identity.Name;
-            var items = await _cart.GetAllCartItems(user);
+            CartItems = await _cart.GetAllCartItems(user);
 
-            return null;
-
+            
         }
     }
 }

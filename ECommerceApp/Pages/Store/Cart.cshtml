@@ -8,7 +8,7 @@
 
 @foreach(var item in Model.CartItems)
 {
-    @*<h3>@item.Service.ServiceType</h3>
-    <p>Price: @item.Quantity * @item.Service.Price = @(item.Quantity * item.Service.Price) </p>
-    <hr />*@
+    <h3>@item.Services.ServiceType</h3>
+    <p>Price: @item.Quantity * @item.Services.Price = @(item.Quantity * item.Services.Price) </p>
+    <hr />
 }
