@@ -95,7 +95,7 @@ namespace ECommerceApp
             app.UseAuthorization();
 
             //Seed data into db by calling RoleInitializer class
-            //RoleInitializer.SeedData(serviceProvider);
+            RoleInitializer.SeedData(serviceProvider);
 
             app.UseEndpoints(endpoints =>
             {
