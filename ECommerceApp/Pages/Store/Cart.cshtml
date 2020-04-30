@@ -1,5 +1,8 @@
-﻿@page
+﻿@page 
+@using Microsoft.AspNetCore.Identity
+@using ECommerceApp.Models
 @model ECommerceApp.Pages.Store.CartModel
+@inject SignInManager<ApplicationUser> SignInManager
 @{
     ViewData["Title"] = "Cart";
     Layout = "_Layout";
@@ -11,14 +14,14 @@
         {
             @if (item != null)
             {
-                <h3>@item.Services.ServiceType</h3>
+                <a href="../Product/Details/@item.Services.ID"><h3>@item.Services.ServiceType</h3></a>
                 <p>Price: @item.Quantity * @item.Services.Price = @(item.Quantity * item.Services.Price) </p>
                 <div>
-                    <form method="post">
-                        <input type="hidden" asp-for="@item.Quantity" />
+                    <form method="post" >
+                        <label asp-for="@item.Quantity" hidden></label>
                         <p>
-                            Quantity: <input type="number" value="1" min="0" max="100" step="1" style="text-align:center" />
-                            <a asp-page="../Product/Update" asp-route-ID="@item.ID" class="btn btn-secondary m-1">Update</a>
+                            Quantity: <input type="number" asp-for="@item.Quantity" name="Quantity" value="@item.Quantity" min="0" max="100" step="1" style="text-align:center" />
+                            <button type="submit" asp-page-handler="update" asp-route-ID="@item.Services.ID" class="btn btn-secondary m-1">Update</button>
                         </p>
                     </form>
                     <a asp-page="../Product/Delete" asp-route-ID="@item.ID" class="btn btn-danger m-1">Delete</a>

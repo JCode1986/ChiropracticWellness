@@ -81,7 +81,7 @@ namespace ECommerceApp.Models.Services
         }
 
         /// <summary>
-        /// Get cart for specific user
+        /// Get cart ID for specific user
         /// </summary>
         /// <param name="username">string</param>
         /// <returns>return 0 for no record found; or actual string ID if record is found</returns>
@@ -111,15 +111,11 @@ namespace ECommerceApp.Models.Services
         /// <param name="cartItem">cart item object</param>
         /// <param name="quantity">int</param>
         /// <returns>cart item object</returns>
-        public async Task<CartItems> UpdateQuantity(CartItems cartItem)
+        public async Task<CartItems> UpdateCartItem(int ID, CartItems cartItem)
         {
-            CartItems item = await _context.CartItems.FirstOrDefaultAsync(x => x.ID == cartItem.ID);
-
-            if (item != null)
-            {
-                item.Quantity = cartItem.Quantity;
-            }
-            return item;
+            _context.Entry(cartItem).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return cartItem;
         }
     }
 }
