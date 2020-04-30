@@ -13,9 +13,9 @@ namespace ECommerceApp.Models.Services
     {
         private IConfiguration _iconfiguration;
 
-        public EmailSender(IConfiguration configuration)
+        public EmailSender(IConfiguration Configuration)
         {
-            _iconfiguration = configuration;
+            _iconfiguration = Configuration;
         }
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
