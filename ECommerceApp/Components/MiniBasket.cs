@@ -1,5 +1,8 @@
 ﻿using ECommerceApp.Data;
+using ECommerceApp.Models;
+using ECommerceApp.Models.Interface;
 using ECommerceApp.Models.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,21 +16,23 @@ namespace ECommerceApp.Components
     {
         //bring in the user and store databases
         //bring in the CartItemsManager class
-        private ApplicationDbContext _user;
-        private StoreDbContext _context;
-        private CartItemsManager _cim;
+        private UserManager<ApplicationUser> _usermanager;
+        private ICartItems _icartitems;
+        
 
-        public MiniBasket(ApplicationDbContext user, StoreDbContext context, CartItemsManager cim)
+        public MiniBasket(UserManager<ApplicationUser> usermanager, ICartItems icartitems)
         {
-            _user = user;
-            _context = context;
-            _cim = cim;
+            _usermanager = usermanager;
+            _icartitems = icartitems;
+            
         }
 
         //using the CartItemsManager class that we brought in, we are passing in the username and getting all items in their basket by envoking the GetAllCartItems method.
-        public async Task<IViewComponentResult> InvokeAsync(string username)
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            var cartItems = await _cim.GetAllCartItems(username);
+            //get username 
+            var user = User.Identity.Name;
+            var cartItems = await _icartitems.GetAllCartItems(user);
             return View(cartItems);
         }
 
