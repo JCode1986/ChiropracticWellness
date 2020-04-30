@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Models
 {
-    public class Inventory
+    public class Service
     {
         public int ID { get; set; }
         public string ServiceType { get; set; }

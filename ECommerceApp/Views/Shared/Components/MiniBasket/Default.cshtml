@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ECommerceApp.Models.Inventory>
+
+<h1>Items In Your Cart</h1>
+
+
+@foreach (var item in Model)
+{
+    <p>@item.ServiceType</p>
+    <p>@item.Image</p>
+    <p>@item.Price</p>
+    <hr />
+}
+
+
+@*then in Index.html (make sure you specificy your component class)
+    @await Component.InvokeAsync("MiniBasket")*@ 

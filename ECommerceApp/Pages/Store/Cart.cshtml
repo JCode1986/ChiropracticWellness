@@ -1,0 +1,21 @@
+﻿@page
+@model ECommerceApp.Pages.Store.CartModel
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h1>Cart</h1>
+
+@foreach (var item in Model.CartItems)
+{
+    <h3>@item.Services.ServiceType</h3>
+    <p>Price: @item.Quantity * @item.Services.Price = @(item.Quantity * item.Services.Price) </p>
+    <p>
+        Quantity: <input type="number" value="1" min="0" max="100" step="1" style="text-align:center" />
+    </p>
+    <form action="delete/@item.Services.ID" method="post">
+        <input value="@item.Services.ID" disabled hidden />
+        <button class="btn btn-danger" type="submit">Delete Patient</button>
+    </form>
+    <hr />
+}

@@ -1,6 +1,7 @@
 ﻿body {
     background-color: #D0EDB5;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 90px;
 }
 
 
@@ -12,6 +13,7 @@ footer {
 
 .masthead {
     height: 15vh;
+    width: 100vw;
     min-height: 300px;
     background-image: url("https://static3.depositphotos.com/1006416/239/i/450/depositphotos_2399213-stock-photo-stacked-rocks.jpg");
     background-size: cover;
@@ -28,11 +30,17 @@ footer {
 #mainContent{
     display: block;
     float: left;
-
+    margin-left: 100px; 
 }
 
 #bios{
     display: block;
     float: right;
+    margin-right: 60px;
+}
 
+#serviceCard {
+    max-width: 100%;
+    text-align: center;
+    color: red;
 }

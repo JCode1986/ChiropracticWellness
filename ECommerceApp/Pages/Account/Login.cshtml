@@ -4,67 +4,56 @@
     ViewData["Title"] = "Login";
     Layout = "_Layout";
 }
-<!Doctype html>
-<title>Login page</title>
-<html>
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="~/Styles/StyleSheet.css">
-</head>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="StyleSheet.css"/>
+    </head>
 
-<body>
+<body style="background-color: #D0EDB5">
+<br />
     <br />
     <br />
     <br />
     <br />
-    <br />
+    
 
+        <div class="container" style="margin-top:20px; background-color: #D0EDB5;">
 
-    <div class="container" style="margin-top:20px;">
+            <form method="post">
+                <div asp-validation-summary="All"></div>
 
-        <form method="post">
-            <div asp-validation-summary="All"></div>
-
-            <div class="form-group row">
-                <label class="col-sm-3 col-form-label" asp-for="Input.Email">Email Address</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="email" asp-for="Input.Email">
-                    <span asp-validation-for="Input.Email"></span>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label" asp-for="Input.Email">Email Address</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="email" asp-for="Input.Email">
+                        <span asp-validation-for="Input.Email"></span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label class="col-sm-3 col-form-label" asp-for="Input.Password">Password</label>
-                <div class="col-sm-9">
-                    <input type="password" class="form-control" id="password" asp-for="Input.Password">
-                    <span asp-validation-for="Input.Password"></span>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label" asp-for="Input.Password">Password</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="password" asp-for="Input.Password">
+                        <span asp-validation-for="Input.Password"></span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
+                <div class="row">
+                    <div class="col-sm-9 offset-sm-3">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+        <div class="container" style="margin-top:40px; background-color: #D0EDB5;">
+            <p>Don't have an account yet?</p> 
+            <p>Please register with us here:
+            </p>
                 <div class="col-sm-9 offset-sm-3">
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </div>
+                    <a href="/Account/Register"><button class="btn btn-primary">Register</button></a>
             </div>
 
-        </form>
-
-    </div>
+        </div>
 </body>
-</html>
-
-    @*<form method="post">
-        <div asp-validation-summary="All"></div>
-
-        <label asp-for="Input.Email"></label>
-        <input asp-for="Input.Email" />
-        <span asp-validation-for="Input.Email"></span>
-
-        <label asp-for="Input.Password"></label>
-        <input asp-for="Input.Password" />
-        <span asp-validation-for="Input.Password"></span>
-
-        <button type="submit">Login</button>
-
-    </form>*@
-

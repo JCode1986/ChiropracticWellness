@@ -18,7 +18,7 @@ namespace ECommerceApp.Models
         {
             new IdentityRole{Name = ApplicationRoles.Member, NormalizedName = ApplicationRoles.Member.ToUpper(), ConcurrencyStamp = Guid.NewGuid().ToString()},
 
-            new IdentityRole{Name = ApplicationRoles.Member, NormalizedName = ApplicationRoles.Member.ToUpper(), ConcurrencyStamp = Guid.NewGuid().ToString()}
+            new IdentityRole{Name = ApplicationRoles.Admin, NormalizedName = ApplicationRoles.Admin.ToUpper(), ConcurrencyStamp = Guid.NewGuid().ToString()}
         };
 
         public static void SeedData(IServiceProvider serviceProvider)
@@ -45,6 +45,5 @@ namespace ECommerceApp.Models
                 context.SaveChanges();
             }
         }
-
     }
 }

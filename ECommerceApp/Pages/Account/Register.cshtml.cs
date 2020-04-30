@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using ECommerceApp.Models;
+using ECommerceApp.Models.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,14 +16,16 @@ namespace ECommerceApp.Pages.Account
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
+        private ICartItems _cart;
 
         [BindProperty]
         public RegisterInput RegisterData { get; set; }
 
-        public RegisterModel (UserManager<ApplicationUser> usermanager, SignInManager<ApplicationUser> signIn)
+        public RegisterModel (UserManager<ApplicationUser> usermanager, SignInManager<ApplicationUser> signIn, ICartItems cart)
         {
             _userManager = usermanager;
             _signInManager = signIn;
+            _cart = cart;
 
         }
         public void OnGet()
@@ -40,7 +43,7 @@ namespace ECommerceApp.Pages.Account
                     FirstName = RegisterData.FirstName,
                     LastName = RegisterData.LastName,
                     Birthdate = RegisterData.Birthday,
-                    Phone = RegisterData.Phone
+                    PhoneNumber = RegisterData.Phone
                 };
 
             //create account using Identity
@@ -68,14 +71,23 @@ namespace ECommerceApp.Pages.Account
                     //Associate them with a specific role
                     await _userManager.AddToRoleAsync(user, ApplicationRoles.Member);
 
+                    //Give admin access to specific people
                     if(user.Email == "sue@greengrasspt.com" || user.Email == "joseph.hangarter@yahoo.com")
                     {
                         await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
                     }
 
-                    //grant the user access to the site
+                    //create the cart for the user
+                    //instantiate the new cart
+                    //cart property of ID = userID
+                    //await cart.createcartasync()
+
+                    await _cart.CreateCart(user.Id);
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
+
+                    //grant the user access to the site
 
                 }
                 foreach (var error in result.Errors)
@@ -107,10 +119,11 @@ namespace ECommerceApp.Pages.Account
             public DateTime Birthday { get; set; }
 
             [Required]
-            [Display(Name = "Phone Number" )]
+            [DataType(DataType.PhoneNumber)]
             public string Phone { get; set; }
 
             [Required]
+            [DataType(DataType.Password)]
             [StringLength(100, ErrorMessage="The {0} must be at least {2} and at max {1} characters long", MinimumLength = 8)]
             public string Password { get; set; }
 

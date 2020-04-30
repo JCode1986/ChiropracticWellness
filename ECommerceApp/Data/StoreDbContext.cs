@@ -51,7 +51,7 @@ namespace ECommerceApp.Data
                     ServiceType = "Neck Adjustment",
                     Description = "A follow up visit for targetted adjustment of the neck.",
                     Price = 85.00M,
-                    Duration = "45 minutes",
+                    Duration = "30 minutes",
                     Image = "/Styles/Assets/NeckAdjustment1.jpg"
                 },
                 new Inventory
@@ -75,19 +75,19 @@ namespace ECommerceApp.Data
                 new Inventory
                 {
                     ID = 7,
-                    ServiceType = "Pack of Neck Adjustments",
+                    ServiceType = "5-Pack of Neck Adjustments",
                     Description = "Reguar adjustments are sometimes necessary to maintain pain free postural alignment. This service allows you to purchase 5 neck adjustments at a discounted rate that may be used within the next 6 months.",
                     Price = 325.00M,
-                    Duration = "1 hour 30 minutes",
+                    Duration = "30 minutes each",
                     Image = "/Styles/Assets/NeckAdjustment2.jpg"
                 },
                 new Inventory
                 {
                     ID = 8,
-                    ServiceType = "Pack of Upper Back Adjustments",
+                    ServiceType = "5-Pack of Upper Back Adjustments",
                     Description = "Reguar adjustments are sometimes necessary to maintain pain free postural alignment. This service allows you to purchase 5 upper back/thoracic region adjustments at a discounted rate that may be used within the next 6 months.",
-                    Price = 100.00M,
-                    Duration = "1 hour 30 minutes",
+                    Price = 300.00M,
+                    Duration = "30 minutes each",
                     Image = "/Styles/Assets/UpperBack2.jpg"
                 },
                 new Inventory
@@ -110,6 +110,10 @@ namespace ECommerceApp.Data
                 }
             );
         }
+
+        //refer to each table created
         public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<CartItems> CartItems { get; set; }
+        public DbSet<Cart> Cart { get; set; }
     }
 }

@@ -42,8 +42,7 @@ namespace ECommerceApp.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
-                    Birthdate = table.Column<DateTime>(nullable: false),
-                    Phone = table.Column<string>(nullable: true)
+                    Birthdate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
