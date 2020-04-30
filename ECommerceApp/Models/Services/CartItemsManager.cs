@@ -107,17 +107,19 @@ namespace ECommerceApp.Models.Services
         /// <summary>
         /// Update quantity of a cart item
         /// </summary>
-        /// <param name="cartItemID"></param>
-        /// <param name="cartItem"></param>
-        /// <param name="quantity"></param>
-        /// <returns></returns>
-        public async Task<CartItems> UpdateQuantity(int cartItemID, CartItems cartItem, int quantity)
+        /// <param name="cartItemID">int</param>
+        /// <param name="cartItem">cart item object</param>
+        /// <param name="quantity">int</param>
+        /// <returns>cart item object</returns>
+        public async Task<CartItems> UpdateQuantity(CartItems cartItem)
         {
-            CartItems item = await _context.CartItems.FindAsync(cartItemID);
-            item.Quantity = quantity;
-            _context.Entry(item.Quantity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return cartItem;
+            CartItems item = await _context.CartItems.FirstOrDefaultAsync(x => x.ID == cartItem.ID);
+
+            if (item != null)
+            {
+                item.Quantity = cartItem.Quantity;
+            }
+            return item;
         }
     }
 }
