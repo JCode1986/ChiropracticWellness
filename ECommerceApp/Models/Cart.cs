@@ -13,6 +13,6 @@ namespace ECommerceApp.Models
 
        
         //navigation property
-        public List<CartItems> CartID { get; set; }
+        public List<CartItems> CartItems { get; set; }
     }
 }

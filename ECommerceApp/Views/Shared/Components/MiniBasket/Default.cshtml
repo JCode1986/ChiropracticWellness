@@ -1,13 +1,13 @@
-﻿@model IEnumerable<ECommerceApp.Models.Inventory>
+﻿@model IList<ECommerceApp.Models.CartItems>
 
 <h1>Items In Your Cart</h1>
 
 
 @foreach (var item in Model)
 {
-    <p>@item.ServiceType</p>
-    <p>@item.Image</p>
-    <p>@item.Price</p>
+    <p>@item.Services.ServiceType</p>
+    <p>@item.Services.Image</p>
+    <p>@item.Services.Price</p>
     <hr />
 }
 
