@@ -6,7 +6,8 @@
 @foreach (var item in Model)
 {
     <p>@item.Services.ServiceType</p>
-    <p>@item.Services.Image</p>
+    
+    <p><img src=@item.Services.Image alt="" width="150" height="210"></p>
     <p>@item.Services.Price</p>
     <hr />
 }
