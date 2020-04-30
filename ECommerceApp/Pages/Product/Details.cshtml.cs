@@ -38,8 +38,8 @@ namespace ECommerceApp.Pages.Product
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="serviceID"></param>
-        /// <param name="qty"></param>
+        /// <param name="serviceID">int</param>
+        /// <param name="qty">int</param>
         /// <returns></returns>
         public async Task<IActionResult> OnPost(int serviceID, int qty = 1)
         {
@@ -68,7 +68,7 @@ namespace ECommerceApp.Pages.Product
                 //Now add item to cart
                 await _cart.AddItemToCart(ci);
                 inventory = ci.Services;
-                return Page();
+                return RedirectToPage("/Store/Cart");
 
             }
             else

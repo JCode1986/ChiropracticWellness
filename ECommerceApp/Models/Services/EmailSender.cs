@@ -19,7 +19,7 @@ namespace ECommerceApp.Models.Services
         }
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            SendGridClient client = new SendGridClient(_iconfiguration["SendGridKey"]);
+            SendGridClient client = new SendGridClient(_iconfiguration["SENDGRID_API_KEY"]);
             SendGridMessage msg = new SendGridMessage();
 
             msg.SetFrom("admin@wellnesschiropractic.com", "Site Admin");
