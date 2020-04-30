@@ -35,9 +35,14 @@ namespace ECommerceApp.Pages.Product
         /// <returns>Inventory object</returns>
         public async Task OnGet(int id) => inventory = await _context.GetChiropracticServiceByID(id);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="serviceID"></param>
+        /// <param name="qty"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnPost(int serviceID, int qty = 1)
         {
-            //int serviceID = inventory.ID;
             //need the cart id...getting the user
             var user = User.Identity.Name;
             int cartId = await _cart.GetCartIdForUser(user);
@@ -51,11 +56,13 @@ namespace ECommerceApp.Pages.Product
                 ci.Services = await _context.GetChiropracticServiceByID(serviceID);
 
                 //PER AMANDA: if item already exists in cart, just increase its quantity by 1
-                //WRITE CODE FOR THAT HERE
 
                 if (ci.Services.ID == serviceID)
                 {
-                    ci.Quantity = qty + 1;
+                    if (qty > 1)
+                    {
+                        ci.Quantity += qty;
+                    }
                 }
 
                 //Now add item to cart
