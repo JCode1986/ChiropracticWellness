@@ -25,7 +25,7 @@ namespace ECommerceApp.Models.Services
         /// Add item to cart
         /// </summary>
         /// <param name="cartItem">string</param>
-        /// <returns></returns>
+        /// <returns>cart item object</returns>
         public async Task<CartItems> AddItemToCart(CartItems cartItem)
         {
             _context.Add(cartItem);
@@ -34,10 +34,10 @@ namespace ECommerceApp.Models.Services
         }
 
         /// <summary>
-        /// Create cart for user
+        /// Create cart for user and returns user name
         /// </summary>
         /// <param name="userId">string</param>
-        /// <returns></returns>
+        /// <returns>string</returns>
         public async Task<string> CreateCart(string userId)
         {
             Cart cart = new Cart();
@@ -51,7 +51,7 @@ namespace ECommerceApp.Models.Services
         /// Delete cart
         /// </summary>
         /// <param name="cartItemID">int</param>
-        /// <returns></returns>
+        /// <returns>cart item object</returns>
         public async Task<CartItems> DeleteCartItem(int cartItemID)
         {
             CartItems cartItem = await _context.CartItems.FindAsync(cartItemID);
@@ -61,10 +61,10 @@ namespace ECommerceApp.Models.Services
         }
 
         /// <summary>
-        /// Linq query 
+        /// Linq query to read all cart items from a specific user
         /// </summary>
-        /// <param name="username"></param>
-        /// <returns></returns>
+        /// <param name="username">string</param>
+        /// <returns>cart item object</returns>
         public async Task<List<CartItems>> GetAllCartItems(string username)
         {
             //Finding username that is being passed in, in the user database
@@ -105,17 +105,31 @@ namespace ECommerceApp.Models.Services
         public async Task<CartItems> GetItemByID(int ID) => await _context.CartItems.FindAsync(ID);
 
         /// <summary>
-        /// Update quantity of a cart item
+        /// Updates properties in cart item
         /// </summary>
-        /// <param name="cartItemID">int</param>
+        /// <param name="ID">int</param>
         /// <param name="cartItem">cart item object</param>
-        /// <param name="quantity">int</param>
         /// <returns>cart item object</returns>
         public async Task<CartItems> UpdateCartItem(int ID, CartItems cartItem)
         {
             _context.Entry(cartItem).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return cartItem;
+        }
+
+        /// <summary>
+        /// Updates quantity in specific cart item
+        /// </summary>
+        /// <param name="cartItemID">int</param>
+        /// <param name="newQuantity">int</param>
+        /// <returns>updated quantity</returns>
+        public async Task<int> UpdateProductQuantity(int cartItemID, int newQuantity)
+        {
+            CartItems cartItem = await _context.CartItems.FindAsync(cartItemID);
+            cartItem.Quantity = newQuantity;
+            _context.Update(cartItem);
+            _context.SaveChanges();
+            return cartItem.Quantity;
         }
     }
 }

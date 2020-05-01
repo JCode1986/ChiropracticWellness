@@ -18,33 +18,34 @@ namespace ECommerceApp.Pages.Store
     [Authorize]
     public class CartModel : PageModel
     {
-        private ICartItems _cart;
-        private readonly UserManager<ApplicationUser> _userManager;
+        [BindProperty]
+        public CartItems CartItem { get; set; }
+
+        private readonly ICartItems _cart;
 
         public List<CartItems> CartItems { get; set; }
-        public CartModel(ICartItems cart, UserManager<ApplicationUser> userManager)
+        public CartModel(ICartItems cart)
         {
             _cart = cart;
-            _userManager = userManager;
         }
 
-        //have each cart item so we need to foreach over the cart itself
-        //cart => cartitems => iterate over cart items and display one by one
+        /// <summary>
+        /// Get all cart items for a specific user
+        /// </summary>
+        /// <returns>cart item objects</returns>
         public async Task OnGet()
         {
             var user = User.Identity.Name;
             CartItems = await _cart.GetAllCartItems(user);
         }
-
-        public async Task<IActionResult> OnPostUpdateAsync(int id)
+        
+        /// <summary>
+        /// Updates quantity of a cart item
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IActionResult> OnPostUpdateAsync()
         {
-            int newQuantity = Convert.ToInt32(Request.Form["Quantity"]);
-            ApplicationUser user = await _userManager.GetUserAsync(User);
-            int cartID = await _cart.GetCartIdForUser(user.UserName);
-            CartItems cartItem = await _cart.GetItemByID(cartID);
-            
-            cartItem.Quantity = newQuantity;
-            await _cart.UpdateCartItem(id, cartItem);
+            await _cart.UpdateProductQuantity(CartItem.ID, CartItem.Quantity);
             return RedirectToPage();
         }
     }

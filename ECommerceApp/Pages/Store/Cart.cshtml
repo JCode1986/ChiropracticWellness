@@ -6,6 +6,7 @@
 @{
     ViewData["Title"] = "Cart";
     Layout = "_Layout";
+    decimal sum = 0;
 }
 
     <body style="margin-top: 70px;">
@@ -15,14 +16,15 @@
             @if (item != null)
             {
                 <a href="../Product/Details/@item.Services.ID"><h3>@item.Services.ServiceType</h3></a>
-                <p>Price: @item.Quantity * @item.Services.Price = @(item.Quantity * item.Services.Price) </p>
+                <p><strong>Price:</strong> @item.Services.Price </p>
                 <div>
-                    <form method="post" >
-                        <label asp-for="@item.Quantity" hidden></label>
-                        <p>
-                            Quantity: <input type="number" asp-for="@item.Quantity" name="Quantity" value="@item.Quantity" min="0" max="100" step="1" style="text-align:center" />
-                            <button type="submit" asp-page-handler="update" asp-route-ID="@item.Services.ID" class="btn btn-secondary m-1">Update</button>
-                        </p>
+                    <form method="post">
+                      
+                        <label>
+                            Quantity: <input type="number" asp-for="@Model.CartItem.Quantity" value="@item.Quantity" min="0" max="100" step="1" style="text-align:center" />
+                                      <input asp-for="@Model.CartItem.ID" value="@item.ID" hidden />
+                            <button type="submit" asp-page-handler="update" class="btn btn-secondary m-1">Update</button>
+                        </label>
                     </form>
                     <a asp-page="../Product/Delete" asp-route-ID="@item.ID" class="btn btn-danger m-1">Delete</a>
                 </div>

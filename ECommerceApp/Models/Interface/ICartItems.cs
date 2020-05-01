@@ -14,7 +14,7 @@ namespace ECommerceApp.Models.Interface
         Task<List<CartItems>> GetAllCartItems(string username);
 
         //task to get item by ID
-        Task<CartItems> GetItemByID(int ID);
+        Task<CartItems> GetItemByID(int cartItemID);
 
         //task to update quantity
         Task<CartItems> UpdateCartItem(int ID, CartItems cartItem);
@@ -27,6 +27,9 @@ namespace ECommerceApp.Models.Interface
 
         //task to get cart ID for a given user, based on the username
         Task<int> GetCartIdForUser(string username);
-        
+
+        //Task<CartItems> GetItemandServiceByID(int cartID, int serviceID);
+
+        Task<int> UpdateProductQuantity(int cartItemID, int newQuantity);
     }
 }
