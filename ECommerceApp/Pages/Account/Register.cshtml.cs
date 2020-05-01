@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using ECommerceApp.Models;
 using ECommerceApp.Models.Interface;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -17,16 +19,17 @@ namespace ECommerceApp.Pages.Account
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
         private ICartItems _cart;
+        private IEmailSender _email;
 
         [BindProperty]
         public RegisterInput RegisterData { get; set; }
 
-        public RegisterModel (UserManager<ApplicationUser> usermanager, SignInManager<ApplicationUser> signIn, ICartItems cart)
+        public RegisterModel (UserManager<ApplicationUser> usermanager, SignInManager<ApplicationUser> signIn, ICartItems cart, IEmailSender email)
         {
             _userManager = usermanager;
             _signInManager = signIn;
             _cart = cart;
-
+            _email = email;
         }
         public void OnGet()
         {
@@ -72,7 +75,8 @@ namespace ECommerceApp.Pages.Account
                     await _userManager.AddToRoleAsync(user, ApplicationRoles.Member);
 
                     //Give admin access to specific people
-                    if(user.Email == "sue@greengrasspt.com" || user.Email == "joseph.hangarter@yahoo.com")
+                    if(user.Email == "sue@greengrasspt.com" || user.Email == "joseph.hangarter@yahoo.com" || user.Email == "amanda@codefellows.com" || user.Email == "rice.jonathanm@gmail.com")
+
                     {
                         await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
                     }
@@ -83,6 +87,15 @@ namespace ECommerceApp.Pages.Account
                     //await cart.createcartasync()
 
                     await _cart.CreateCart(user.Id);
+
+                    //send confirmation email of registration
+                    StringBuilder sb = new StringBuilder();
+
+                    sb.AppendLine("<h1> Test Email From Sue :) </h1>");
+                    sb.AppendLine("<p>Pikachu evolves into Ryachu!</p>");
+
+                    await _email.SendEmailAsync($"{user.Email}", "EmailTest is Working", sb.ToString());
+                    //return View();
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");

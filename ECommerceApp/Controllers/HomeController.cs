@@ -10,12 +10,12 @@ namespace ECommerceApp.Controllers
 {
     public class HomeController : Controller
     {
-        private IEmailSender _email;
+        //private IEmailSender _email;
 
-        public HomeController(IEmailSender email)
-        {
-            _email = email;
-        }
+        //public HomeController(IEmailSender email)
+        //{
+        //    _email = email;
+        //}
 
 
         [HttpGet]
@@ -24,17 +24,17 @@ namespace ECommerceApp.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult SendEmail()
-        {
-            StringBuilder sb = new StringBuilder();
+        //[HttpPost]
+        //public IActionResult SendEmail()
+        //{
+        //    StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("<h1> Test Email From Sue :) </h1>");
-            sb.AppendLine("<p>Pikachu evolves into Ryachu!</p>");
+        //    sb.AppendLine("<h1> Test Email From Sue :) </h1>");
+        //    sb.AppendLine("<p>Pikachu evolves into Ryachu!</p>");
 
-            _email.SendEmailAsync("suemachtley@gmail.com", "EmailTest is Working", sb.ToString());
-            return View();
-        }
+        //    _email.SendEmailAsync("suemachtley@gmail.com", "EmailTest is Working", sb.ToString());
+        //    return View();
+        //}
 
 
     }
