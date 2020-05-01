@@ -2,8 +2,20 @@
 @model ECommerceApp.Pages.Admin.DashboardModel
 @{
     ViewData["Title"] = "Dashboard";
+    Layout = "_Layout";
 }
 
 <h1>Welcome to the Admin Dashboard</h1>
 
 Bring in a Link to a posts page (Amanda says: maybe a posts controller)
+
+<section id="hero">
+    <img src="~/Styles/Assets/InitialEvaluation.jpg/>
+</section>
+
+
+<div class="row">
+    <div class="col-sm-9 offset-sm-3">
+        <a href="/Admin/ManageServices"><button class="btn btn-light">Manage Services</button></a>
+    </div>
+</div>
