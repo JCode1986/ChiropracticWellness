@@ -28,8 +28,7 @@ namespace ECommerceApp.Models.Interface
         //task to get cart ID for a given user, based on the username
         Task<int> GetCartIdForUser(string username);
 
-        //Task<CartItems> GetItemandServiceByID(int cartID, int serviceID);
-
+        //task to update quantity of specific cart item
         Task<int> UpdateProductQuantity(int cartItemID, int newQuantity);
     }
 }
