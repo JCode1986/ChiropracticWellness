@@ -75,7 +75,8 @@ namespace ECommerceApp.Pages.Account
                     await _userManager.AddToRoleAsync(user, ApplicationRoles.Member);
 
                     //Give admin access to specific people
-                    if(user.Email == "sue@greengrasspt.com" || user.Email == "joseph.hangarter@yahoo.com")
+                    if(user.Email == "sue@greengrasspt.com" || user.Email == "joseph.hangarter@yahoo.com" || user.Email == "amanda@codefellows.com" || user.Email == "rice.jonathanm@gmail.com")
+
                     {
                         await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
                     }
@@ -93,7 +94,7 @@ namespace ECommerceApp.Pages.Account
                     sb.AppendLine("<h1> Test Email From Sue :) </h1>");
                     sb.AppendLine("<p>Pikachu evolves into Ryachu!</p>");
 
-                    _email.SendEmailAsync("suemachtley@gmail.com", "EmailTest is Working", sb.ToString());
+                    await _email.SendEmailAsync($"{user.Email}", "EmailTest is Working", sb.ToString());
                     //return View();
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
