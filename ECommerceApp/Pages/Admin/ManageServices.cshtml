@@ -96,9 +96,9 @@
                                     <p class="card-text">Price: $@service.Price</p>
                                     <form asp-action="Create">
                                         <div class="box-body">
-                                            <button type="submit" asp-route-id="@service.ID" asp-page="/Admin/Edit" class="btn btn-primary" data-toggle="modal" data-target="#PurchaseVerificationModal">
-                                                Update Service
-                                            </button>
+                                            <a asp-route-ID="@service.ID" asp-page="/Admin/Edit" class="btn btn-primary" data-toggle="modal" data-target="#PurchaseVerificationModal">
+                                                Edit Service
+                                            </a>
                                         </div>
                                     </form>
                                     <br />

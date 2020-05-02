@@ -11,23 +11,23 @@ namespace ECommerceApp.Pages.Admin
 {
     public class UpdateModel : PageModel
     {
-        private ICartItems _cart;
+        private IInventory _context;
 
-        public UpdateModel(ICartItems cart)
+        public UpdateModel(IInventory context)
         {
-            _cart = cart;
+            _context = context;
         }
 
-        public CartItems CartItems { get; set; }
-        public async Task<IActionResult> OnGet(int id)
+        public Inventory Inventory { get; set; }
+        public async Task<IActionResult> OnGet(int ID)
         {
-            CartItems = await _cart.GetItemByID(id);
+            Inventory = await _context.GetChiropracticServiceByID(ID);
             return Page();
         }
 
-        public async Task<IActionResult> OnPost(int id, CartItems cartItem)
+        public async Task<IActionResult> OnPost(int ID, Inventory inventory)
         {
-            CartItems = await _cart.UpdateCartItem(id, cartItem);
+            Inventory = await _context.UpdateChiropracticService(ID, inventory);
             return RedirectToPage("/Admin/ManageServices");
         }
     }

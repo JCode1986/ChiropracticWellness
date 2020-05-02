@@ -32,9 +32,10 @@ namespace ECommerceApp.Pages.Admin
         public Inventory ServiceToDelete { get; set; }
         
         [HttpGet]
-        public async Task OnGet()
+        public async Task<IActionResult> OnGet()
         {
             Services = await _inventory.GetAllChiropracticService();
+            return Page();
         }
 
         //ONPOST
