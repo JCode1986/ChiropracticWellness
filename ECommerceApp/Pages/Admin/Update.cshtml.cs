@@ -19,12 +19,15 @@ namespace ECommerceApp.Pages.Admin
         }
 
         public Inventory Inventory { get; set; }
+
+        //get specific service
         public async Task<IActionResult> OnGet(int ID)
         {
             Inventory = await _context.GetChiropracticServiceByID(ID);
             return Page();
         }
 
+        //update service
         public async Task<IActionResult> OnPost(int ID, Inventory inventory)
         {
             Inventory = await _context.UpdateChiropracticService(ID, inventory);
