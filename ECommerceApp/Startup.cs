@@ -68,21 +68,22 @@ namespace ECommerceApp
                     .AddDefaultTokenProviders();
 
 
+            //commented out for testing purposes
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminOnly", policy => policy.RequireRole(ApplicationRoles.Admin));
             });
-        
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
-/*            if (env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }*/
-            
+            }
+
             //app.UseRouting - this MUST ALWAYS be first
             app.UseRouting();
 
