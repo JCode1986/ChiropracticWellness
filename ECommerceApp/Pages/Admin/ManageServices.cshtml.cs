@@ -51,7 +51,7 @@ namespace ECommerceApp.Pages.Admin
 
         {            
             await _inventory.CreateChiropracticService(Service);
-            return Page();
+            return RedirectToPage("/Admin/ManageServices");
         }
 
 
