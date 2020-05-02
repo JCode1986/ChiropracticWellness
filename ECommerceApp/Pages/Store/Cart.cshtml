@@ -2,7 +2,6 @@
 @using Microsoft.AspNetCore.Identity
 @using ECommerceApp.Models
 @model ECommerceApp.Pages.Store.CartModel
-@inject SignInManager<ApplicationUser> SignInManager
 @{
     ViewData["Title"] = "Cart";
     Layout = "_Layout";
@@ -11,14 +10,19 @@
 
     <body style="margin-top: 70px;">
         <h2 style="text-align: center;">Cart Inventory</h2>
-        <h3>Price: @sum</h3>
+        <label hidden >
+            @foreach (var item in Model.CartItems)
+            {
+                @(sum += item.Quantity * item.Services.Price)
+            }
+        </label>
+        <h3>Total: @sum</h3>
         @foreach (var item in Model.CartItems)
         {
             @if (item != null)
             {
                 <a href="../Product/Details/@item.Services.ID"><h3>@item.Services.ServiceType</h3></a>
                 <p><strong>Price:</strong> @(item.Services.Price * @item.Quantity) </p>
-                <label hidden>@sum += @(item.Services.Price * @item.Quantity) </label>
                 <div>
                     <form method="post">
 
@@ -33,4 +37,5 @@
                 <hr />
             }
         }
+        <button asp-page="/Checkout">Check Out</button>
     </body>

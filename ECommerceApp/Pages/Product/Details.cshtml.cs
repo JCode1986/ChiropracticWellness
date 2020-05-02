@@ -41,39 +41,37 @@ namespace ECommerceApp.Pages.Product
         /// <param name="serviceID">int</param>
         /// <param name="qty">int</param>
         /// <returns></returns>
-        public async Task<IActionResult> OnPost(int serviceID, int qty = 1)
+        public async Task<IActionResult> OnPost(int serviceID)
         {
             //need the cart id...getting the user
             var user = User.Identity.Name;
             int cartId = await _cart.GetCartIdForUser(user);
+            var allItems = await _cart.GetAllCartItems(user);
+            var query = allItems.FirstOrDefault(x => x.Services.ID == serviceID);
 
-
-            if (cartId > 0)
+            if (cartId > 0 && query == null)
             {
                 //add the item
                 CartItems ci = new CartItems();
                 ci.CartID = cartId;
-                ci.Quantity = qty;
+                ci.Quantity = 1;
                 ci.Services = await _context.GetChiropracticServiceByID(serviceID);
 
                 //PER AMANDA: if item already exists in cart, just increase its quantity by 1
-
-/*                if (ci.Services.ID == serviceID)
-                {
-                    ci.Quantity += qty;
-                }*/
+                
 
                 //Now add item to cart
-                await _cart.AddItemToCart(ci);
+                await _cart.AddItemToCart(ci);              
                 inventory = ci.Services;
                 return RedirectToPage("/Store/Cart");
 
             }
             else
             {
-                return RedirectToPage("Register");
+                int newQuantity = query.Quantity += 1;
+                await _cart.UpdateProductQuantity(query.CartID, newQuantity);
+                return RedirectToPage("/Store/Cart");
             }
-
         }
     }
 }
