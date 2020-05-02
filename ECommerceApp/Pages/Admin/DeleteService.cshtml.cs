@@ -20,7 +20,9 @@ namespace ECommerceApp.Pages.Admin
 
         [BindProperty]
         public Inventory ServiceToDelete { get; set; }
-
+        /// <summary>
+        /// No OnGet needed for delete page
+        /// </summary>
         public void OnGet()
         {
 
