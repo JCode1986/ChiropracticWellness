@@ -5,17 +5,37 @@
     Layout = "_Layout";
 }
 
-<h1>Welcome to the Admin Dashboard</h1>
+<!Doctype html>
+<body>
+    
+    <h1 style="margin: 50px">Welcome to the Admin Dashboard</h1>
 
-Bring in a Link to a posts page (Amanda says: maybe a posts controller)
+    <section id="hero" style="text-align: center" style="margin-top: 50px">
+        <img src="/Styles/Assets/InitialEvaluation.jpg" width="500" height="300" />
+    </section>
 
-<section id="hero">
-    <img src="~/Styles/Assets/InitialEvaluation.jpg/>
-</section>
+    <section class="row justify-content-center" style="margin-top:50px">
+        <div class="row">
+            <div class="col-sm-9 offset-sm-3">
+                <a href="/Admin/ManageServices"><button class="btn btn-light">Manage Services</button></a>
+            </div>
+        </div>
+    </section>
 
+    <section class="row justify-content-center" style="margin-top:50px">
+        <div class="row">
+            <div class="col-sm-9 offset-sm-3">
+                <a href="/Admin/ManageServices"><button class="btn btn-light">Manage Orders</button></a>
+            </div>
+        </div>
+    </section>
 
-<div class="row">
-    <div class="col-sm-9 offset-sm-3">
-        <a href="/Admin/ManageServices"><button class="btn btn-light">Manage Services</button></a>
-    </div>
-</div>
+    <section class="row justify-content-center" style="margin-top:50px">
+        <div class="row">
+            <div class="col-sm-9 offset-sm-3">
+                <a href="/Admin/ManageServices"><button class="btn btn-light">Manage Users</button></a>
+            </div>
+        </div>
+    </section>
+
+</body>

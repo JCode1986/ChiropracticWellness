@@ -181,7 +181,7 @@ namespace ECommerceApp.Migrations.StoreDb
             modelBuilder.Entity("ECommerceApp.Models.CartItems", b =>
                 {
                     b.HasOne("ECommerceApp.Models.Cart", null)
-                        .WithMany("CartID")
+                        .WithMany("CartItems")
                         .HasForeignKey("CartID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

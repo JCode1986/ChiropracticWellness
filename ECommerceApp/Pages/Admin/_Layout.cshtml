@@ -60,22 +60,7 @@
     </nav>
     <div>
         @RenderBody()
-        @if (SignInManager.IsSignedIn(User))
-        {
-
-            <section>
-                @*component being brought in to show items*@
-                @await Component.InvokeAsync("MiniBasket")
-            </section>
-        }
-        else
-        {
-            <div>
-                <span></span>
-
-            </div>
-        }
-
+        
 
     </div>
 

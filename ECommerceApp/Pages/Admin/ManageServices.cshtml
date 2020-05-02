@@ -16,7 +16,9 @@
 
 <body style="margin-top:130px">
 <h1>ManageServices</h1>
+    <br />
     <h2 style="text-align:center;">Chiropractic & Massage Therapy Services Available</h2>
+    <br />
     <section class="row justify-content-center" style="margin-top:50px">
         @*Bootstrap from google*@
         @foreach (var service in Model.Services)
@@ -29,9 +31,29 @@
                                 <a href="/product/details/@service.ID"><img class="card-img-top" src=@service.Image alt="" width="200" height="300"></a>
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a href="/product/details/@service.ID">@service.ServiceType</a>
+                                         @service.ServiceType
                                     </h4>
-                                    <a href="/product/details/@service.ID" type="button" class="btn btn-primary">Show Details</a>
+                                    <h5 class="card-title">Description</h5>
+                                    <p class="card-text">@service.Description</p>
+                                    <p class="card-text">Duration: @service.Duration</p>
+                                    <p class="card-text">Price: $@service.Price</p>
+                                    <form asp-action="Create">
+                                        <div class="box-body">
+                                            <button type="submit" asp-route-UpdateService="@service.ID" class="btn btn-primary" data-toggle="modal" data-target="#PurchaseVerificationModal">
+                                                Update Service
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <br />
+                                    <form asp-action="Create" margin-top="50px">
+                                        <div class="box-body">
+                                            <button type="submit" asp-route-DeleteService="@service.ID" class="btn btn-primary" data-toggle="modal" data-target="#PurchaseVerificationModal">
+                                                Delete Service
+                                            </button>
+                                        </div>
+                                    </form>
+                                    @*<a href="/Admin/UpdateService/@service.ID" type="button" class="btn btn-primary">Update Service</a>
+                                    <a href="/Admin/DeleteService/@service.ID" type="button" class="btn btn-primary">Delete Service</a>*@
                                 </div>
                             </div>
                         </div>
