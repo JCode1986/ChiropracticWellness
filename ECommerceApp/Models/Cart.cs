@@ -10,8 +10,7 @@ namespace ECommerceApp.Models
         public int ID { get; set; }
 
         public string UserID { get; set; }
-
-       
+     
         //navigation property
         public List<CartItems> CartItems { get; set; }
     }

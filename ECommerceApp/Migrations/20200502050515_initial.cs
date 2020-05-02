@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ECommerceApp.Migrations.StoreDb
+namespace ECommerceApp.Migrations
 {
     public partial class initial : Migration
     {

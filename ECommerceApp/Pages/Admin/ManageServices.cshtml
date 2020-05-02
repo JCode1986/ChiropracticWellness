@@ -1,0 +1,66 @@
+﻿@page
+@model ECommerceApp.Pages.Admin.ManageServicesModel
+@{
+    ViewData["Title"] = "ManageServices";
+    Layout = "_Layout";
+}
+
+
+<!Doctype html>
+<title>Services page</title>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Styles/StoreStyleSheet.css">
+</head>
+
+<body style="margin-top:130px">
+<h1>ManageServices</h1>
+    <br />
+    <h2 style="text-align:center;">Chiropractic & Massage Therapy Services Available</h2>
+    <br />
+    <section class="row justify-content-center" style="margin-top:50px">
+        @*Bootstrap from google*@
+        @foreach (var service in Model.Services)
+        {
+            <article class="col-lg-4 p-3" style="align-content:center;">
+                <div class="backgroundLogo">
+                    <div class="row" id="serviceCard" style="text-align:center;">
+                        <div class="col-lg-4 col-sm-6 mb-4" style="max-width: 85%; margin-left: auto; margin-right: auto;">
+                            <div class="card h-100">
+                                <a href="/product/details/@service.ID"><img class="card-img-top" src=@service.Image alt="" width="200" height="300"></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                         @service.ServiceType
+                                    </h4>
+                                    <h5 class="card-title">Description</h5>
+                                    <p class="card-text">@service.Description</p>
+                                    <p class="card-text">Duration: @service.Duration</p>
+                                    <p class="card-text">Price: $@service.Price</p>
+                                    <form asp-action="Create">
+                                        <div class="box-body">
+                                            <button type="submit" asp-route-UpdateService="@service.ID" class="btn btn-primary" data-toggle="modal" data-target="#PurchaseVerificationModal">
+                                                Update Service
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <br />
+                                    <form asp-action="Create" margin-top="50px">
+                                        <div class="box-body">
+                                            <button type="submit" asp-route-DeleteService="@service.ID" class="btn btn-primary" data-toggle="modal" data-target="#PurchaseVerificationModal">
+                                                Delete Service
+                                            </button>
+                                        </div>
+                                    </form>
+                                    @*<a href="/Admin/UpdateService/@service.ID" type="button" class="btn btn-primary">Update Service</a>
+                                    <a href="/Admin/DeleteService/@service.ID" type="button" class="btn btn-primary">Delete Service</a>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        }
+    </section>
+</body>
+</html>

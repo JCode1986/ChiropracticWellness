@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ECommerceApp.Migrations.StoreDb
+namespace ECommerceApp.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20200430001104_initial")]
+    [Migration("20200502050515_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -183,7 +183,7 @@ namespace ECommerceApp.Migrations.StoreDb
             modelBuilder.Entity("ECommerceApp.Models.CartItems", b =>
                 {
                     b.HasOne("ECommerceApp.Models.Cart", null)
-                        .WithMany("CartID")
+                        .WithMany("CartItems")
                         .HasForeignKey("CartID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -1,21 +1,41 @@
-﻿@page
+﻿@page 
+@using Microsoft.AspNetCore.Identity
+@using ECommerceApp.Models
 @model ECommerceApp.Pages.Store.CartModel
 @{
     ViewData["Title"] = "Cart";
+    Layout = "_Layout";
+    decimal sum = 0;
 }
 
-<h1>Cart</h1>
+    <body style="margin-top: 70px;">
+        <h2 style="text-align: center;">Cart Inventory</h2>
+        <label hidden >
+            @foreach (var item in Model.CartItems)
+            {
+                @(sum += item.Quantity * item.Services.Price)
+            }
+        </label>
+        <h3>Total: @sum</h3>
+        @foreach (var item in Model.CartItems)
+        {
+            @if (item != null)
+            {
+                <a href="../Product/Details/@item.Services.ID"><h3>@item.Services.ServiceType</h3></a>
+                <p><strong>Price:</strong> @(item.Services.Price * @item.Quantity) </p>
+                <div>
+                    <form method="post">
 
-@foreach (var item in Model.CartItems)
-{
-    <h3>@item.Services.ServiceType</h3>
-    <p>Price: @item.Quantity * @item.Services.Price = @(item.Quantity * item.Services.Price) </p>
-    <p>
-        Quantity: <input type="number" value="1" min="0" max="100" step="1" style="text-align:center" />
-    </p>
-    <form action="delete/@item.Services.ID" method="post">
-        <input value="@item.Services.ID" disabled hidden />
-        <button class="btn btn-danger" type="submit">Delete Patient</button>
-    </form>
-    <hr />
-}
+                        <label>
+                            Quantity: <input type="number" asp-for="@Model.CartItem.Quantity" value="@item.Quantity" min="0" max="100" step="1" style="text-align:center" />
+                            <input asp-for="@Model.CartItem.ID" value="@item.ID" hidden />
+                            <button type="submit" asp-page-handler="update" class="btn btn-secondary m-1">Update</button>
+                        </label>
+                    </form>
+                    <a asp-page="../Product/Delete" asp-route-ID="@item.ID" class="btn btn-danger m-1">Delete</a>
+                </div>
+                <hr />
+            }
+        }
+        <button asp-page="/Checkout">Check Out</button>
+    </body>
