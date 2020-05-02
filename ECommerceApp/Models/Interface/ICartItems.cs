@@ -16,7 +16,7 @@ namespace ECommerceApp.Models.Interface
         //task to get item by ID
         Task<CartItems> GetItemByID(int cartItemID);
 
-        //task to update quantity
+        //task to update cart Item, takes in ID and cartItem
         Task<CartItems> UpdateCartItem(int ID, CartItems cartItem);
         
         //task to delete item from the cart
