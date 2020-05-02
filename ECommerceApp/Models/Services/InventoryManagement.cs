@@ -24,7 +24,7 @@ namespace ECommerceApp.Models.Services
         /// Create a chiropractic service and returns object
         /// </summary>
         /// <param name="chiropracticService">object</param>
-        /// <returns></returns>
+        /// <returns>inventory object</returns>
         public async Task<Inventory> CreateChiropracticService(Inventory chiropracticService)
         {
             _context.Add(chiropracticService);
@@ -63,7 +63,7 @@ namespace ECommerceApp.Models.Services
         /// </summary>
         /// <param name="chiropracticServiceID">int</param>
         /// <param name="chiropracticService">object</param>
-        /// <returns></returns>
+        /// <returns>inventory object</returns>
         public async Task<Inventory> UpdateChiropracticService(int chiropracticServiceID, Inventory chiropracticService)
         {
             if (chiropracticServiceID != chiropracticService.ID)
