@@ -11,18 +11,20 @@ namespace ECommerceApp.Pages.Admin
 {
     public class EditModel : PageModel
     {
-        private ICartItems _cart;
+        private IInventory _context;
 
-        public EditModel(ICartItems cart)
+        public EditModel(IInventory context)
         {
-            _cart = cart;
+            _context = context;
         }
 
-        public CartItems CartItems { get; set; }
-        public async Task<IActionResult> OnGet(int cartItemID)
+        public Inventory Inventory { get; set; }
+
+        //Delete specific service
+        public async Task<IActionResult> OnGet(int ID)
         {
-            CartItems = await _cart.GetItemByID(cartItemID);
-            return RedirectToAction("ManageServices", "Admin");
+            Inventory = await _context.GetChiropracticServiceByID(ID);
+            return Page();
         }
     }
 }
