@@ -55,6 +55,24 @@ namespace ECommerceApp.Pages.Account
                 if(result.Succeeded)
                 {
                     // registration is successful, but they are not yet logged in
+
+                    //create the cart for the user
+                    //instantiate the new cart
+                    //cart property of ID = userID
+                    //await cart.createcartasync()
+
+                    await _cart.CreateCart(user.Id);
+
+                    //send confirmation email of registration
+                    StringBuilder sb = new StringBuilder();
+
+                    sb.AppendLine("<h1> Test Email From Sue :) </h1>");
+                    sb.AppendLine("<p>Pikachu evolves into Ryachu!</p>");
+
+                    await _email.SendEmailAsync($"{user.Email}", "EmailTest is Working", sb.ToString());
+                    //return View();
+
+
                     //This is where to add Claims
 
                     Claim name = new Claim("FullName", $"{user.FirstName} {user.LastName}");
@@ -79,28 +97,15 @@ namespace ECommerceApp.Pages.Account
 
                     {
                         await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
+                        //await _signInManager.SignInAsync(user, isPersistent: false);
+                        //return RedirectToAction("Dashboard", "Admin");
+
                     }
 
-                    //create the cart for the user
-                    //instantiate the new cart
-                    //cart property of ID = userID
-                    //await cart.createcartasync()
-
-                    await _cart.CreateCart(user.Id);
-
-                    //send confirmation email of registration
-                    StringBuilder sb = new StringBuilder();
-
-                    sb.AppendLine("<h1> Test Email From Sue :) </h1>");
-                    sb.AppendLine("<p>Pikachu evolves into Ryachu!</p>");
-
-                    await _email.SendEmailAsync($"{user.Email}", "EmailTest is Working", sb.ToString());
-                    //return View();
-
+                    //grant the user access to the site
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
 
-                    //grant the user access to the site
 
                 }
                 foreach (var error in result.Errors)

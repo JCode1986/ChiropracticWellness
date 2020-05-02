@@ -40,7 +40,9 @@ namespace ECommerceApp.Pages.Account
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
+                         
                 }
+        
                 //else, tell them Invalid login
                 else
                 {
