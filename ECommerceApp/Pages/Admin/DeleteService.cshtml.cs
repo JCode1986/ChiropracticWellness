@@ -19,13 +19,14 @@ namespace ECommerceApp.Pages.Admin
         }
 
         [BindProperty]
-        public Inventory ServiceToDelete { get; set; }
+        public Inventory Inventory { get; set; }
         /// <summary>
         /// No OnGet needed for delete page
         /// </summary>
-        public void OnGet()
+        public async Task<IActionResult> OnGet(int ID)
         {
-
+            Inventory = await _inventory.GetChiropracticServiceByID(ID);
+            return Page();
         }
 
         //DELETE
@@ -34,11 +35,14 @@ namespace ECommerceApp.Pages.Admin
         /// </summary>
         /// <param name="chiropracticServiceID">int</param>
         /// <returns>inventory object</returns>
-        public async Task<IActionResult> OnPostDelete()
+        public async Task<IActionResult> OnPost()
         {
-            await _inventory.RemoveChiropracticService(ServiceToDelete.ID);
-
-            return Page();
+            await _inventory.RemoveChiropracticService(Inventory.ID);
+            if (Inventory == null)
+            {
+                return RedirectToPage("/NotFound");
+            }
+            return RedirectToPage("/Admin/ManageServices");
         }
 
     }

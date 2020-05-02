@@ -104,9 +104,9 @@
                                     <br />
                                     <form asp-action="Create" margin-top="50px">
                                         <div class="box-body">
-                                            <button type="submit" asp-route-DeleteService="@service.ID" class="btn btn-primary" data-toggle="modal" data-target="#PurchaseVerificationModal">
+                                            <a asp-route-ID="@service.ID" asp-page="/Admin/DeleteService"class="btn btn-primary" data-toggle="modal" data-target="#PurchaseVerificationModal">
                                                 Delete Service
-                                            </button>
+                                            </a>
                                         </div>
                                     </form>
                                     @*<a href="/Admin/UpdateService/@service.ID" type="button" class="btn btn-primary">Update Service</a>
