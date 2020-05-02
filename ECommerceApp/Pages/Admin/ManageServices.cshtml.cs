@@ -68,12 +68,12 @@ namespace ECommerceApp.Pages.Admin
         /// </summary>
         /// <param name="chiropracticServiceID">int</param>
         /// <returns>inventory object</returns>
-        public async Task<IActionResult> OnPostDelete()
-        {
-            await _inventory.RemoveChiropracticService(ServiceToDelete.ID);
+        //public async Task<IActionResult> OnPostDelete()
+        //{
+        //    await _inventory.RemoveChiropracticService(ServiceToDelete.ID);
             
-            return Page();
-        }
+        //    return Page();
+        //}
 
         //UPDATE
         /// <summary>
@@ -83,13 +83,13 @@ namespace ECommerceApp.Pages.Admin
         /// <param name="chiropracticService">object</param>
         /// <returns></returns>
         
-        [HttpPost]
-        public async Task<IActionResult> OnPostUpdate()
-        {
+        //[HttpPost]
+        //public async Task<IActionResult> OnPostUpdate()
+        //{
             
-            await _inventory.UpdateChiropracticService(ServiceToUpdate.ID, ServiceToUpdate);
-            return Page();
-        }
+        //    await _inventory.UpdateChiropracticService(ServiceToUpdate.ID, ServiceToUpdate);
+        //    return Page();
+        //}
 
 
     }

@@ -22,7 +22,7 @@ namespace ECommerceApp.Pages.Admin
         public async Task<IActionResult> OnGet(int cartItemID)
         {
             CartItems = await _cart.GetItemByID(cartItemID);
-            return Page();
+            return RedirectToAction("ManageServices", "Admin");
         }
     }
 }
