@@ -27,40 +27,24 @@
                         <p class="card-text">@Model.inventory.Description</p>
                         <p class="card-text">Duration: @Model.inventory.Duration</p>
                         <p class="card-text">Price: $@Model.inventory.Price</p>
-                        <form asp-action="Create">
-                            <div class="box-body">
-                                <button type="submit" asp-route-serviceId="@Model.inventory.ID" class="btn btn-primary" data-toggle="modal" data-target="#PurchaseVerificationModal">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </form>
+                            <form asp-action="Create">
+                                <div class="box-body">
+                                    @if (User.Identity.Name == null)
+                                    {
+                                        <button class="btn btn-primary" asp-page="../Account/Register">Add to Cart</button>
+                                    }
+                                    else
+                                    {
+                                    <button type="submit" asp-route-serviceId="@Model.inventory.ID" class="btn btn-primary">
+                                        Add to Cart
+                                    </button>
+                                    }
+                                </div>
+                            </form>
                     </div>
                 </div>
             </div>
         </div>
     </div><!-- end container -->
-    <!-- Modal -->
-    <div class="modal" id="PurchaseVerificationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">How many would you like to purchase?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Purchase @Model.inventory.ServiceType for $@Model.inventory.Price? One of our chiropractors will call the number you have provided to schedule an appointment.</p>
-                    <p>
-                        Quantity: <input type="number" value="1" min="0" max="100" step="1" style="text-align:center" />
-                    </p>
-                </div>
-                <div class="modal-footer" style="text-align:center">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-primary">Yes</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 

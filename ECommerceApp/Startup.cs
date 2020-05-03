@@ -41,20 +41,20 @@ namespace ECommerceApp
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 //local
-               //options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault"));
+               options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault"));
 
                 //deployed
-                options.UseSqlServer(Configuration.GetConnectionString("ProductionIdentityConnection"));
+                //options.UseSqlServer(Configuration.GetConnectionString("ProductionIdentityConnection"));
             });
 
             //registering store database
             services.AddDbContext<StoreDbContext>(options =>
             {
                 //local
-                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
 
                 //deployed
-                options.UseSqlServer(Configuration.GetConnectionString("ProductionStoreConnection"));
+                //options.UseSqlServer(Configuration.GetConnectionString("ProductionStoreConnection"));
             });
 
             //mapping; dependency injection
@@ -68,11 +68,12 @@ namespace ECommerceApp
                     .AddDefaultTokenProviders();
 
 
+            //commented out for testing purposes
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminOnly", policy => policy.RequireRole(ApplicationRoles.Admin));
             });
-        
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,7 +83,7 @@ namespace ECommerceApp
             {
                 app.UseDeveloperExceptionPage();
             }*/
-            
+
             //app.UseRouting - this MUST ALWAYS be first
             app.UseRouting();
 

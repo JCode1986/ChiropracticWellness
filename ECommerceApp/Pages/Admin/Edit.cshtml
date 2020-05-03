@@ -1,0 +1,44 @@
+﻿@page "{id:min(1)}"
+@model ECommerceApp.Pages.Admin.EditModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+
+<h1>Edit</h1>
+<body>
+    <form method="post" class="mt-3">
+        <input hidden asp-for="@Model.Inventory.ID" />
+
+        <div class="form-group row">
+            <label asp-for="@Model.Inventory.ServiceType class=" col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.Inventory.ServiceType" class="form-control" placeholder="Service Type" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="@Model.Inventory.Price" class=" col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.Inventory.Price" class="form-control" placeholder="Price" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="@Model.Inventory.Duration" class=" col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.Inventory.Duration" class="form-control" placeholder="Duration" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="@Model.Inventory.Description class=" col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="@Model.Inventory.Description" class="form-control" placeholder="Description" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" asp-page="/Admin/Update" asp-route-ID="@Model.Inventory.ID" asp-route-cartItemID="@Model.Inventory.ID" class="btn btn-primary">Update</button>
+                <a asp-page="/Admin/ManageServices" class="btn btn-primary">Cancel</a>
+            </div>
+        </div>
+    </form>
+</body>
