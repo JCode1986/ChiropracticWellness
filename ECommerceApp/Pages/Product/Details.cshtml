@@ -27,13 +27,20 @@
                         <p class="card-text">@Model.inventory.Description</p>
                         <p class="card-text">Duration: @Model.inventory.Duration</p>
                         <p class="card-text">Price: $@Model.inventory.Price</p>
-                        <form asp-action="Create">
-                            <div class="box-body">
-                                <button type="submit" asp-route-serviceId="@Model.inventory.ID" class="btn btn-primary" data-toggle="modal" data-target="#PurchaseVerificationModal">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </form>
+                            <form asp-action="Create">
+                                <div class="box-body">
+                                    @if (User.Identity.Name == null)
+                                    {
+                                        <button class="btn btn-primary" asp-page="../Account/Register">Add to Cart</button>
+                                    }
+                                    else
+                                    {
+                                    <button type="submit" asp-route-serviceId="@Model.inventory.ID" class="btn btn-primary">
+                                        Add to Cart
+                                    </button>
+                                    }
+                                </div>
+                            </form>
                     </div>
                 </div>
             </div>
