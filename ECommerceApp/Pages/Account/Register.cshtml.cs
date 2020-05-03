@@ -66,9 +66,11 @@ namespace ECommerceApp.Pages.Account
                     //send confirmation email of registration
                     StringBuilder sb = new StringBuilder();
 
+                    sb.AppendLine("<body style = \"background-color:  #D0EDB5;>");
                     sb.AppendLine("<h1> Thank you for creating an account with Wellness Chiropractic </h1>");
                     sb.AppendLine("<p>We look forward to serving your chiropractic needs from the comfort of your own home while our clinic is closed at this time.</p>");
                     sb.AppendLine("<p>Please don't hesitate to contact us if you have any questions</p>");
+                    sb.AppendLine("</body>");
 
                     await _email.SendEmailAsync($"{user.Email}", "EmailTest is Working", sb.ToString());
                     //return View();
