@@ -10,7 +10,7 @@
 
     <body style="margin-top: 70px;">
         <h2 style="text-align: center;">Cart Inventory</h2>
-        <label hidden >
+        <label hidden>
             @foreach (var item in Model.CartItems)
             {
                 @(sum += item.Quantity * item.Services.Price)
@@ -19,23 +19,20 @@
         <h3>Total: @sum</h3>
         @foreach (var item in Model.CartItems)
         {
-            @if (item != null)
-            {
-                <a href="../Product/Details/@item.Services.ID"><h3>@item.Services.ServiceType</h3></a>
-                <p><strong>Price:</strong> @(item.Services.Price * @item.Quantity) </p>
-                <div>
-                    <form method="post">
+            <a href="../Product/Details/@item.Services.ID"><h3>@item.Services.ServiceType</h3></a>
+            <p><strong>Price:</strong> @(item.Services.Price * @item.Quantity) </p>
+            <div>
+                <form method="post">
 
-                        <label>
-                            Quantity: <input type="number" asp-for="@Model.CartItem.Quantity" value="@item.Quantity" min="0" max="100" step="1" style="text-align:center" />
-                            <input asp-for="@Model.CartItem.ID" value="@item.ID" hidden />
-                            <button type="submit" asp-page-handler="update" class="btn btn-secondary m-1">Update</button>
-                        </label>
-                    </form>
-                    <a asp-page="../Product/Delete" asp-route-ID="@item.ID" class="btn btn-danger m-1">Delete</a>
-                </div>
-                <hr />
-            }
-        }
-        <button asp-page="/Checkout">Check Out</button>
+                    <label>
+                        Quantity: <input type="number" asp-for="@Model.CartItem.Quantity" value="@item.Quantity" min="0" max="100" step="1" style="text-align:center" />
+                        <input asp-for="@Model.CartItem.ID" value="@item.ID" hidden />
+                        <button type="submit" asp-page-handler="update" class="btn btn-secondary m-1">Update</button>
+                    </label>
+                </form>
+                <a asp-page="../Product/Delete" asp-route-ID="@item.ID" class="btn btn-danger m-1">Delete</a>
+            </div>
+            <hr />
+        }       
+        <a asp-page="../Account/Receipt" class="btn btn-secondary m-1">Check Out</a>
     </body>
