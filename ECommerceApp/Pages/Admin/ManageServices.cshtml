@@ -25,9 +25,9 @@
             <div asp-validation-summary="All"></div>
 
             <div class="form-group row">
-                <label class="col-sm-3 col-form-label" asp-for="Service.Image">Image</label>
+                <label class="col-sm-3 col-form-label" asp-for="Service.Image">Image URL</label>
                 <div class="col-sm-9">
-                    <input type="image" class="form-control" id="image" asp-for="Service.Image">
+                    <input type="text" class="form-control" id="image" asp-for="Service.Image">
                     <span asp-validation-for="Service.Image"></span>
                 </div>
             </div>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ECommerceApp.Models;
 using ECommerceApp.Models.Interface;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -21,6 +22,8 @@ namespace ECommerceApp.Pages.Admin
         }
 
         public List<Inventory> Services { get; set; }
+
+        public IFormFile Photo { get; set; }
 
         [BindProperty]
         public Inventory Service { get; set; }
