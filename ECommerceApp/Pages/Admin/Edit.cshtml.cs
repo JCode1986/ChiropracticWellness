@@ -20,7 +20,7 @@ namespace ECommerceApp.Pages.Admin
 
         public Inventory Inventory { get; set; }
 
-        //Delete specific service
+        //Get specific service
         public async Task<IActionResult> OnGet(int ID)
         {
             Inventory = await _context.GetChiropracticServiceByID(ID);
