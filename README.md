@@ -100,7 +100,8 @@ Deployed App - https://ecommerceappsuejoe.azurewebsites.net/
 
 ---
 ## Data Model
-![ERD](Class-Resources/ECom/StoreDBERD.pdf)
+ERD from CodeFellows 401 .NET Class Repo:
+![ERD](https://i.imgur.com/RhRWayc.png)
 
 ### Overall Project Schema
 ***[Add a description of your DB schema. Explain the relationships to me.]***
