@@ -1,0 +1,71 @@
+﻿@page
+
+@using Microsoft.AspNetCore.Identity
+@using ECommerceApp.Models
+@model ECommerceApp.Pages.Store.CartModel
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "_Layout";
+    decimal sum = 0;
+}
+
+@*https://bootsnipp.com/snippets/yP7qe*@
+<body style="margin-top: 70px;">
+        <div class="container">
+            <label hidden>
+                @foreach (var item in Model.CartItems)
+                {
+                    @(sum += item.Quantity * item.Services.Price)
+                }
+            </label>
+            <table id="cart" class="table table-hover table-condensed">
+                <thead>
+                    <tr style="font-size: 20px;">
+                        <th style="width:50%">Service</th>
+                        <th style="width:10%">Price</th>
+                        <th style="width:22%">Quantity</th>
+                        <th style="width:20%" class="text-center">Subtotal</th>
+                        <th style="width:10%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <tr>
+                            <td data-th="Product">
+                                <div class="row">
+                                    <div class="col-sm-2 hidden-xs"><img src=@item.Services.Image alt="..." class="img-responsive" style="max-width: 128%;" /></div>
+                                    <div class="col-sm-10">
+                                        <a href="../Product/Details/@item.Services.ID">
+                                            <p class="nomargin"><strong>@item.Services.ServiceType</strong></p>
+                                        </a>
+                                        <p>@item.Services.Description</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-th="Price">@item.Services.Price</td>
+                                <td data-th="Quantity">
+                            <form method="post">
+                                    <input type="number" asp-for="@Model.CartItem.Quantity" value="@item.Quantity" min="1" max="100" step="1" style="text-align: center" />
+                                    <input asp-for="@Model.CartItem.ID" value="@item.ID" hidden />
+                                    <button type="submit" asp-page-handler="update" class="btn btn-secondary m-1">Update</button>
+                            </form>
+                                </td>
+                            <td data-th="Subtotal" class="text-center">@(item.Services.Price * @item.Quantity)</td>
+                            <td class="actions" data-th="">
+                                <a asp-page="../Product/Delete" asp-route-ID="@item.ID" class="btn btn-danger m-1">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><a asp-page="/Store/Shop" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                        <td colspan="2" class="hidden-xs"></td>
+                        <td class="hidden-xs text-center"><strong>Total: @sum</strong></td>
+                        <td><a asp-page="../Account/Receipt" class="btn btn-primary m-1" style="width: 100px;">Check Out</a></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+</body>

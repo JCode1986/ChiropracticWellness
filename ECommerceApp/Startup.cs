@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using ECommerceApp.Models.Interface;
 using ECommerceApp.Models.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace ECommerceApp
 {
@@ -40,24 +41,26 @@ namespace ECommerceApp
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 //local
-                //options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault"));
+               options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault"));
 
                 //deployed
-                options.UseSqlServer(Configuration.GetConnectionString("ProductionIdentityConnection"));
+                //options.UseSqlServer(Configuration.GetConnectionString("ProductionIdentityConnection"));
             });
 
             //registering store database
             services.AddDbContext<StoreDbContext>(options =>
             {
                 //local
-                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
 
                 //deployed
-                options.UseSqlServer(Configuration.GetConnectionString("ProductionStoreConnection"));
+                //options.UseSqlServer(Configuration.GetConnectionString("ProductionStoreConnection"));
             });
 
             //mapping; dependency injection
             services.AddTransient<IInventory, InventoryManagement>();
+            services.AddTransient<ICartItems, CartItemsManager>();
+            services.AddTransient<IEmailSender, EmailSender>();
 
             //adding ApplicationUser identity
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -65,11 +68,12 @@ namespace ECommerceApp
                     .AddDefaultTokenProviders();
 
 
+            //commented out for testing purposes
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminOnly", policy => policy.RequireRole(ApplicationRoles.Admin));
             });
-        
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,7 +83,7 @@ namespace ECommerceApp
             {
                 app.UseDeveloperExceptionPage();
             }*/
-            
+
             //app.UseRouting - this MUST ALWAYS be first
             app.UseRouting();
 
@@ -89,10 +93,10 @@ namespace ECommerceApp
             
             //Allows the use of authentication for our app
             app.UseAuthentication();
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
             //Seed data into db by calling RoleInitializer class
-            //RoleInitializer.SeedData(serviceProvider);
+            RoleInitializer.SeedData(serviceProvider);
 
             app.UseEndpoints(endpoints =>
             {

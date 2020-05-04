@@ -1,11 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ECommerceApp.Migrations.StoreDb
+namespace ECommerceApp.Migrations
 {
     public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Cart",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cart", x => x.ID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Inventories",
                 columns: table => new
@@ -30,18 +43,24 @@ namespace ECommerceApp.Migrations.StoreDb
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CartID = table.Column<int>(nullable: false),
-                    InventoryID = table.Column<int>(nullable: false),
-                    Quantity = table.Column<int>(nullable: false)
+                    Quantity = table.Column<int>(nullable: false),
+                    ServicesID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CartItems", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_CartItems_Inventories_InventoryID",
-                        column: x => x.InventoryID,
-                        principalTable: "Inventories",
+                        name: "FK_CartItems_Cart_CartID",
+                        column: x => x.CartID,
+                        principalTable: "Cart",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CartItems_Inventories_ServicesID",
+                        column: x => x.ServicesID,
+                        principalTable: "Inventories",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -62,15 +81,23 @@ namespace ECommerceApp.Migrations.StoreDb
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItems_InventoryID",
+                name: "IX_CartItems_CartID",
                 table: "CartItems",
-                column: "InventoryID");
+                column: "CartID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartItems_ServicesID",
+                table: "CartItems",
+                column: "ServicesID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "CartItems");
+
+            migrationBuilder.DropTable(
+                name: "Cart");
 
             migrationBuilder.DropTable(
                 name: "Inventories");

@@ -1,0 +1,134 @@
+﻿@page
+@model ECommerceApp.Pages.Account.ReceiptModel
+@{
+    ViewData["Title"] = "Receipt";
+    Layout = "_Layout";
+    decimal sum = 0;
+}
+
+    <body style="margin-top:70px; margin-left: 4%; margin-right: 2%; background:#eee;">
+        <label hidden>
+            @foreach (var item in Model.CartItems)
+            {
+                @(sum += item.Quantity * item.Services.Price)
+            }
+        </label>
+        <div class="row invoice row-printable">
+            <div class="col-md-7 col-md-offset-2" style="flex: 1 2 58.333333%; max-width: 98%;">
+                <!-- col-lg-12 start here -->
+                <div class="panel panel-default plain" id="dash_0">
+                    <!-- Start .panel -->
+                    <div class="panel-body p30">
+                        <div class="row">
+                            <!-- Start .row -->
+                            <div class="col-lg-6">
+                                <!-- col-lg-6 start here -->
+                                <div class="invoice-logo"><img src="http://themes.suggelab.com/dash/img/logo-blue.png" alt="Invoice logo"></div>
+                            </div>
+                            <!-- col-lg-6 end here -->
+                            <div class="col-lg-6">
+                                <!-- col-lg-6 start here -->
+                                <div class="invoice-from">
+                                    <ul class="list-unstyled text-right">
+                                        <li>Wellness Chiropractic</li>
+                                        <li>Seattle, Washington</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- col-lg-6 end here -->
+                            <div class="col-lg-12">
+                                <!-- col-lg-12 start here -->
+                                <div class="invoice-details mt25">
+                                    <div class="well">
+                                        <ul class="list-unstyled mb0">
+                                            <li><strong>Invoice</strong> #936988</li>
+                                            <li><strong>Invoice Date:</strong> @DateTime.Now </li>
+                                            <li><strong>Status:</strong> <span class="label label-danger">UNPAID</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="invoice-to mt25">
+                                    <ul class="list-unstyled">
+                                        <li><strong>Invoiced To</strong> @User.Identity.Name </li>
+                                        <li><strong>Name: @User.Claims.First(x => x.Type == "FullName").Value</strong></li>
+                                    </ul>
+                                </div>
+
+                                <div class="invoice-items">
+                                    <div class="table-responsive" style="overflow: hidden; outline: none;" tabindex="0">
+                                        <table class="table table-bordered" style="text-align:center;">
+                                            <thead>
+                                                <tr>
+                                                    <th class="per50 text-center">Service Type</th>
+                                                    <th class="per25 text-center">Price and Quantity</th>
+                                                    <th class="per25 text-center">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.CartItems)
+                                                {
+                                                    <tr>
+                                                        <td>@item.Services.ServiceType</td>
+                                                        <td class="text-center">@item.Services.Price x @item.Quantity</td>
+                                                        <td class="text-center">$@(item.Quantity * @item.Services.Price) USD</td>
+                                                    </tr>
+
+                                                }
+                                            </tbody>
+
+                                            <tfoot>
+                                                <tr>
+                                                    <th colspan="2" class="text-right">Sub Total:</th>
+                                                    <th class="text-center">$@sum USD</th>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2" class="text-right">Tax:</th>
+                                                    <th class="text-center">$@Convert.ToInt32(sum / 6.50M).00 USD</th>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2" class="text-right">Total:</th>
+                                                    <th class="text-center">$@Convert.ToInt32(sum += sum / 6.50M).00 USD</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- col-lg-12 end here -->
+                        </div>
+                        <!-- End .row -->
+                    </div>
+                </div>
+                <!-- End .panel -->
+            </div>
+            <!-- col-lg-12 end here -->
+        </div>
+        <div style="margin-left: 77%;">
+            <a asp-page="../Store/Cart" class="btn btn-secondary m-1">Back to Cart</a>
+            
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#PurchaseVerificationModal">
+                Checkout
+            </button>
+            <!-- Modal -->
+            <div class="modal" id="PurchaseVerificationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Purchase Verification</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Pay total of $@Convert.ToInt32(sum) USD?</p>
+                        </div>
+                        <div class="modal-footer" style="text-align:center">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-primary">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+

@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using ECommerceApp.Models;
+using ECommerceApp.Models.Interface;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -15,15 +18,18 @@ namespace ECommerceApp.Pages.Account
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
+        private ICartItems _cart;
+        private IEmailSender _email;
 
         [BindProperty]
         public RegisterInput RegisterData { get; set; }
 
-        public RegisterModel (UserManager<ApplicationUser> usermanager, SignInManager<ApplicationUser> signIn)
+        public RegisterModel (UserManager<ApplicationUser> usermanager, SignInManager<ApplicationUser> signIn, ICartItems cart, IEmailSender email)
         {
             _userManager = usermanager;
             _signInManager = signIn;
-
+            _cart = cart;
+            _email = email;
         }
         public void OnGet()
         {
@@ -49,6 +55,27 @@ namespace ECommerceApp.Pages.Account
                 if(result.Succeeded)
                 {
                     // registration is successful, but they are not yet logged in
+
+                    //create the cart for the user
+                    //instantiate the new cart
+                    //cart property of ID = userID
+                    //await cart.createcartasync()
+
+                    await _cart.CreateCart(user.Id);
+
+                    //send confirmation email of registration
+                    StringBuilder sb = new StringBuilder();
+
+                    //sb.AppendLine("<body style = \"background-color:  #D0EDB5;>");
+                    sb.AppendLine("<h1> Thank you for creating an account with Wellness Chiropractic </h1>");
+                    sb.AppendLine("<p>We look forward to serving your chiropractic needs from the comfort of your own home while our clinic is closed at this time.</p>");
+                    sb.AppendLine("<p>Please don't hesitate to contact us if you have any questions</p>");
+                    //sb.AppendLine("</body>");
+
+                    await _email.SendEmailAsync($"{user.Email}", "Welcome to Wellness Chiropractic", sb.ToString());
+                    //return View();
+
+
                     //This is where to add Claims
 
                     Claim name = new Claim("FullName", $"{user.FirstName} {user.LastName}");
@@ -69,14 +96,19 @@ namespace ECommerceApp.Pages.Account
                     await _userManager.AddToRoleAsync(user, ApplicationRoles.Member);
 
                     //Give admin access to specific people
-                    if(user.Email == "sue@greengrasspt.com" || user.Email == "joseph.hangarter@yahoo.com")
+                    if(user.Email == "sue@greengrasspt.com" || user.Email == "joseph.hangarter@yahoo.com" || user.Email == "amanda@codefellows.com" || user.Email == "rice.jonathanm@gmail.com")
+
                     {
                         await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
+                        //await _signInManager.SignInAsync(user, isPersistent: false);
+                        //return RedirectToAction("Dashboard", "Admin");
+
                     }
 
                     //grant the user access to the site
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
+
 
                 }
                 foreach (var error in result.Errors)

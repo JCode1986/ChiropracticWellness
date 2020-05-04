@@ -9,7 +9,6 @@
   * User database - userdbcontext.database.windows.net
   * Store database - productdb.database.windows.net
 
-
 ---
 ## Web Application
 
@@ -59,10 +58,20 @@ Unit testing is included in the XunitTestECommApp project using the xUnit test f
 
 ## Pages
 Deployed App - https://ecommerceappsuejoe.azurewebsites.net/
+* **route/index** - Home page where the user can learn about the business and mobile services being offered. Also bios of the staff are available.
 * **route/account/register** - Page where a user can register. Information inputted are then saved to a database.
 * **route/account/login** - Page where a user can login if information given exists in the database.
-* **route/store/store** - Page that shows all available services.
+* **route/account/accessdenied** - Page where unauthorized user are directed to.
+* **route/account/receipt** - Page where users are redirected after checking out with services in cart.
+* **route/store/shop** - Page that shows all available services.
+* **route/store/cart** - Page that shows all items the user has added to cart.
 * **route/product/details/id** - Page that shows a specific service with details.
+* **route/product/delete/id** - Page to delete a specific item from user's cart.
+
+* Admin Routes
+  * **route/admin/dashboard** - Page where an Administrator can pick to manage orders or services.
+  * **route/admin/manageservices** - Page where Administrator can create, update, or delete a service.
+ 
 ## Usage
 ***[Provide some images of your app with brief description as title]***
 
@@ -100,8 +109,7 @@ Deployed App - https://ecommerceappsuejoe.azurewebsites.net/
 | FirstName  | string | YES |
 | LastName | string | YES |
 | BirthDate | DateTime | YES |
-
-
+| PhoneNumber | string | YES |
 
 ### Inventory
 
@@ -114,9 +122,39 @@ Deployed App - https://ecommerceappsuejoe.azurewebsites.net/
 | Duration | string | YES |
 | Image | string | YES |
 
+### CartItems
+
+| Parameter | Type | Required |
+| --- | --- | --- |
+| ID  | int | YES |
+| CartID | int | YES |
+| Quantity | int | YES |
+| Inventory | Inventory object | YES |
+
+### Cart
+
+| Parameter | Type | Required |
+| --- | --- | --- |
+| ID  | int | YES |
+| UserID | string | YES |
+| CartItems | List< CartItems > | YES |
+
 ---
 
+### Claims Being Captured
+| Parameter | Type | Required |
+| --- | --- | --- |
+| FirstName  | string | YES |
+| LastName | string | YES |
+| BirthDate | DateTime | YES |
+| Email | string | YES |
+
 ## Change Log
+* 1.13: *Receipt page added, and some styling on details page & receipt page* - 30 April 2020
+* 1.12: *Created razor pages for Administrator roles, and CRUD functionality* - 28 April 2020
+* 1.11: *User can now update quantity of items, or delete an item from their cart* - 27 April 2020
+* 1.10: *Email sends out to user after registering a new account* - 26 April 2020
+* 1.9: *Cart razor page created, and renders items that were added to cart for a specific user* - 26 April 2020
 * 1.8: *Leads the user to details page after clicking a specific product* - 25 April 2020
 * 1.7: *Page for all products to show up; still need functionality to click a specific product to redirect to details page.* - 25 April 2020
 * 1.6: *Page for specific product with details added, and able to retrieve data from database* - 24 April 2020

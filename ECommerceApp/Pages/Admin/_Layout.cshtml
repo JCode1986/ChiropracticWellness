@@ -8,45 +8,24 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="~/Styles/StyleSheet.css">
     <title>@ViewBag.Title</title>
 </head>
-<body>
+<body style="background-color: cornflowerblue">
 
     <nav class="navbar navbar-light bg-light navbar-expand-lg fixed-top">
         <a href="/" class="navbar-brand">Wellness Chiropractic (206) 555-9190</a>
-        @if (SignInManager.IsSignedIn(User))
-        {
-        <span>Welcome @User.Claims.First(x => x.Type == "FullName").Value!</span>
-            <div class="dropdown">
-                <a href="/" style="margin-left:20px;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="fa fa-gift bigicon"></span> My Cart<span class="caret"></span></a>
-                <ul style="width: 260px;"class="dropdown-menu dropdown-cart" role="menu">
-                    <li style="display:inline;">
-                        @*component being brought in to show items*@
-                        @await Component.InvokeAsync("MiniBasket")
-                    </li>
-                    <li style="display:inline; margin-right:22%; margin-left:12%;"><a class="text-xs-center" href="/Store/Cart">View Cart</a></li>
-                    <li style="display:inline"><a class="text-xs-center" href="/Account/Receipt">Checkout</a></li>
-                </ul>
-        </div>
-        }
-        else
-        {
-        <div>
-            <span>Welcome Guest!</span>
-        </div>
-        }
-
+            <span>Welcome Almighty Administrator @User.Claims.First(x => x.Type == "FullName").Value!</span>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav ml-auto">
+
                 <li class="navbar-item">
                     <a href="/" class="nav-link">Home</a>
+
                 </li>
 
                 @*Toggles betweens login and logout depending if user is logged in or not*@
@@ -63,22 +42,24 @@
                             <button style="background: none!important; border: none; padding: 0!important; color: rgba(0,0,0,.5);" type="submit">Login</button>
                         </form>
                     }
-                <li />
 
+                <li />
                 <li class="navbar-item">
                     <a href="/Account/Register" class="nav-link">Register</a>
-                </li>
 
+                </li>
                 <li class="navbar-item">
                     <a href="/Store/Shop" class="nav-link">Services</a>
-                </li>
 
+                </li>
             </ul>
         </div>
-        </nav>
-    <div>
 
+
+    </nav>
+    <div>
         @RenderBody()
+        
 
     </div>
 
@@ -90,8 +71,8 @@
     <script src="https://code.jquery.com/jquery-2.2.2.min.js"
             integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="
             crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>*@
 </body>
 </html>

@@ -1,0 +1,16 @@
+﻿@page "{id:int?}"
+@model ECommerceApp.Pages.Admin.DeleteServiceModel
+@{
+    ViewData["Title"] = "DeleteService";
+    Layout = "_Layout";
+}
+
+<h1>Delete Confirmation</h1>
+<div class="alert alert-danger">
+    <h4>Are you sure you want to delete service item? </h4>
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a class="btn btn-primary" asp-page="/Admin/ManageServices">No</a>
+    </form>
+</div>
+
