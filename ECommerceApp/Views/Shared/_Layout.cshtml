@@ -79,21 +79,7 @@
     <div>
 
         @RenderBody()
-        @if (SignInManager.IsSignedIn(User))
-        {
 
-            <section>
-                @*component being brought in to show items*@
-                @await Component.InvokeAsync("MiniBasket")
-            </section>
-        }
-        else
-        {
-            <div>
-                <span></span>
-
-            </div>
-        }
     </div>
 
     <div style="bottom:0; position:fixed; width:100%; background-color:blanchedalmond;">
