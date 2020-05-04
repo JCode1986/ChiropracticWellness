@@ -75,17 +75,23 @@ Deployed App - https://ecommerceappsuejoe.azurewebsites.net/
 ## Usage
 ***[Provide some images of your app with brief description as title]***
 
-### Overview of Recent Posts
-![Overview of Recent Posts]()
+### Home Page
+![Home Page](https://i.imgur.com/yVrFZgg.png)
 
-### Creating a Post
-![Post Creation]()
+### Register Page
+![Register Page](https://i.imgur.com/j8f6L0R.png)
 
-### Enriching a Post
-![Enriching Post]()
+### Store Page
+![Store Page](https://i.imgur.com/oTuKwdz.jpg)
 
-### Viewing Post Details
-![Details of Post]()
+### Cart Page
+![Cart Page](https://i.imgur.com/XL8qGvR.png)
+
+### Admin Page
+![Admin Page](https://i.imgur.com/H5S603x.png)
+
+### Edit Service in Admin Portal
+![Admin Edit Page](https://i.imgur.com/zSPIwMm.png)
 
 ---
 ## Data Flow (Frontend, Backend, REST API)
@@ -94,6 +100,7 @@ Deployed App - https://ecommerceappsuejoe.azurewebsites.net/
 
 ---
 ## Data Model
+![ERD](Class-Resources/ECom/StoreDBERD.pdf)
 
 ### Overall Project Schema
 ***[Add a description of your DB schema. Explain the relationships to me.]***
