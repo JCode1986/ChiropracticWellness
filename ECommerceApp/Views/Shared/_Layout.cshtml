@@ -19,30 +19,24 @@
         <a href="/" class="navbar-brand">Wellness Chiropractic (206) 555-9190</a>
         @if (SignInManager.IsSignedIn(User))
         {
-            <span>Welcome @User.Claims.First(x => x.Type == "FullName").Value!</span>
+        <span>Welcome @User.Claims.First(x => x.Type == "FullName").Value!</span>
             <div class="dropdown">
-                <a href="/" style="margin-left:20px;"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="fa fa-gift bigicon"></span> My Cart<span class="caret"></span></a>
-                <ul class="dropdown-menu dropdown-cart" role="menu">
-                    <li>
-                        <span class="item">
-                            <span class="item-left">
-                                <span>
-                                    @*component being brought in to show items*@
-                                    @await Component.InvokeAsync("MiniBasket")
-                                </span>
-                            </span>
-                        </span>
+                <a href="/" style="margin-left:20px;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="fa fa-gift bigicon"></span> My Cart<span class="caret"></span></a>
+                <ul style="width: 260px;"class="dropdown-menu dropdown-cart" role="menu">
+                    <li style="display:inline;">
+                        @*component being brought in to show items*@
+                        @await Component.InvokeAsync("MiniBasket")
                     </li>
-                    <li class="dropdown-divider"></li>
-                    <li><a class="text-xs-center" href="/Store/Cart">View Cart</a></li>
+                    <li style="display:inline; margin-right:22%; margin-left:12%;"><a class="text-xs-center" href="/Store/Cart">View Cart</a></li>
+                    <li style="display:inline"><a class="text-xs-center" href="/Account/Receipt">Checkout</a></li>
                 </ul>
-            </div>
+        </div>
         }
         else
         {
-            <div>
-                <span>Welcome Guest!</span>
-            </div>
+        <div>
+            <span>Welcome Guest!</span>
+        </div>
         }
 
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -81,8 +75,9 @@
 
             </ul>
         </div>
-    </nav>
+        </nav>
     <div>
+
         @RenderBody()
         @if (SignInManager.IsSignedIn(User))
         {

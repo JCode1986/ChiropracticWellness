@@ -1,16 +1,16 @@
 ﻿@model IList<ECommerceApp.Models.CartItems>
-
 @*<h1>Items In Your Cart</h1>*@
 
-
-@foreach (var item in Model)
-{
-    <p class="dropdown-item">@item.Services.ServiceType</p>
-    
-    <p class="dropdown-item"><img src=@item.Services.Image alt="" width="150" height="210"></p>
-    <p class="dropdown-item">@item.Services.Price</p>
-    <hr />
-}
+    <body>
+        @foreach (var item in Model)
+        {
+            <ul style="margin-left: -25px;">
+                <li class="dropdown-item">@item.Services.ServiceType</li>
+                <li class="dropdown-item"><img src=@item.Services.Image alt="" width="50" height="50"> @item.Services.Price x @item.Quantity</li>
+            </ul>
+        <hr />
+        }
+        </body>
 
 
 @*then in Index.html (make sure you specificy your component class)
