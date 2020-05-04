@@ -7,6 +7,7 @@ using AuthorizeNet.Api.Controllers.Bases;
 using Microsoft.Extensions.Configuration;
 using AuthorizeNet.Api.Controllers;
 using ECommerceApp.Models.Interface;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceApp.Models.Services
 {
@@ -18,6 +19,8 @@ namespace ECommerceApp.Models.Services
         {
             _configuration = configuration;
         }
+
+        [HttpPost]
         public string Run()
         {
             //controllers.Base for AuthorizeNet:

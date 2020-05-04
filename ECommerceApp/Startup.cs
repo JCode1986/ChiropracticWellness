@@ -41,26 +41,27 @@ namespace ECommerceApp
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 //local
-               //options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault"));
+               options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault"));
 
                 //deployed
-                options.UseSqlServer(Configuration.GetConnectionString("ProductionIdentityConnection"));
+                //options.UseSqlServer(Configuration.GetConnectionString("ProductionIdentityConnection"));
             });
 
             //registering store database
             services.AddDbContext<StoreDbContext>(options =>
             {
                 //local
-                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
 
                 //deployed
-                options.UseSqlServer(Configuration.GetConnectionString("ProductionStoreConnection"));
+                //options.UseSqlServer(Configuration.GetConnectionString("ProductionStoreConnection"));
             });
 
             //mapping; dependency injection
             services.AddTransient<IInventory, InventoryManagement>();
             services.AddTransient<ICartItems, CartItemsManager>();
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IPayment, PaymentService>();
 
             //adding ApplicationUser identity
             services.AddIdentity<ApplicationUser, IdentityRole>()

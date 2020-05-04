@@ -17,6 +17,7 @@ namespace ECommerceApp.Controllers
         //    _email = email;
         //}
 
+        
 
         [HttpGet]
         public IActionResult Index()
