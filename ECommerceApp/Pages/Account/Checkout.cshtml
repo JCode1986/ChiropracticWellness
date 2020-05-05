@@ -65,20 +65,21 @@
             <div class="form-group row">
                 @*<label class="col-sm-3 col-form-label" asp-for="PaymentInput.CreditCard">Credit Card</label>
         <div class="col-sm-9">*@
-                <fieldset>
-                    <p>
-                        <label class="col-sm-9 col-form-label" asp-for="PaymentInput.CreditCard">Visa and Master Card</label>
-                        <select id="myList">
-                            <option value="1">4007000000027</option>
-                            <option value="2">4012888818888</option>
-                            <option value="3">5424000000000015</option>
-                            <option value="4">2223000010309703</option>
-                        </select>
-                    </p>
+                <label class="col-sm-3 col-form-label" asp-for="PaymentInput.CreditCard">Select a Credit Card</label>
+                    <div class="col-sm-9">
+                        <fieldset>
+                            <p>
+                            <select id="myList">
+                                <option value="1">4007000000027</option>
+                                <option value="2">4012888818888</option>
+                                <option value="3">5424000000000015</option>
+                                <option value="4">2223000010309703</option>
+                            </select>
+                            </p>
                 <span asp-validation-for="PaymentInput.CreditCard"></span>
-                </fieldset>
+                        </fieldset>
+                    </div>
             </div>
-
             <div class="row">
                 <div class="col-sm-9 offset-sm-3">
                     <a asp-page="../Store/Cart" class="btn btn-primary m-1" style="width: 100px;">Return to Cart</a>
