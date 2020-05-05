@@ -1,0 +1,97 @@
+﻿@page
+@model ECommerceApp.Pages.Account.CheckoutModel
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "_Layout";
+}
+
+<h1>Checkout</h1>
+<body>
+    <div class="container" style="margin-top:20px;">
+
+        <form method="post">
+            <div asp-validation-summary="All"></div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" asp-for="PaymentInput.FirstName">First Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="firstName" asp-for="PaymentInput.FirstName">
+                    <span asp-validation-for="PaymentInput.FirstName"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" asp-for="PaymentInput.LastName">Last Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="lastName" asp-for="PaymentInput.LastName">
+                    <span asp-validation-for="PaymentInput.LastName"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" asp-for="PaymentInput.ShippingAddress">Shipping Address</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="shippingAddress" asp-for="PaymentInput.ShippingAddress">
+                    <span asp-validation-for="PaymentInput.ShippingAddress"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" asp-for="PaymentInput.City">City</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="city" asp-for="PaymentInput.City">
+                    <span asp-validation-for="PaymentInput.City"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" asp-for="PaymentInput.State">State</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="state" asp-for="PaymentInput.State">
+                    <span asp-validation-for="PaymentInput.State" span />
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label" asp-for="PaymentInput.Country">Country</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" id="creditCard" asp-for="PaymentInput.Country">
+                    <span asp-validation-for="PaymentInput.Country"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @*<label class="col-sm-3 col-form-label" asp-for="PaymentInput.CreditCard">Credit Card</label>
+        <div class="col-sm-9">*@
+                <fieldset>
+                    <p>
+                        <label class="col-sm-9 col-form-label" asp-for="PaymentInput.CreditCard">Visa and Master Card</label>
+                        <select id="myList">
+                            <option value="1">4007000000027</option>
+                            <option value="2">4012888818888</option>
+                            <option value="3">5424000000000015</option>
+                            <option value="4">2223000010309703</option>
+                        </select>
+                    </p>
+                <span asp-validation-for="PaymentInput.CreditCard"></span>
+                </fieldset>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-9 offset-sm-3">
+                    <a asp-page="../Store/Cart" class="btn btn-primary m-1" style="width: 100px;">Return to Cart</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-9 offset-sm-3">
+                    <a asp-page="/Account/Receipt" class="btn btn-primary m-1" style="width: 100px;">Complete Order</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>
+
