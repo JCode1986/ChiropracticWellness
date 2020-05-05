@@ -42,15 +42,15 @@ namespace ECommerceApp.Pages.Account
             {
                 var user = new PaymentInput
                 {
-                    FirstName = PaymentInput.FirstName,
-                    LastName = PaymentInput.LastName,
-                    ShippingAddress = PaymentInput.ShippingAddress,
-                    City = PaymentInput.City,
-                    State = PaymentInput.State,
-                    Country = PaymentInput.Country,
-                    CreditCard = PaymentInput.CreditCard
+                    FirstName = input.FirstName,
+                    LastName = input.LastName,
+                    ShippingAddress = input.ShippingAddress,
+                    City = input.City,
+                    State = input.State,
+                    Country = input.Country,
+                    CreditCard = input.CreditCard
                 };
-                PaymentInput = input;
+                //PaymentInput = user;
             }
             return null;
         }
