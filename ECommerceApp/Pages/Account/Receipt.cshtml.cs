@@ -37,12 +37,12 @@ namespace ECommerceApp.Pages.Account
             return Page();
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPost(PaymentInput input)
         {
             var user = User.Identity.Name;
             CartItems = await _context.GetAllCartItems(user);
             //testing out whether payment logic works in here :) 
-            var result = _payment.Run();
+            var result = _payment.Run(input);
 
             if (result != null)
             {

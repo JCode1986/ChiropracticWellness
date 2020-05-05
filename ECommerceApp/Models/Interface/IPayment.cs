@@ -8,6 +8,6 @@ namespace ECommerceApp.Models.Interface
 {
     public interface IPayment
     {
-        string Run();
+        string Run(PaymentInput input);
     }
 }

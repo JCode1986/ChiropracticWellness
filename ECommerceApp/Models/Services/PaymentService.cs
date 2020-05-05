@@ -22,7 +22,7 @@ namespace ECommerceApp.Models.Services
         }
 
         [HttpPost]
-        public string Run()
+        public string Run(PaymentInput input)
         {
             //controllers.Base for AuthorizeNet:
             ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
@@ -40,8 +40,8 @@ namespace ECommerceApp.Models.Services
             //DO NOT ask the user for their real credit card number. Can put a few testNumbers in a dropdown menu.
             var creditCard = new creditCardType
             {
-                cardNumber = "4111111111111111",
-                //cardNumber = input.CreditCard,
+                //cardNumber = "4111111111111111",
+                cardNumber = input.CreditCard,
                 expirationDate = "1022",
                 cardCode = "102"
             };

@@ -36,7 +36,7 @@ namespace ECommerceApp.Pages.Account
         {          
         }
 
-        public Task<IActionResult> OnPost()
+        public Task<IActionResult> OnPost(PaymentInput input)
         {
             if(ModelState.IsValid)
             {
@@ -50,6 +50,7 @@ namespace ECommerceApp.Pages.Account
                     Country = PaymentInput.Country,
                     CreditCard = PaymentInput.CreditCard
                 };
+                PaymentInput = input;
             }
             return null;
         }
