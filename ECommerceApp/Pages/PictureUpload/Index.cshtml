@@ -1,0 +1,16 @@
+﻿@page
+@model ECommerceApp.Pages.PictureUpload.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<form enctype="multipart/form-data"  method="post">
+    <label asp-for="Image"></label>
+    <input asp-for="Image" type ="file"/>
+
+    <button type="submit">Upload</button>
+
+</form>
