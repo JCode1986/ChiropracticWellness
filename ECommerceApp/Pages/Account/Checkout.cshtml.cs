@@ -36,19 +36,19 @@ namespace ECommerceApp.Pages.Account
         {          
         }
 
-        public Task<IActionResult> OnPost(PaymentInput input)
+        public Task<IActionResult> OnPost()
         {
             if(ModelState.IsValid)
             {
                 var user = new PaymentInput
                 {
-                    FirstName = input.FirstName,
-                    LastName = input.LastName,
-                    ShippingAddress = input.ShippingAddress,
-                    City = input.City,
-                    State = input.State,
-                    Country = input.Country,
-                    CreditCard = input.CreditCard
+                    FirstName = PaymentInput.FirstName,
+                    LastName = PaymentInput.LastName,
+                    ShippingAddress = PaymentInput.ShippingAddress,
+                    City = PaymentInput.City,
+                    State = PaymentInput.State,
+                    Country = PaymentInput.Country,
+                    CreditCard = PaymentInput.CreditCard
                 };
                 //PaymentInput = user;
             }
@@ -83,8 +83,7 @@ namespace ECommerceApp.Pages.Account
         public string Country { get; set; }
 
         [Required]
-        [DataType(DataType.CreditCard)]
         [Display(Name = "Credit Cart")]
-        public string CreditCard { get; set; }
+        public int CreditCard { get; set; }
     }
 }

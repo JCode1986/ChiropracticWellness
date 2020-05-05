@@ -41,7 +41,7 @@ namespace ECommerceApp.Models.Services
             var creditCard = new creditCardType
             {
                 //cardNumber = "4111111111111111",
-                cardNumber = input.CreditCard,
+                cardNumber = input.CreditCard.ToString(),
                 expirationDate = "1022",
                 cardCode = "102"
             };
