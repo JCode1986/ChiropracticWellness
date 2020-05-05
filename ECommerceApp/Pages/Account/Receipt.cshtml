@@ -125,11 +125,8 @@
                         </div>
                         <div class="modal-footer" style="text-align:center">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                            <form asp-page="/Account/Receipt" method="post">
+                            <form asp-page="/Account/Receipt" asp-action="Payment" method="post">
                                 <button type="submit" class="btn btn-primary">Yes</button>
-                            </form>
-                            <form asp-action="PaymentService" method="post">
-                                <button type="submit" class="btn btn-primary">Submit Payment</button>
                             </form>
                         </div>
                     </div>

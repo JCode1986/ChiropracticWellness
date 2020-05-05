@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using AuthorizeNet.Api.Controllers;
 using ECommerceApp.Models.Interface;
 using Microsoft.AspNetCore.Mvc;
+using ECommerceApp.Pages.Account;
 
 namespace ECommerceApp.Models.Services
 {
@@ -40,11 +41,14 @@ namespace ECommerceApp.Models.Services
             var creditCard = new creditCardType
             {
                 cardNumber = "4111111111111111",
+                //cardNumber = input.CreditCard,
                 expirationDate = "1022",
                 cardCode = "102"
             };
 
             customerAddressType billingAddress = GetAddress("someUserId");
+
+            //customerAddressType billingAddress = GetAddress(input.ShippingAddress);
 
             var paymentType = new paymentType { Item = creditCard };
 
