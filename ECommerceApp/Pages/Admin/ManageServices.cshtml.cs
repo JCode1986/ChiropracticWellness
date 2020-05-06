@@ -62,13 +62,14 @@ namespace ECommerceApp.Pages.Admin
             {
                 await Image.CopyToAsync(stream);
 
+            }
 
             await Blob.UploadFile("services", Image.FileName, filePath);
             //get the actual file
             var blob = await Blob.GetBlob(Image.FileName, "services");
 
             var chiroImage = blob.Uri;
-            }
+            Service.Image = chiroImage.ToString();                                                 
 
             await _inventory.CreateChiropracticService(Service);
             return RedirectToPage("/Admin/ManageServices");
