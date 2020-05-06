@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using AuthorizeNet.Api.Controllers;
 using ECommerceApp.Models.Interface;
 using Microsoft.AspNetCore.Mvc;
+using ECommerceApp.Pages.Account;
 
 namespace ECommerceApp.Models.Services
 {
@@ -21,7 +22,7 @@ namespace ECommerceApp.Models.Services
         }
 
         [HttpPost]
-        public string Run()
+        public string Run(PaymentInput input)
         {
             //controllers.Base for AuthorizeNet:
             ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
@@ -39,19 +40,23 @@ namespace ECommerceApp.Models.Services
             //DO NOT ask the user for their real credit card number. Can put a few testNumbers in a dropdown menu.
             var creditCard = new creditCardType
             {
-                cardNumber = "4111111111111111",
+                //cardNumber = "4111111111111111",
+                cardNumber = input.CreditCard,
                 expirationDate = "1022",
                 cardCode = "102"
             };
 
-            customerAddressType billingAddress = GetAddress("someUserId");
+            customerAddressType billingAddress = GetAddress(input);
+
+            //customerAddressType billingAddress = GetAddress(input.ShippingAddress);
 
             var paymentType = new paymentType { Item = creditCard };
 
             var transactionRequest = new transactionRequestType
             {
                 transactionType = transactionTypeEnum.authCaptureTransaction.ToString(),
-                amount = 111.5M,
+                //amount = 111.5M,
+                amount = Convert.ToDecimal(input.Amount),
                 payment = paymentType,
                 billTo = billingAddress
             };
@@ -78,17 +83,17 @@ namespace ECommerceApp.Models.Services
 
 
 
-        public customerAddressType GetAddress(string userName)
+        public customerAddressType GetAddress(PaymentInput input)
         {
             //make a call to the db to get the billing address
             //or you bring in what the user typed into the entry
             customerAddressType address = new customerAddressType
             {
-                firstName = "Pinot",
-                lastName = "Cat",
-                address = "123 Kittyhawk Lane",
-                city = "Seattle",
-                zip = "98117"
+                firstName = input.FirstName,
+                lastName = input.LastName,
+                address = input.ShippingAddress,
+                city = input.City,
+                state = input.State
             };
             return address;
         }

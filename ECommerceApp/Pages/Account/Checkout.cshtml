@@ -18,7 +18,8 @@
                     <input type="text" class="form-control" id="firstName" asp-for="PaymentInput.FirstName">
                     <span asp-validation-for="PaymentInput.FirstName"></span>
                 </div>
-            </div>
+            </div> 
+
 
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label" asp-for="PaymentInput.LastName">Last Name</label>
@@ -57,7 +58,7 @@
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label" asp-for="PaymentInput.Country">Country</label>
                 <div class="col-sm-9">
-                    <input type="password" class="form-control" id="creditCard" asp-for="PaymentInput.Country">
+                    <input type="text" class="form-control" id="creditCard" asp-for="PaymentInput.Country">
                     <span asp-validation-for="PaymentInput.Country"></span>
                 </div>
             </div>
@@ -65,32 +66,31 @@
             <div class="form-group row">
                 @*<label class="col-sm-3 col-form-label" asp-for="PaymentInput.CreditCard">Credit Card</label>
         <div class="col-sm-9">*@
-                <fieldset>
-                    <p>
-                        <label class="col-sm-9 col-form-label" asp-for="PaymentInput.CreditCard">Visa and Master Card</label>
-                        <select id="myList">
-                            <option value="1">4007000000027</option>
-                            <option value="2">4012888818888</option>
-                            <option value="3">5424000000000015</option>
-                            <option value="4">2223000010309703</option>
-                        </select>
-                    </p>
+                <label class="col-sm-3 col-form-label">Select a Credit Card</label>
+                    <div class="col-sm-9">
+                        <fieldset>
+                            <p>
+                            <select asp-for="PaymentInput.CreditCard" id="myList">
+                                <option value="4007000000027">4007000000027</option>
+                                <option value="4007000000027">4012888818888</option>
+                                <option value="5424000000000015">5424000000000015</option>
+                                <option value="2223000010309703">2223000010309703</option>
+                            </select>
+                            </p>
                 <span asp-validation-for="PaymentInput.CreditCard"></span>
-                </fieldset>
+                        </fieldset>
+                    </div>
             </div>
-
             <div class="row">
                 <div class="col-sm-9 offset-sm-3">
                     <a asp-page="../Store/Cart" class="btn btn-primary m-1" style="width: 100px;">Return to Cart</a>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-sm-9 offset-sm-3">
-                    <a asp-page="/Account/Receipt" class="btn btn-primary m-1" style="width: 100px;">Complete Order</a>
+                    <button type="submit" asp-route-input="PaymentInput" class="btn btn-primary m-1" style="width: 100px;">Complete Order</button>
                 </div>
             </div>
-
         </form>
     </div>
 </body>

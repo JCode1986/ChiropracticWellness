@@ -28,6 +28,9 @@ Microsoft Visual Studio Community 2017 (Version 15.5.7)
 - Razor Pages
 - Azure
 - Azure DevOps
+- Azure Blob Storage
+- Sendgrid
+- Auth.Net
 
 ---
 
@@ -62,6 +65,7 @@ Deployed App - https://ecommerceappsuejoe.azurewebsites.net/
 * **route/account/register** - Page where a user can register. Information inputted are then saved to a database.
 * **route/account/login** - Page where a user can login if information given exists in the database.
 * **route/account/accessdenied** - Page where unauthorized user are directed to.
+* **route/account/checkout** - Page where a user can review the items they wish to purchase.
 * **route/account/receipt** - Page where users are redirected after checking out with services in cart.
 * **route/store/shop** - Page that shows all available services.
 * **route/store/cart** - Page that shows all items the user has added to cart.
@@ -158,6 +162,7 @@ ERD from CodeFellows 401 .NET Class Repo:
 | Email | string | YES |
 
 ## Change Log
+* 1.14: *Email is sent after user checks out from receipt page.* - 03 May 2020
 * 1.13: *Receipt page added, and some styling on details page & receipt page* - 30 April 2020
 * 1.12: *Created razor pages for Administrator roles, and CRUD functionality* - 28 April 2020
 * 1.11: *User can now update quantity of items, or delete an item from their cart* - 27 April 2020

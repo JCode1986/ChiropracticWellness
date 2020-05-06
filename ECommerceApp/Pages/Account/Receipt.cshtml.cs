@@ -29,24 +29,36 @@ namespace ECommerceApp.Pages.Account
 
         public List<CartItems> CartItems { get; set; }
 
+        [BindProperty]
+        public PaymentInput PaymentInput { get; set; }
+
         //get all cart items for specific user
-        public async Task<IActionResult> OnGet()
+        public async Task<IActionResult> OnGet(PaymentInput input)
         {
             var user = User.Identity.Name;
             CartItems = await _context.GetAllCartItems(user);
+            PaymentInput = input;
             return Page();
         }
 
-        public async Task<IActionResult> OnPost()
+
+        public async Task<IActionResult> OnPost(string ccNumber, string firstName, string lastName, string address, string city, string state, string amount)
         {
+            PaymentInput.CreditCard = ccNumber;
+            PaymentInput.FirstName = firstName;
+            PaymentInput.LastName = lastName;
+            PaymentInput.ShippingAddress = address;
+            PaymentInput.City = city;
+            PaymentInput.State = state;
+            PaymentInput.Amount = amount;
+
             var user = User.Identity.Name;
             CartItems = await _context.GetAllCartItems(user);
             //testing out whether payment logic works in here :) 
-            var result = _payment.Run();
+            var result = _payment.Run(PaymentInput);
 
-            if (result != null)
+            if (result != "failed to process")
             {
-
                 //send confirmation email of registration
                 StringBuilder sb = new StringBuilder();
 
@@ -86,6 +98,5 @@ namespace ECommerceApp.Pages.Account
                 return Page();
             }
         }
-
     }
 }
