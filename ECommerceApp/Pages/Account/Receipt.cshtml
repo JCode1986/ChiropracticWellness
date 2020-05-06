@@ -133,10 +133,9 @@
 
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
 
+                            <!--Passing in data for arguments on post -->
                             <form asp-page="/Account/Receipt" method="post">
-                                @*<div asp-validation-summary="All"></div>*@
                                 <input hidden asp-for="@Model.PaymentInput.CreditCard" value="@Model.PaymentInput.CreditCard" />
-                                @*<span asp-validation-for="@Model.PaymentInput"></span>*@
                                 <button type="submit" asp-route-ccNumber="@Model.PaymentInput.CreditCard"
                                         asp-route-firstName="@Model.PaymentInput.FirstName"
                                         asp-route-lastName="@Model.PaymentInput.LastName"
@@ -148,6 +147,7 @@
                             </form>
 
                         </div>
+
                     </div>
                 </div>
             </div>
