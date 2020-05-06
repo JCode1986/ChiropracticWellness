@@ -49,8 +49,12 @@
                                 </div>
                                 <div class="invoice-to mt25">
                                     <ul class="list-unstyled">
-                                        <li><strong>Invoiced to:</strong> @User.Identity.Name </li>
-                                        <li><strong>Name: @User.Claims.First(x => x.Type == "FullName").Value</strong></li>
+                                        <li><strong>Invoiced to: @User.Identity.Name </strong></li>
+                                        <li><strong>Name: @Model.PaymentInput.FirstName @Model.PaymentInput.LastName </strong></li>
+                                        <li><strong>Shipping Address: @Model.PaymentInput.ShippingAddress </strong></li>
+                                        <li><strong>City: @Model.PaymentInput.City </strong></li>
+                                        <li><strong>State: @Model.PaymentInput.State  </strong></li>
+                                        <li><strong>Country: @Model.PaymentInput.Country </strong></li>
                                     </ul>
                                 </div>
 
@@ -94,21 +98,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- col-lg-12 end here -->
                         </div>
-                        <!-- End .row -->
                     </div>
                 </div>
-                <!-- End .panel -->
             </div>
-            <!-- col-lg-12 end here -->
         </div>
         <div style="margin-left: 77%;">
             <a asp-page="../Store/Cart" class="btn btn-secondary m-1">Back to Cart</a>
-            
+
             <button class="btn btn-primary" data-toggle="modal" data-target="#PurchaseVerificationModal">
-                Checkout
+                Modal Checkout
             </button>
+
+            <form asp-page="/Account/Receipt" method="post">
+                <button type="submit" class="btn btn-primary">Test for Input!</button>
+            </form>
+
             <div style="margin-bottom:100px;"></div>
             <!-- Modal -->
             <div class="modal" id="PurchaseVerificationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -123,11 +128,25 @@
                         <div class="modal-body">
                             <p>Pay total of $@String.Format("{0:0.00}", sum) USD?</p>
                         </div>
+
                         <div class="modal-footer" style="text-align:center">
+
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                            <form asp-page="/Account/Receipt" asp-action="Payment" method="post">
-                                <button type="submit" class="btn btn-primary">Yes</button>
+
+                            <form asp-page="/Account/Receipt" method="post">
+                                @*<div asp-validation-summary="All"></div>*@
+                                <input hidden asp-for="@Model.PaymentInput.CreditCard" value="@Model.PaymentInput.CreditCard" />
+                                @*<span asp-validation-for="@Model.PaymentInput"></span>*@
+                                <button type="submit" asp-route-ccNumber="@Model.PaymentInput.CreditCard"
+                                        asp-route-firstName="@Model.PaymentInput.FirstName"
+                                        asp-route-lastName="@Model.PaymentInput.LastName"
+                                        asp-route-address="@Model.PaymentInput.ShippingAddress"
+                                        asp-route-city="@Model.PaymentInput.City"
+                                        asp-route-state="@Model.PaymentInput.State"
+                                        asp-route-amount="@String.Format("{0:0.00}", sum)"
+                                        class="btn btn-primary">Yes</button>
                             </form>
+
                         </div>
                     </div>
                 </div>

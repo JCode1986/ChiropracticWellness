@@ -36,7 +36,7 @@ namespace ECommerceApp.Pages.Account
         {          
         }
 
-        public Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPost()
         {
             if(ModelState.IsValid)
             {
@@ -50,9 +50,9 @@ namespace ECommerceApp.Pages.Account
                     Country = PaymentInput.Country,
                     CreditCard = PaymentInput.CreditCard
                 };
-                //PaymentInput = user;
+                PaymentInput = user;
             }
-            return null;
+            return RedirectToPage("/Account/Receipt", "Input", PaymentInput);
         }
     }
 
@@ -84,6 +84,8 @@ namespace ECommerceApp.Pages.Account
 
         [Required]
         [Display(Name = "Credit Cart")]
-        public int CreditCard { get; set; }
+        public string CreditCard { get; set; }
+
+        public string Amount { get; set; }
     }
 }
