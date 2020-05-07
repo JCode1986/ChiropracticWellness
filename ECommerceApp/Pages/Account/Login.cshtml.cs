@@ -14,14 +14,16 @@ namespace ECommerceApp.Pages.Account
     {
         //bringing in the signInManager
         private SignInManager<ApplicationUser> _signInManager;
+        private UserManager<ApplicationUser> _userManager;
 
-        
+
         [BindProperty]
         public LoginViewModel Input { get; set; }
         
-        public LoginModel(SignInManager<ApplicationUser> signInManager)
+        public LoginModel(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
         }
 
 
@@ -31,10 +33,17 @@ namespace ECommerceApp.Pages.Account
 
         public async Task<IActionResult> OnPost()
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 //attempt to validate the user's inputted email and pswd against the db
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, isPersistent: false, false);
+
+                //bool admin = _userManager.IsInRole("userId", "Admin");
+
+                if (Input.Email == "sue@greengrasspt.com" || Input.Email == "joseph.hangarter@yahoo.com" || Input.Email == "amanda@codefellows.com" || Input.Email == "rice.jonathanm@gmail.com")
+                {
+                    return RedirectToPage("/Admin/Dashboard");
+                }
 
                 //if login successful, redirect to Homepage
                 if (result.Succeeded)

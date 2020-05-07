@@ -162,13 +162,19 @@ ERD from CodeFellows 401 .NET Class Repo:
 | Email | string | YES |
 
 ## Change Log
+* 1.17: *Admin able to create and update images with Azure blob storage* - 06 May 2020
+* 1.16: *User's input with total amount now passes properly to Auth.Net* - 06 May 2020
+* 1.15: *Hard coded transaction working with Auth.Net* - 05 May 2020
+* **SPRINT 2 COMPLETE**
 * 1.14: *Email is sent after user checks out from receipt page.* - 03 May 2020
 * 1.13: *Receipt page added, and some styling on details page & receipt page* - 30 April 2020
 * 1.12: *Created razor pages for Administrator roles, and CRUD functionality* - 28 April 2020
 * 1.11: *User can now update quantity of items, or delete an item from their cart* - 27 April 2020
 * 1.10: *Email sends out to user after registering a new account* - 26 April 2020
+* 1.10: *Email sends out to user after registering a new account* - 26 April 2020
 * 1.9: *Cart razor page created, and renders items that were added to cart for a specific user* - 26 April 2020
 * 1.8: *Leads the user to details page after clicking a specific product* - 25 April 2020
+* **SPRINT 1 COMPLETE**
 * 1.7: *Page for all products to show up; still need functionality to click a specific product to redirect to details page.* - 25 April 2020
 * 1.6: *Page for specific product with details added, and able to retrieve data from database* - 24 April 2020
 * 1.5: *Both databases (user & store) deployed and connected to Web App* - 22 April 2020
