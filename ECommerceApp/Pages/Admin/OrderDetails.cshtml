@@ -1,0 +1,124 @@
+﻿@*@page
+@model ECommerceApp.Pages.Admin.OrderDetailsModel
+@{
+    ViewData["Title"] = "OrderDetails";
+    Layout = "_Layout";
+}*@
+
+
+@page
+@model ECommerceApp.Pages.Account.ReceiptModel
+@{
+    ViewData["Title"] = "Receipt";
+    Layout = "_Layout";
+    decimal sum = 0;
+}
+<html>
+<body style="margin-top:70px; margin-left: 4%; margin-right: 2%; background:#eee;">
+<h1>OrderDetails</h1>
+    <label hidden>
+        @foreach (var item in Model.CartItems)
+        {
+            @(sum += item.Quantity * item.Services.Price)
+        }
+    </label>
+    <div class="row invoice row-printable">
+        <div class="col-md-7 col-md-offset-2" style="flex: 1 2 58.333333%; max-width: 98%;">
+            <!-- col-lg-12 start here -->
+            <div class="panel panel-default plain" id="dash_0">
+                <!-- Start .panel -->
+                <div class="panel-body p30">
+                    <div class="row">
+                        <!-- Start .row -->
+                        <div class="col-lg-6">
+                            <!-- col-lg-6 start here -->
+                            <div class="invoice-logo"><img src="http://themes.suggelab.com/dash/img/logo-blue.png" alt="Invoice logo"></div>
+                        </div>
+                        <!-- col-lg-6 end here -->
+                        <div class="col-lg-6">
+                            <!-- col-lg-6 start here -->
+                            <div class="invoice-from">
+                                <ul class="list-unstyled text-right">
+                                    <li>Wellness Chiropractic</li>
+                                    <li>Seattle, Washington</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- col-lg-6 end here -->
+                        <div class="col-lg-12" margin-left="50px">
+                            <!-- col-lg-12 start here -->
+                            <div class="invoice-details mt25">
+                                <div class="well">
+                                    <ul class="list-unstyled mb0">
+                                        <li><strong>Invoice</strong> #936988</li>
+                                        <li><strong>Invoice Date:</strong> @DateTime.Now </li>
+                                        <li><strong>Status:</strong> <span class="label label-danger">UNPAID</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="invoice-to mt25">
+                                <ul class="list-unstyled">
+                                    <li><strong>Invoiced to: @User.Identity.Name </strong></li>
+                                    <li><strong>Name: @Model.PaymentInput.FirstName @Model.PaymentInput.LastName </strong></li>
+                                    <li><strong>Shipping Address: @Model.PaymentInput.ShippingAddress </strong></li>
+                                    <li><strong>City: @Model.PaymentInput.City </strong></li>
+                                    <li><strong>State: @Model.PaymentInput.State  </strong></li>
+                                    <li><strong>Country: @Model.PaymentInput.Country </strong></li>
+                                </ul>
+                            </div>
+
+                            <div class="invoice-items">
+                                <div class="table-responsive" style="overflow: hidden; outline: none;" tabindex="0">
+                                    <table class="table table-bordered" style="text-align:center;">
+                                        <thead>
+                                            <tr>
+                                                <th class="per50 text-center">Service Type</th>
+                                                <th class="per25 text-center">Price and Quantity</th>
+                                                <th class="per25 text-center">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.CartItems)
+                                            {
+                                                <tr>
+                                                    <td>@item.Services.ServiceType</td>
+                                                    <td class="text-center">@item.Services.Price x @item.Quantity</td>
+                                                    <td class="text-center">$@(item.Quantity * @item.Services.Price) USD</td>
+                                                </tr>
+
+                                            }
+                                        </tbody>
+
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="2" class="text-right">Sub Total:</th>
+                                                <th class="text-center">$@sum USD</th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2" class="text-right">Tax:</th>
+                                                <th class="text-center">$@(String.Format("{0:0.00}", sum / 6.50M)) USD</th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2" class="text-right">Total:</th>
+                                                <th class="text-center">$@(String.Format("{0:0.00}",sum += sum / 6.50M)) USD</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin-left: 77%;">
+        <a asp-page="/Admin/Orders" class="btn btn-secondary m-1">Back to Orders</a>
+    <div style="margin-bottom:100px;"></div>
+        
+                    </div>
+
+    
+</body>
+
+</html>
