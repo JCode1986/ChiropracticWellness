@@ -87,5 +87,7 @@ namespace ECommerceApp.Pages.Account
         public string CreditCard { get; set; }
 
         public string Amount { get; set; }
+
+        public string Date { get; set; }
     }
 }
