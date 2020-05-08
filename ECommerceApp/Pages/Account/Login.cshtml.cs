@@ -38,9 +38,8 @@ namespace ECommerceApp.Pages.Account
                 //attempt to validate the user's inputted email and pswd against the db
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, isPersistent: false, false);
 
-                //bool admin = _userManager.IsInRole("userId", "Admin");
-
-                if (Input.Email == "sue@greengrasspt.com" || Input.Email == "joseph.hangarter@yahoo.com" || Input.Email == "amanda@codefellows.com" || Input.Email == "rice.jonathanm@gmail.com")
+                // hardcoded administrators; if successful log in and one of these emails are used, redirect to admin page
+                if (result.Succeeded && Input.Email == "sue@greengrasspt.com" || Input.Email == "joseph.hangarter@yahoo.com" || Input.Email == "amanda@codefellows.com" || Input.Email == "rice.jonathanm@gmail.com")
                 {
                     return RedirectToPage("/Admin/Dashboard");
                 }
