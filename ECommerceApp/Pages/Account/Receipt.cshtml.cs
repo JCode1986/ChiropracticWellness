@@ -42,7 +42,7 @@ namespace ECommerceApp.Pages.Account
         }
 
 
-        public async Task<IActionResult> OnPost(string ccNumber, string firstName, string lastName, string address, string city, string state, string amount)
+        public async Task<IActionResult> OnPost(string ccNumber, string firstName, string lastName, string address, string city, string state, string amount, string date)
         {
             PaymentInput.CreditCard = ccNumber;
             PaymentInput.FirstName = firstName;
@@ -51,9 +51,12 @@ namespace ECommerceApp.Pages.Account
             PaymentInput.City = city;
             PaymentInput.State = state;
             PaymentInput.Amount = amount;
+            PaymentInput.Date = date;
 
             var user = User.Identity.Name;
             CartItems = await _context.GetAllCartItems(user);
+
+
             //testing out whether payment logic works in here :) 
             var result = _payment.Run(PaymentInput);
 

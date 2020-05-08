@@ -140,6 +140,7 @@
                                         asp-route-city="@Model.PaymentInput.City"
                                         asp-route-state="@Model.PaymentInput.State"
                                         asp-route-amount="@String.Format("{0:0.00}", sum)"
+                                        asp-route-date="@DateTime.Now"
                                         class="btn btn-primary">Yes</button>
                             </form>
 
