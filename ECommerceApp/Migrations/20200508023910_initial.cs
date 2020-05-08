@@ -37,6 +37,38 @@ namespace ECommerceApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Receipt",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Receipt", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReceiptOrders",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    Amount = table.Column<string>(nullable: true),
+                    Date = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReceiptOrders", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CartItems",
                 columns: table => new
                 {
@@ -44,7 +76,9 @@ namespace ECommerceApp.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CartID = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
-                    ServicesID = table.Column<int>(nullable: true)
+                    ServicesID = table.Column<int>(nullable: true),
+                    ReceiptID = table.Column<int>(nullable: true),
+                    ReceiptOrdersID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,6 +89,18 @@ namespace ECommerceApp.Migrations
                         principalTable: "Cart",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CartItems_Receipt_ReceiptID",
+                        column: x => x.ReceiptID,
+                        principalTable: "Receipt",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CartItems_ReceiptOrders_ReceiptOrdersID",
+                        column: x => x.ReceiptOrdersID,
+                        principalTable: "ReceiptOrders",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_CartItems_Inventories_ServicesID",
                         column: x => x.ServicesID,
@@ -86,6 +132,16 @@ namespace ECommerceApp.Migrations
                 column: "CartID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CartItems_ReceiptID",
+                table: "CartItems",
+                column: "ReceiptID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartItems_ReceiptOrdersID",
+                table: "CartItems",
+                column: "ReceiptOrdersID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CartItems_ServicesID",
                 table: "CartItems",
                 column: "ServicesID");
@@ -98,6 +154,12 @@ namespace ECommerceApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cart");
+
+            migrationBuilder.DropTable(
+                name: "Receipt");
+
+            migrationBuilder.DropTable(
+                name: "ReceiptOrders");
 
             migrationBuilder.DropTable(
                 name: "Inventories");

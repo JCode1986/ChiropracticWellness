@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AspNetCore;
 using ECommerceApp.Models;
 using ECommerceApp.Models.Interface;
 using Microsoft.AspNetCore.Identity;

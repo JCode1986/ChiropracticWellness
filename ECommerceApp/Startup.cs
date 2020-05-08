@@ -62,6 +62,7 @@ namespace ECommerceApp
             services.AddTransient<ICartItems, CartItemsManager>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IPayment, PaymentService>();
+            services.AddTransient<IReceiptOrders, ReceiptOrderService>();
 
             //adding ApplicationUser identity
             services.AddIdentity<ApplicationUser, IdentityRole>()

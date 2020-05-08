@@ -47,12 +47,22 @@ namespace ECommerceApp.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ReceiptID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ReceiptOrdersID")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ServicesID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("CartID");
+
+                    b.HasIndex("ReceiptID");
+
+                    b.HasIndex("ReceiptOrdersID");
 
                     b.HasIndex("ServicesID");
 
@@ -178,6 +188,54 @@ namespace ECommerceApp.Migrations
                         });
                 });
 
+            modelBuilder.Entity("ECommerceApp.Models.Receipt", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Receipt");
+                });
+
+            modelBuilder.Entity("ECommerceApp.Models.ReceiptOrders", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Amount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ReceiptOrders");
+                });
+
             modelBuilder.Entity("ECommerceApp.Models.CartItems", b =>
                 {
                     b.HasOne("ECommerceApp.Models.Cart", null)
@@ -185,6 +243,14 @@ namespace ECommerceApp.Migrations
                         .HasForeignKey("CartID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ECommerceApp.Models.Receipt", null)
+                        .WithMany("CartItems")
+                        .HasForeignKey("ReceiptID");
+
+                    b.HasOne("ECommerceApp.Models.ReceiptOrders", null)
+                        .WithMany("CartItems")
+                        .HasForeignKey("ReceiptOrdersID");
 
                     b.HasOne("ECommerceApp.Models.Inventory", "Services")
                         .WithMany()

@@ -20,6 +20,7 @@ namespace ECommerceApp.Models.Services
             _user = user;
         }
 
+
         public async Task<ReceiptOrders> CreateAllReceiptInfo(ReceiptOrders receiptOrders)
         {
             _context.Add(receiptOrders);
