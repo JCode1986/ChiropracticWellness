@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 
 namespace ECommerceApp.Models.Interface
 {
-    public interface IReceipt
+    public interface IReceiptOrders
     {
         //write a method to grab all receipt info from Receipt.cshtml.cs and write it to the db
-        Task CreateAllReceiptInfo();
+        Task<ReceiptOrders> CreateAllReceiptInfo(ReceiptOrders receiptOrder);
 
         //task to get items from cart
         Task<List<CartItems>> GetAllCartItems(string username);
-
     }
 }

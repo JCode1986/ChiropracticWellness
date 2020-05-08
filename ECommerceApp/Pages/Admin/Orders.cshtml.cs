@@ -27,10 +27,10 @@ namespace ECommerceApp.Pages.Admin
 
         public List<CartItems> Services { get; set; }
 
-        public async Task OnGet()
+/*        public async Task OnGet()
         {
-               
-        }
+                   
+        }*/
 
 
     }

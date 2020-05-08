@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AspNetCore;
 using ECommerceApp.Models;
 using ECommerceApp.Models.Interface;
 using Microsoft.AspNetCore.Identity;
@@ -19,15 +20,18 @@ namespace ECommerceApp.Pages.Account
         private ICartItems _context;
         private IEmailSender _email;
         private IPayment _payment;
+        private IReceiptOrders _receiptOrder;
 
-        public ReceiptModel(ICartItems context, IEmailSender email, IPayment payment)
+        public ReceiptModel(ICartItems context, IEmailSender email, IPayment payment, IReceiptOrders receiptOrder)
         {
             _context = context;
             _email = email;
             _payment = payment;
+            _receiptOrder = receiptOrder;
         }
 
         public List<CartItems> CartItems { get; set; }
+        public ReceiptOrders ReceiptOrders { get; set; }
 
         [BindProperty]
         public PaymentInput PaymentInput { get; set; }
@@ -53,8 +57,22 @@ namespace ECommerceApp.Pages.Account
             PaymentInput.Amount = amount;
             PaymentInput.Date = date;
 
+            var receiptOrder = new ReceiptOrders
+            {
+                FirstName = PaymentInput.FirstName,
+                LastName = PaymentInput.LastName,
+                Address = PaymentInput.ShippingAddress,
+                City = PaymentInput.City,
+                State = PaymentInput.State,
+                Amount = PaymentInput.Amount,
+                Date = PaymentInput.Date
+            };
+
+            ReceiptOrders = await _receiptOrder.CreateAllReceiptInfo(receiptOrder);
+
             var user = User.Identity.Name;
             CartItems = await _context.GetAllCartItems(user);
+
 
 
             //testing out whether payment logic works in here :) 
