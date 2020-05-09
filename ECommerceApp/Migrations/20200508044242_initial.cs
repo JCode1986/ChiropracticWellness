@@ -61,11 +61,18 @@ namespace ECommerceApp.Migrations
                     City = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true),
                     Amount = table.Column<string>(nullable: true),
-                    Date = table.Column<string>(nullable: true)
+                    Date = table.Column<string>(nullable: true),
+                    ReceiptID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ReceiptOrders", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_ReceiptOrders_Receipt_ReceiptID",
+                        column: x => x.ReceiptID,
+                        principalTable: "Receipt",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,7 +84,6 @@ namespace ECommerceApp.Migrations
                     CartID = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
                     ServicesID = table.Column<int>(nullable: true),
-                    ReceiptID = table.Column<int>(nullable: true),
                     ReceiptOrdersID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -89,12 +95,6 @@ namespace ECommerceApp.Migrations
                         principalTable: "Cart",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CartItems_Receipt_ReceiptID",
-                        column: x => x.ReceiptID,
-                        principalTable: "Receipt",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_CartItems_ReceiptOrders_ReceiptOrdersID",
                         column: x => x.ReceiptOrdersID,
@@ -132,11 +132,6 @@ namespace ECommerceApp.Migrations
                 column: "CartID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItems_ReceiptID",
-                table: "CartItems",
-                column: "ReceiptID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CartItems_ReceiptOrdersID",
                 table: "CartItems",
                 column: "ReceiptOrdersID");
@@ -145,6 +140,11 @@ namespace ECommerceApp.Migrations
                 name: "IX_CartItems_ServicesID",
                 table: "CartItems",
                 column: "ServicesID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReceiptOrders_ReceiptID",
+                table: "ReceiptOrders",
+                column: "ReceiptID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -156,13 +156,13 @@ namespace ECommerceApp.Migrations
                 name: "Cart");
 
             migrationBuilder.DropTable(
-                name: "Receipt");
-
-            migrationBuilder.DropTable(
                 name: "ReceiptOrders");
 
             migrationBuilder.DropTable(
                 name: "Inventories");
+
+            migrationBuilder.DropTable(
+                name: "Receipt");
         }
     }
 }

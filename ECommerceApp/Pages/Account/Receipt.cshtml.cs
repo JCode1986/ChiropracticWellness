@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ECommerceApp.Data;
 using ECommerceApp.Models;
 using ECommerceApp.Models.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Exchange.WebServices.Data;
 
@@ -16,17 +19,21 @@ namespace ECommerceApp.Pages.Account
 {
     public class ReceiptModel : PageModel
     {
+        private StoreDbContext _store;
         private ICartItems _context;
         private IEmailSender _email;
         private IPayment _payment;
         private IReceiptOrders _receiptOrder;
+        private UserManager<ApplicationUser> _userManager;
 
-        public ReceiptModel(ICartItems context, IEmailSender email, IPayment payment, IReceiptOrders receiptOrder)
+        public ReceiptModel(ICartItems context, IEmailSender email, IPayment payment, IReceiptOrders receiptOrder, UserManager<ApplicationUser> userManager, StoreDbContext store)
         {
             _context = context;
             _email = email;
             _payment = payment;
             _receiptOrder = receiptOrder;
+            _userManager = userManager;
+            _store = store;
         }
 
         public List<CartItems> CartItems { get; set; }
@@ -47,6 +54,10 @@ namespace ECommerceApp.Pages.Account
 
         public async Task<IActionResult> OnPost(string ccNumber, string firstName, string lastName, string address, string city, string state, string amount, string date)
         {
+
+            var user = User.Identity.Name;
+            CartItems = await _context.GetAllCartItems(user);
+
             PaymentInput.CreditCard = ccNumber;
             PaymentInput.FirstName = firstName;
             PaymentInput.LastName = lastName;
@@ -64,15 +75,15 @@ namespace ECommerceApp.Pages.Account
                 City = PaymentInput.City,
                 State = PaymentInput.State,
                 Amount = PaymentInput.Amount,
-                Date = PaymentInput.Date
+                Date = PaymentInput.Date,
+                CartItems = CartItems
             };
 
-            ReceiptOrders = await _receiptOrder.CreateAllReceiptInfo(receiptOrder);
 
-            var user = User.Identity.Name;
-            CartItems = await _context.GetAllCartItems(user);
+            var userNameForReceipt = await _userManager.FindByNameAsync(user);
+            await _receiptOrder.CreateReceipt(userNameForReceipt.Id);
 
-
+            await _receiptOrder.CreateAllReceiptInfo(receiptOrder);
 
             //testing out whether payment logic works in here :) 
             var result = _payment.Run(PaymentInput);
@@ -111,8 +122,11 @@ namespace ECommerceApp.Pages.Account
                 sb.AppendLine($"<strong>Total after tax: ${String.Format("{0:0.00}", sum += sum / 6.50M)} USD </strong>");
 
                 await _email.SendEmailAsync($"{User.Identity.Name}", "Your Purchase from Wellness Chiropractic", sb.ToString());
+                
+
                 return Page();
             }
+
             else
             {
                 return Page();

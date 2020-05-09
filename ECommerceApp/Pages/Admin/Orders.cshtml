@@ -23,12 +23,15 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach (var item in Model.ReceiptOrders)
+                {
                 <tr>
-                    <td>Order Details</td>
-                    <td>Neil Rowe</td>
-                    <td>05/05/2020</td>
-                    <td>233.78M</td>
-                </tr>             
+                    <td><a href="/Admin/OrderDetails/@item.ID">Order Details</a></td>
+                    <td>@item.FirstName @item.LastName</td>
+                    <td>@item.Date</td>
+                    <td>@item.Amount</td>
+                </tr>
+                }
             </tbody>
         </table>
     </div>

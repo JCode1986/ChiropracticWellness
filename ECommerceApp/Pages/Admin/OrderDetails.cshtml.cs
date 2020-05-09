@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Threading.Tasks;
 using ECommerceApp.Models;
 using ECommerceApp.Models.Interface;
 using ECommerceApp.Pages.Account;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -12,52 +14,34 @@ namespace ECommerceApp.Pages.Admin
 {
     public class OrderDetailsModel : PageModel
     {
+        private ICartItems _context;
+        private IPayment _payment;
+        private IReceiptOrders _receipt;
+        private UserManager<ApplicationUser> _userManager;
 
-        public class ReceiptModel : PageModel
+        public OrderDetailsModel(ICartItems context, IPayment payment, IReceiptOrders receipt, UserManager<ApplicationUser> usermanager)
         {
-            private ICartItems _context;
-            private IPayment _payment;
+            _context = context;
+            _payment = payment;
+            _receipt = receipt;
+            _userManager = usermanager;
+        }
 
-            public ReceiptModel(ICartItems context, IPayment payment)
-            {
-                _context = context;
-                _payment = payment;
-            }
+        public List<CartItems> CartItems { get; set; }
 
-            public List<CartItems> CartItems { get; set; }
+        public ReceiptOrders ReceiptOrders { get; set; }
 
-            [BindProperty]
-            public PaymentInput PaymentInput { get; set; }
+        public Receipt Receipt { get; set; }
 
-            //get all cart items for specific user
-            public async Task<IActionResult> OnGet(PaymentInput input)
-            {
-                var user = User.Identity.Name;
-                CartItems = await _context.GetAllCartItems(user);
-                PaymentInput = input;
-                return Page();
-            }
-
-
-            public async Task OnPost(string ccNumber, string firstName, string lastName, string address, string city, string state, string amount)
-            {
-                PaymentInput.CreditCard = ccNumber;
-                PaymentInput.FirstName = firstName;
-                PaymentInput.LastName = lastName;
-                PaymentInput.ShippingAddress = address;
-                PaymentInput.City = city;
-                PaymentInput.State = state;
-                PaymentInput.Amount = amount;
-
-                var user = User.Identity.Name;
-                CartItems = await _context.GetAllCartItems(user);
-
-
-            }
-            public void OnGet()
-            {
-
-            }
+        //get all cart items for specific user
+        public async Task<IActionResult> OnGet(int id)
+        {
+            var user = User.Identity.Name;
+            int receiptId = await _receipt.GetReceiptIdForUser(user);
+            var allItems = await _receipt.GetAllCartItems(user);
+            var query = allItems.FirstOrDefault(x => x.Services.ID == id);
+            ReceiptOrders = await _receipt.GetReceiptByID(id);
+            return Page();
         }
     }
 }

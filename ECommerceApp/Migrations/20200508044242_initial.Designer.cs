@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerceApp.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20200508023910_initial")]
+    [Migration("20200508044242_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,9 +49,6 @@ namespace ECommerceApp.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ReceiptID")
-                        .HasColumnType("int");
-
                     b.Property<int?>("ReceiptOrdersID")
                         .HasColumnType("int");
 
@@ -61,8 +58,6 @@ namespace ECommerceApp.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("CartID");
-
-                    b.HasIndex("ReceiptID");
 
                     b.HasIndex("ReceiptOrdersID");
 
@@ -230,10 +225,15 @@ namespace ECommerceApp.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ReceiptID")
+                        .HasColumnType("int");
+
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("ReceiptID");
 
                     b.ToTable("ReceiptOrders");
                 });
@@ -246,10 +246,6 @@ namespace ECommerceApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ECommerceApp.Models.Receipt", null)
-                        .WithMany("CartItems")
-                        .HasForeignKey("ReceiptID");
-
                     b.HasOne("ECommerceApp.Models.ReceiptOrders", null)
                         .WithMany("CartItems")
                         .HasForeignKey("ReceiptOrdersID");
@@ -257,6 +253,13 @@ namespace ECommerceApp.Migrations
                     b.HasOne("ECommerceApp.Models.Inventory", "Services")
                         .WithMany()
                         .HasForeignKey("ServicesID");
+                });
+
+            modelBuilder.Entity("ECommerceApp.Models.ReceiptOrders", b =>
+                {
+                    b.HasOne("ECommerceApp.Models.Receipt", null)
+                        .WithMany("ReceiptOrders")
+                        .HasForeignKey("ReceiptID");
                 });
 #pragma warning restore 612, 618
         }
