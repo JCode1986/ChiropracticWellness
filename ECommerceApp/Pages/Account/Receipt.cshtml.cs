@@ -19,21 +19,17 @@ namespace ECommerceApp.Pages.Account
 {
     public class ReceiptModel : PageModel
     {
-        private StoreDbContext _store;
         private ICartItems _context;
         private IEmailSender _email;
         private IPayment _payment;
         private IReceiptOrders _receiptOrder;
-        private UserManager<ApplicationUser> _userManager;
 
-        public ReceiptModel(ICartItems context, IEmailSender email, IPayment payment, IReceiptOrders receiptOrder, UserManager<ApplicationUser> userManager, StoreDbContext store)
+        public ReceiptModel(ICartItems context, IEmailSender email, IPayment payment, IReceiptOrders receiptOrder)
         {
             _context = context;
             _email = email;
             _payment = payment;
             _receiptOrder = receiptOrder;
-            _userManager = userManager;
-            _store = store;
         }
 
         public List<CartItems> CartItems { get; set; }
@@ -42,7 +38,7 @@ namespace ECommerceApp.Pages.Account
         [BindProperty]
         public PaymentInput PaymentInput { get; set; }
 
-        //get all cart items for specific user
+        //get all cart items for specific user, and user input
         public async Task<IActionResult> OnGet(PaymentInput input)
         {
             var user = User.Identity.Name;
@@ -51,7 +47,10 @@ namespace ECommerceApp.Pages.Account
             return Page();
         }
 
-
+        //Get's user input and cart items from checkout page
+        //saves it to a model, then goes to the database after purchase
+        //validates transaction through Auth.net
+        //email send through Sendgrid if approved
         public async Task<IActionResult> OnPost(string ccNumber, string firstName, string lastName, string address, string city, string state, string amount, string date)
         {
 
@@ -67,6 +66,20 @@ namespace ECommerceApp.Pages.Account
             PaymentInput.Amount = amount;
             PaymentInput.Date = date;
 
+            //storage for specific cart item propertes
+            List<string> quantityList = new List<string>();
+            List<string> servicesList = new List<string>();
+            List<string> priceList = new List<string>();
+
+            //add user's purchased services, quantity and price to list above
+            foreach (var item in CartItems)
+            {
+                quantityList.Add(item.Quantity.ToString());
+                servicesList.Add(item.Services.ServiceType);
+                priceList.Add(item.Services.Price.ToString());
+            }
+
+            //create new receipt order to store in database
             var receiptOrder = new ReceiptOrders
             {
                 FirstName = PaymentInput.FirstName,
@@ -76,16 +89,16 @@ namespace ECommerceApp.Pages.Account
                 State = PaymentInput.State,
                 Amount = PaymentInput.Amount,
                 Date = PaymentInput.Date,
-                CartItems = CartItems
+                //convert lists to strings
+                CartItemQuantity = string.Join(",", quantityList),
+                ServiceList = string.Join(",", servicesList),
+                ServicePriceList = string.Join(",", priceList)
             };
 
+            //add new receipt order to database
+            await _receiptOrder.CreateReceiptInfo(receiptOrder);
 
-            var userNameForReceipt = await _userManager.FindByNameAsync(user);
-            await _receiptOrder.CreateReceipt(userNameForReceipt.Id);
-
-            await _receiptOrder.CreateAllReceiptInfo(receiptOrder);
-
-            //testing out whether payment logic works in here :) 
+            //pass in users input information for transaction
             var result = _payment.Run(PaymentInput);
 
             if (result != "failed to process")
@@ -123,7 +136,6 @@ namespace ECommerceApp.Pages.Account
 
                 await _email.SendEmailAsync($"{User.Identity.Name}", "Your Purchase from Wellness Chiropractic", sb.ToString());
                 
-
                 return Page();
             }
 

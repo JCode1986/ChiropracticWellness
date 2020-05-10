@@ -12,31 +12,19 @@ namespace ECommerceApp.Pages.Admin
 {
     public class OrdersModel : PageModel
     {
-        private UserManager<ApplicationUser> _userManager;
-        private SignInManager<ApplicationUser> _signInManager;
-        private ICartItems _cart;
         private IReceiptOrders _receipt;
 
-        public OrdersModel(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IReceiptOrders receipt, ICartItems cart)
+        public OrdersModel(IReceiptOrders receipt)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _cart = cart;
             _receipt = receipt;
         }
 
-        public List<UserManager<ApplicationUser>> Users { get; set; }
-
         public List<ReceiptOrders> ReceiptOrders { get; set; }
 
-        public List<CartItems> Services { get; set; }
-
+        //get all receipt order information
         public async Task OnGet()
         {
             ReceiptOrders = await _receipt.GetAllReceiptInfo();
-
         }
-
-
     }
 }

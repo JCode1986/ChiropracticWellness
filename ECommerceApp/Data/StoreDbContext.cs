@@ -115,7 +115,6 @@ namespace ECommerceApp.Data
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<CartItems> CartItems { get; set; }
         public DbSet<Cart> Cart { get; set; }
-        public DbSet<Receipt> Receipt {get; set;}
         public DbSet<ReceiptOrders> ReceiptOrders { get; set; }
 
     }

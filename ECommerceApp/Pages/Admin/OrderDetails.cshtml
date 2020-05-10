@@ -3,36 +3,37 @@
 @{
     ViewData["Title"] = "OrderDetails";
     Layout = "_Layout";
+
+    @*Converting strings from properties to list*@
+    string[] serviceList = Model.ReceiptOrders.ServiceList.Split(",");
+    string[] quantityList = Model.ReceiptOrders.CartItemQuantity.Split(",");
+    string[] priceList = Model.ReceiptOrders.ServicePriceList.Split(",");
+
+    @*sum for all service items in cart*@
+    decimal sum = 0;
 }
 
 
 <html>
-<body style="margin-top:140px; margin-left: 4%; margin-right: 2%; background:#eee;">
-<h1 style="margin-top: 100px;">OrderDetails</h1>
-    <p>@Model.ReceiptOrders.FirstName</p>
+<body style="margin-left: 4%; margin-right: 2%; background:#eee;">
 
+    @*getting sum for all items in cart*@
+    @for (int i = 0; i < priceList.Length; i++)
+    {
+        @(sum += Convert.ToDecimal(priceList[i]) * Convert.ToInt32(quantityList[i]))
+    }
 
-    @*<label hidden>
-        @foreach (var item in Model)
-        {
-            @(sum += item.Quantity * item.Services.Price)
-        }
+    <label hidden>
     </label>
-    <div class="row invoice row-printable">
+    <div style="margin-top: 80px;" class="row invoice row-printable">
         <div class="col-md-7 col-md-offset-2" style="flex: 1 2 58.333333%; max-width: 98%;">
-             col-lg-12 start here 
             <div class="panel panel-default plain" id="dash_0">
-                 Start .panel 
                 <div class="panel-body p30">
                     <div class="row">
-                         Start .row 
                         <div class="col-lg-6">
-                             col-lg-6 start here 
                             <div class="invoice-logo"><img src="http://themes.suggelab.com/dash/img/logo-blue.png" alt="Invoice logo"></div>
                         </div>
-                         col-lg-6 end here 
                         <div class="col-lg-6">
-                             col-lg-6 start here 
                             <div class="invoice-from">
                                 <ul class="list-unstyled text-right">
                                     <li>Wellness Chiropractic</li>
@@ -40,26 +41,22 @@
                                 </ul>
                             </div>
                         </div>
-                         col-lg-6 end here 
                         <div class="col-lg-12" margin-left="50px">
-                             col-lg-12 start here 
                             <div class="invoice-details mt25">
                                 <div class="well">
                                     <ul class="list-unstyled mb0">
                                         <li><strong>Invoice</strong> #936988</li>
-                                        <li><strong>Invoice Date:</strong> @DateTime.Now </li>
-                                        <li><strong>Status:</strong> <span class="label label-danger">UNPAID</span></li>
+                                        <li><strong>Invoice Date:</strong> @Model.ReceiptOrders.Date </li>
+                                        <li><strong>Status:</strong> <span class="label label-danger">PAID</span></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="invoice-to mt25">
                                 <ul class="list-unstyled">
-                                    <li><strong>Invoiced to: @User.Identity.Name </strong></li>
-                                    <li><strong>Name: @Model.PaymentInput.FirstName @Model.PaymentInput.LastName </strong></li>
-                                    <li><strong>Shipping Address: @Model.PaymentInput.ShippingAddress </strong></li>
-                                    <li><strong>City: @Model.PaymentInput.City </strong></li>
-                                    <li><strong>State: @Model.PaymentInput.State  </strong></li>
-                                    <li><strong>Country: @Model.PaymentInput.Country </strong></li>
+                                    <li><strong>Name: @Model.ReceiptOrders.FirstName @Model.ReceiptOrders.LastName </strong></li>
+                                    <li><strong>Shipping Address: @Model.ReceiptOrders.Address </strong></li>
+                                    <li><strong>City: @Model.ReceiptOrders.City </strong></li>
+                                    <li><strong>State: @Model.ReceiptOrders.State </strong></li>
                                 </ul>
                             </div>
 
@@ -74,14 +71,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach (var item in Model.CartItems)
+                                            @for (int i = 0; i < serviceList.Length; i++)
                                             {
                                                 <tr>
-                                                    <td>@item.Services.ServiceType</td>
-                                                    <td class="text-center">@item.Services.Price x @item.Quantity</td>
-                                                    <td class="text-center">$@(item.Quantity * @item.Services.Price) USD</td>
+                                                    <td>@serviceList[i]</td>
+                                                    <td class="text-center">@priceList[i] x @quantityList[i]</td>
+                                                    <td class="text-center">@(Convert.ToDecimal(priceList[i]) * Convert.ToInt32(quantityList[i])) USD</td>
                                                 </tr>
-
                                             }
                                         </tbody>
 
@@ -96,7 +92,7 @@
                                             </tr>
                                             <tr>
                                                 <th colspan="2" class="text-right">Total:</th>
-                                                <th class="text-center">$@(String.Format("{0:0.00}",sum += sum / 6.50M)) USD</th>
+                                                <th class="text-center">$@Model.ReceiptOrders.Amount USD</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -109,12 +105,7 @@
         </div>
     </div>
     <div style="margin-left: 77%;">
-        <a asp-page="/Admin/Orders" class="btn btn-secondary m-1">Back to Orders</a>
-    <div style="margin-bottom:100px;"></div>
-        
-                    </div>*@
-
-    
+        <div style="margin-bottom:200px;"></div>
+    </div>
 </body>
-
 </html>

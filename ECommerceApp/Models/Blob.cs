@@ -12,8 +12,6 @@ namespace ECommerceApp.Models
 
     public class Blob
     {
-        //private IConfiguration _configuration;
-
         public CloudStorageAccount CloudStorageAccount { get; set; }
 
         public CloudBlobClient CloudBlobClient { get; set; }
@@ -21,8 +19,6 @@ namespace ECommerceApp.Models
 
         public Blob(IConfiguration configuration)
         {
-            //_configuration = configuration;
-
             var storageCreds = new StorageCredentials(configuration["Storage-Account-Name"], configuration["BlobKey"]);
 
             CloudStorageAccount = new CloudStorageAccount(storageCreds, true);

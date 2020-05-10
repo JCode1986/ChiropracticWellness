@@ -47,17 +47,12 @@ namespace ECommerceApp.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ReceiptOrdersID")
-                        .HasColumnType("int");
-
                     b.Property<int?>("ServicesID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("CartID");
-
-                    b.HasIndex("ReceiptOrdersID");
 
                     b.HasIndex("ServicesID");
 
@@ -183,21 +178,6 @@ namespace ECommerceApp.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ECommerceApp.Models.Receipt", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("UserID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Receipt");
-                });
-
             modelBuilder.Entity("ECommerceApp.Models.ReceiptOrders", b =>
                 {
                     b.Property<int>("ID")
@@ -209,6 +189,9 @@ namespace ECommerceApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Amount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CartItemQuantity")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
@@ -223,15 +206,16 @@ namespace ECommerceApp.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ReceiptID")
-                        .HasColumnType("int");
+                    b.Property<string>("ServiceList")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServicePriceList")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("ReceiptID");
 
                     b.ToTable("ReceiptOrders");
                 });
@@ -244,20 +228,9 @@ namespace ECommerceApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ECommerceApp.Models.ReceiptOrders", null)
-                        .WithMany("CartItems")
-                        .HasForeignKey("ReceiptOrdersID");
-
                     b.HasOne("ECommerceApp.Models.Inventory", "Services")
                         .WithMany()
                         .HasForeignKey("ServicesID");
-                });
-
-            modelBuilder.Entity("ECommerceApp.Models.ReceiptOrders", b =>
-                {
-                    b.HasOne("ECommerceApp.Models.Receipt", null)
-                        .WithMany("ReceiptOrders")
-                        .HasForeignKey("ReceiptID");
                 });
 #pragma warning restore 612, 618
         }

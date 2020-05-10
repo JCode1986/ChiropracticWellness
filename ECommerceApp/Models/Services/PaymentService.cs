@@ -21,7 +21,7 @@ namespace ECommerceApp.Models.Services
             _configuration = configuration;
         }
 
-        [HttpPost]
+        
         public string Run(PaymentInput input)
         {
             //controllers.Base for AuthorizeNet:
@@ -40,7 +40,6 @@ namespace ECommerceApp.Models.Services
             //DO NOT ask the user for their real credit card number. Can put a few testNumbers in a dropdown menu.
             var creditCard = new creditCardType
             {
-                //cardNumber = "4111111111111111",
                 cardNumber = input.CreditCard,
                 expirationDate = "1022",
                 cardCode = "102"
@@ -48,14 +47,11 @@ namespace ECommerceApp.Models.Services
 
             customerAddressType billingAddress = GetAddress(input);
 
-            //customerAddressType billingAddress = GetAddress(input.ShippingAddress);
-
             var paymentType = new paymentType { Item = creditCard };
 
             var transactionRequest = new transactionRequestType
             {
                 transactionType = transactionTypeEnum.authCaptureTransaction.ToString(),
-                //amount = 111.5M,
                 amount = Convert.ToDecimal(input.Amount),
                 payment = paymentType,
                 billTo = billingAddress
@@ -80,9 +76,11 @@ namespace ECommerceApp.Models.Services
             return "failed to process";
         }
 
-
-
-
+        /// <summary>
+        /// Get the address from user's input
+        /// </summary>
+        /// <param name="input">Payment model</param>
+        /// <returns>Payment model</returns>
         public customerAddressType GetAddress(PaymentInput input)
         {
             //make a call to the db to get the billing address
