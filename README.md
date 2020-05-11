@@ -150,7 +150,6 @@ ERD from CodeFellows 401 .NET Class Repo:
 | Parameter | Type | Required |
 | --- | --- | --- |
 | ID  | int | YES |
-| UserID | string | YES |
 | FirstName | string | YES |
 | LastName | string | YES |
 | Address | string | YES |
