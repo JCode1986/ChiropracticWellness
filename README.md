@@ -151,6 +151,23 @@ ERD from CodeFellows 401 .NET Class Repo:
 | UserID | string | YES |
 | CartItems | List< CartItems > | YES |
 
+### ReceiptOrder
+
+| Parameter | Type | Required |
+| --- | --- | --- |
+| ID  | int | YES |
+| UserID | string | YES |
+| FirstName | string | YES |
+| LastName | string | YES |
+| Address | string | YES |
+| City | string | YES |
+| State | string | YES |
+| Amount | string | YES |
+| Date | string | YES |
+| CartItemQuantity | string | YES |
+| ServiceList | string | YES |
+| ServicePriceList | string | YES |
+
 ---
 
 ### Claims Being Captured
@@ -162,6 +179,10 @@ ERD from CodeFellows 401 .NET Class Repo:
 | Email | string | YES |
 
 ## Change Log
+* **SPRINT 3 COMPLETE**
+* 1.20: *Admin can pick a specific user in order page, and it redirects to order detail page with receipt info* - 09 May 2020
+* 1.19: *Added order page for admins from specific user* - 08 May 2020
+* 1.18: *When an admin logs in, it redirects them to the admin page* - 07 May 2020
 * 1.17: *Admin able to create and update images with Azure blob storage* - 06 May 2020
 * 1.16: *User's input with total amount now passes properly to Auth.Net* - 06 May 2020
 * 1.15: *Hard coded transaction working with Auth.Net* - 05 May 2020
