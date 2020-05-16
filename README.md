@@ -172,6 +172,7 @@ ERD from CodeFellows 401 .NET Class Repo:
 | Email | string | YES |
 
 ## Change Log
+* **Changed origin from azure to github** - 15 May 2020
 * **SPRINT 3 COMPLETE**
 * 1.20: *Admin can pick a specific user in order page, and it redirects to order detail page with receipt info* - 09 May 2020
 * 1.19: *Added order page for admins from specific user* - 08 May 2020
