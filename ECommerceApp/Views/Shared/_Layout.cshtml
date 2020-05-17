@@ -21,6 +21,13 @@
         @if (SignInManager.IsSignedIn(User))
         {
         <span>Welcome @User.Claims.First(x => x.Type == "FullName").Value!</span>
+            string email = SignInManager.UserManager.NormalizeEmail(User.Identity.Name).ToLower();
+            if (email == "joseph.hangarter@yahoo.com" || email == "sue@greengrasspt.com" || email == "amanda @codefellows.com" || email == "rice.jonathanm@gmail.com")
+            {
+    <div>
+        <a href="/Admin/Dashboard" class="nav-link">Admin Dashboard</a>
+    </div>
+            }
             <div class="dropdown">
                 <a href="/" style="margin-left:20px;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="fa fa-gift bigicon"></span> My Cart<span class="caret"></span></a>
                 <ul style="width: 260px;"class="dropdown-menu dropdown-cart" role="menu">
