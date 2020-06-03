@@ -136,6 +136,7 @@ namespace ECommerceApp.Pages.Account
 
                 await _email.SendEmailAsync($"{User.Identity.Name}", "Your Purchase from Wellness Chiropractic", sb.ToString());
 
+                //delete all items from cart
                 foreach (var item in CartItems)
                 {
                     await _context.DeleteCartItem(item.ID);
