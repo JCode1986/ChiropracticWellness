@@ -135,10 +135,13 @@ namespace ECommerceApp.Pages.Account
                 sb.AppendLine($"<strong>Total after tax: ${String.Format("{0:0.00}", sum += sum / 6.50M)} USD </strong>");
 
                 await _email.SendEmailAsync($"{User.Identity.Name}", "Your Purchase from Wellness Chiropractic", sb.ToString());
-                
+
+                foreach (var item in CartItems)
+                {
+                    await _context.DeleteCartItem(item.ID);
+                }              
                 return Page();
             }
-
             else
             {
                 return Page();
