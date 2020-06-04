@@ -16,10 +16,10 @@ namespace ECommerceApp.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private UserManager<ApplicationUser> _userManager;
-        private SignInManager<ApplicationUser> _signInManager;
-        private ICartItems _cart;
-        private IEmailSender _email;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ICartItems _cart;
+        private readonly IEmailSender _email;
 
         [BindProperty]
         public RegisterInput RegisterData { get; set; }
@@ -152,8 +152,6 @@ namespace ECommerceApp.Pages.Account
             [DataType(DataType.Password)]
             [Compare("Password", ErrorMessage="The passwords do not match")]
             public string ConfirmPassword { get; set; }
-
-
         }
     }
 }

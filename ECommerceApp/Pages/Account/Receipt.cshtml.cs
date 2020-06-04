@@ -19,10 +19,10 @@ namespace ECommerceApp.Pages.Account
 {
     public class ReceiptModel : PageModel
     {
-        private ICartItems _context;
-        private IEmailSender _email;
-        private IPayment _payment;
-        private IReceiptOrders _receiptOrder;
+        private readonly ICartItems _context;
+        private readonly IEmailSender _email;
+        private readonly IPayment _payment;
+        private readonly IReceiptOrders _receiptOrder;
 
         public ReceiptModel(ICartItems context, IEmailSender email, IPayment payment, IReceiptOrders receiptOrder)
         {
@@ -140,7 +140,7 @@ namespace ECommerceApp.Pages.Account
                 foreach (var item in CartItems)
                 {
                     await _context.DeleteCartItem(item.ID);
-                }              
+                }
                 return Page();
             }
             else

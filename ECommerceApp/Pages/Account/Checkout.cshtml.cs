@@ -16,25 +16,8 @@ namespace ECommerceApp.Pages.Account
     public class CheckoutModel : PageModel
 
     {
-        private IPayment _pay;
-        private UserManager<ApplicationUser> _userManager;
-        private ICartItems _cart;
-        private IConfiguration _config;
-
-        public CheckoutModel(IPayment pay, UserManager<ApplicationUser> userManager, ICartItems cart, IConfiguration config)
-        {
-            _pay = pay;
-            _userManager = userManager;
-            _cart = cart;
-            _config = config;
-        }
-
         [BindProperty]
         public PaymentInput PaymentInput { get; set; }
-
-        public void OnGet()
-        {          
-        }
 
         public async Task<IActionResult> OnPost()
         {
@@ -85,9 +68,7 @@ namespace ECommerceApp.Pages.Account
         [Required]
         [Display(Name = "Credit Cart")]
         public string CreditCard { get; set; }
-
         public string Amount { get; set; }
-
         public string Date { get; set; }
     }
 }

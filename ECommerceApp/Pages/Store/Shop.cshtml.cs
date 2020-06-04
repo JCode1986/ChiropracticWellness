@@ -16,7 +16,7 @@ namespace ECommerceApp.Pages.Store
     public class StoreModel : PageModel
     {
         //inject IInventory
-        private IInventory _inventory;
+        private readonly IInventory _inventory;
 
         //constructor
         public StoreModel(IInventory inventory)

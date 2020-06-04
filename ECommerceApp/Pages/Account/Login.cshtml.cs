@@ -13,17 +13,14 @@ namespace ECommerceApp.Pages.Account
     public class LoginModel : PageModel
     {
         //bringing in the signInManager
-        private SignInManager<ApplicationUser> _signInManager;
-        private UserManager<ApplicationUser> _userManager;
-
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
         [BindProperty]
         public LoginViewModel Input { get; set; }
         
-        public LoginModel(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        public LoginModel(SignInManager<ApplicationUser> signInManager)
         {
             _signInManager = signInManager;
-            _userManager = userManager;
         }
 
 
@@ -58,7 +55,6 @@ namespace ECommerceApp.Pages.Account
                     return Page();
                 }
             }
-
             return Page();
         }
         
