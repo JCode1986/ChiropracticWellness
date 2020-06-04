@@ -71,14 +71,14 @@ Unit testing is included in the XunitTestECommApp project using the xUnit test f
 * **route/store/cart** - Page that shows all items the user has added to cart.
 * **route/product/details/id** - Page that shows a specific service with details.
 * **route/product/delete/id** - Page to delete a specific item from user's cart.
-* **route/admin/dashboard** - Page where administrators have access to, and have the option to manage services, or check existing orders.
-* **route/admin/order** - Page where administrators can check all existing orders
-* **route/admin/orderdetails** - Page where administrators can order details after picking a specific order
 
 #### Admin Routes
-  * **route/admin/dashboard** - Page where an Administrator can pick to manage orders or services.
+  * **route/admin/dashboard** - Page where administrators have access to, and have the option to manage services, or check existing orders.
   * **route/admin/manageservices** - Page where Administrator can create, update, or delete a service.
- 
+  * **route/admin/order** - Page where administrators can check all existing orders
+  * **route/admin/orderdetails** - Page where administrators can order details after picking a specific order
+
+
 ## Usage
 ***[Provide some images of your app with brief description as title]***
 
@@ -94,16 +94,28 @@ Unit testing is included in the XunitTestECommApp project using the xUnit test f
 ### Cart Page
 ![Cart Page](https://i.imgur.com/XL8qGvR.png)
 
+### Payment Page
+![Payment Page](https://i.imgur.com/1QhpqRG.png)
+
+### Receipt Page
+![Receipt Page](https://i.imgur.com/PYNbBzU.png)
+
 ### Admin Page
 ![Admin Page](https://i.imgur.com/H5S603x.png)
 
 ### Edit Service in Admin Portal
-![Admin Edit Page](https://i.imgur.com/zSPIwMm.png)
+![Admin Edit Page with Blob Storage for Images](https://i.imgur.com/erEgKtK.png)
+
+### Admin Orders Page
+![Admin Orders](https://i.imgur.com/YHWaBBH.png)
+
+### Admin Order Details
+![Admin Order Details](https://i.imgur.com/lPM1X3X.png)
+
 
 ---
 ## Data Model
-ERD from CodeFellows 401 .NET Class Repo:
-![ERD](https://i.imgur.com/RhRWayc.png)
+![ERD of StoreDbContext](https://i.imgur.com/lYcJ8m7.png)
 
 ---
 ## Model Properties and Requirements
@@ -172,6 +184,7 @@ ERD from CodeFellows 401 .NET Class Repo:
 | Email | string | YES |
 
 ## Change Log
+* 1.21.2: *Added feature to delete all items in cart after purchase is verified* - 03 June 2020
 * 1.20.2: *Added button for admins to go to admin page* - 16 May 2020
 * 1.20.1: *Changed card information drop down from card number to card types* - 16 May 2020
 * **Changed origin from azure to github** - 15 May 2020
