@@ -80,7 +80,6 @@ Unit testing is included in the XunitTestECommApp project using the xUnit test f
 
 
 ## Usage
-***[Provide some images of your app with brief description as title]***
 
 ### Home Page
 ![Home Page](https://i.imgur.com/yVrFZgg.png)
