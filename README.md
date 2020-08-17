@@ -11,6 +11,7 @@
 
 ---
 ## Web Application
+ECommerce site created for a chiropractic clinic to sell services online and perform treatment services in client homes during COVID-19 social-distancing while the clinic is closed.
 
 The web application consists of a frontend written in Razor views, HTML, CSS,
 Bootstrap. The backend was written in C# using ASP.NET Core 2, Entity Framework Core, and the MVC framework.
